@@ -1,0 +1,37 @@
+<?php
+
+return array (
+  'group' => 'group',
+  'key' => 'key',
+  'translation' => 
+  array (
+    'en' => 'translation EN',
+  ),
+  'country' => 'country',
+  'region' => 'region',
+  'city' => 'city',
+  'postal' => 'postal',
+  'number' => 'number',
+  'first_name' => 'first name',
+  'middle_name' => 'middle name',
+  'last_name' => 'last name',
+  'gender' => 'gender',
+  'email' => 'email',
+  'job_function' => 'job function',
+  'phone' => 'phone',
+  'mobile' => 'mobile',
+  'name' => 'name',
+  'country_code' => 'country code',
+  'region_code' => 'region code',
+  'street' => 'street',
+  'vat' => 'VAT',
+  'coc' => 'COC',
+  'password' => 'password',
+  'type' => 'type',
+  'admin' => 'admin',
+  'permission_ids' => 'permission ids',
+  'password_confirm' => 'password confirm',
+  'previous_password' => 'previous password',
+  'new_password' => 'new password',
+  'locale' => 'locale',
+);

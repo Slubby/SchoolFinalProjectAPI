@@ -32,7 +32,8 @@ use Illuminate\Support\Carbon;
  * @property int $grade
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read User|null $user
+ * @property-read \App\Models\User $mentor
+ * @property-read \App\Models\User|null $user
  * @method static Builder|Student newModelQuery()
  * @method static Builder|Student newQuery()
  * @method static Builder|Student query()

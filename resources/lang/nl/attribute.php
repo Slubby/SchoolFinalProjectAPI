@@ -1,0 +1,37 @@
+<?php
+
+return array (
+  'group' => 'groep',
+  'key' => 'sleutel',
+  'translation' => 
+  array (
+    'en' => 'EN vertalings',
+  ),
+  'country' => 'land',
+  'region' => 'provincie',
+  'city' => 'stad',
+  'postal' => 'postcode',
+  'number' => 'nummer',
+  'first_name' => 'voornaam',
+  'middle_name' => 'tussenvoegsel',
+  'last_name' => 'achternaam',
+  'gender' => 'geslacht',
+  'email' => 'email',
+  'job_function' => 'functie',
+  'phone' => 'telefoon',
+  'mobile' => 'mobiel',
+  'name' => 'naam',
+  'country_code' => 'landcode',
+  'region_code' => 'provincie code',
+  'street' => 'straat',
+  'vat' => 'BTW',
+  'coc' => 'KVK',
+  'password' => 'wachtwoord',
+  'type' => 'type',
+  'admin' => 'admin',
+  'permission_ids' => 'rechten ids',
+  'password_confirm' => 'wachtwoord bevestigen',
+  'previous_password' => 'voorig wachtwoord',
+  'new_password' => 'nieuw wachtwoord',
+  'locale' => 'locale',
+);

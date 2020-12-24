@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @property string $street
  * @property string $house_number
  * @property string $postal_code
- * @property string $supervisor
+ * @property bool $verified
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\User|null $user
@@ -35,8 +35,8 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @method static \Illuminate\Database\Eloquent\Builder|Company wherePostalCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Company whereRegion($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Company whereStreet($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Company whereSupervisor($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Company whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Company whereVerified($value)
  * @mixin \Eloquent
  */
 class Company extends Model
@@ -46,7 +46,19 @@ class Company extends Model
     protected $table = 'company_profile';
 
     protected $fillable = [
+        'number',
+        'name',
+        'country',
+        'region',
+        'city',
+        'street',
+        'house_number',
+        'postal_code',
+        'verified',
+    ];
 
+    protected $casts = [
+        'verified' => 'boolean',
     ];
 
     /**

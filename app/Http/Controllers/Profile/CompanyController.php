@@ -1,37 +1,50 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Profile;
 
-use App\Http\Resources\UserResource;
+use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class TestController extends Controller
+class CompanyController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return string
+     * @param object $data
+     * @return Company|bool
      */
-    public function index()
+    public static function create(object $data)
     {
-        $user = User::find(1);
+        try {
+            $company = new Company();
 
+            $company->number = $data->number;
+            $company->name = $data->name;
+            $company->country = $data->country;
+            $company->region = $data->region;
+            $company->city = $data->city;
+            $company->street = $data->street;
+            $company->house_number = $data->house_number;
+            $company->postal_code = $data->postal_code;
 
-        $user->profile;
-        $user->profile->mentor;
-        $user->profile->mentor->profile;
+            $company->save();
 
-        return new UserResource($user);
+            return $company;
+        } catch (Exception $e) {
+            report($e);
+        }
+
+        return false;
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      *
      * @return Response
      */
-    public function create()
+    public function index()
     {
         //
     }
@@ -44,7 +57,7 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**

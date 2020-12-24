@@ -3,7 +3,8 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Throwable;
+use Illuminate\Http\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -23,7 +24,7 @@ class Handler extends ExceptionHandler
      */
     protected $dontFlash = [
         'password',
-        'password_confirmation',
+        'password_confirm',
     ];
 
     /**
@@ -33,8 +34,8 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (NotFoundHttpException $e) {
+            return response()->json(['message' => 'The given id was not found'], Response::HTTP_BAD_REQUEST);
         });
     }
 }

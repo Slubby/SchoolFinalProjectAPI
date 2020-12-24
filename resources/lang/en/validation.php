@@ -90,7 +90,6 @@ return [
         'string' => 'The :attribute must be at least :min characters.',
         'array' => 'The :attribute must have at least :min items.',
     ],
-    'multiple_of' => 'The :attribute must be a multiple of :value',
     'not_in' => 'The selected :attribute is invalid.',
     'not_regex' => 'The :attribute format is invalid.',
     'numeric' => 'The :attribute must be a number.',
@@ -118,6 +117,8 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
+    'phone' => 'The :attribute field contains an invalid number.',
+    'vat_number' => 'The :attribute must be a valid VAT number.',
 
     /*
     |--------------------------------------------------------------------------
@@ -147,6 +148,6 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => include 'attribute.php',
 
 ];

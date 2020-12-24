@@ -23,7 +23,7 @@ class CreateCompanyProfileTable extends Migration
             $table->string('street');
             $table->string('house_number');
             $table->string('postal_code');
-            $table->string('supervisor');
+            $table->boolean('verified')->default(0);
             $table->timestamps();
         });
     }
