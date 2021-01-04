@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
     use App\Http\Controllers\Auth\RegisterController;
     use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
+    use App\Http\Controllers\Profile\CompanyController;
     use App\Http\Controllers\SchoolController;
     use Illuminate\Support\Facades\Route;
 
@@ -33,13 +34,23 @@ Route::middleware('auth:api')->name('user.')->group(function () {
     Route::prefix('auth')->group(function () {
         Route::get('user', [AuthController::class, 'user'])->name('information');
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+        Route::patch('update', [AuthController::class, 'changeProfile'])->name('update');
     });
 
-    Route::prefix('school')->name('school.')->group(function () {
-        Route::post('create', [SchoolController::class, 'create'])->name('create');
+    Route::middleware('permission:admin')->name('admin.')->group(function () {
+        Route::prefix('school')->name('school.')->group(function () {
+            Route::post('create', [SchoolController::class, 'store'])->name('create');
 
-        Route::prefix('{school}')->group(function () {
-            Route::patch('update', [SchoolController::class, 'update'])->name('update');
+            Route::prefix('{school}')->group(function () {
+                Route::patch('update', [SchoolController::class, 'update'])->name('update');
+            });
+        });
+
+        Route::prefix('company')->name('company.')->group(function () {
+
+            Route::prefix('{company}')->group(function () {
+                Route::put('verify', [CompanyController::class, 'verify'])->name('verify');
+            });
         });
     });
 });

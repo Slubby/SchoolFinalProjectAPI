@@ -9,14 +9,17 @@ use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
-    public static function create(object $data)
+    public static function createOrUpdate(object $data, int $id = 0)
     {
         try {
-            $teacher = new Teacher();
+            $teacher = Teacher::findOrNew($id);
 
-            $teacher->school_id = $data->school;
+            if (!$teacher->exists) {
+                $teacher->school_id = $data->school;
+            }
+
             $teacher->first_name = $data->first_name;
-            $teacher->middle_name = $data->middle_name;
+            $teacher->middle_name = $data->middle_name ?? null;
             $teacher->last_name = $data->last_name;
             $teacher->short_name = $data->last_name;
 

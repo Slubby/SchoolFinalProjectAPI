@@ -11,10 +11,10 @@ class SchoolRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'name' => ['required', "unique:school,name,{$this->id}"]
+            'name' => ['required', "unique:schools,name,{$this->id}"]
         ];
     }
 }

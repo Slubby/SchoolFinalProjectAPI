@@ -62,6 +62,14 @@ class Teacher extends Model
     ];
 
     /**
+     * @return string
+     */
+    public function fullName(): string
+    {
+        return $this->first_name . ($this->middle_name ? ' ' . $this->middle_name . ' ' : ' ') . $this->last_name;
+    }
+
+    /**
      * @return MorphOne
      */
     public function user(): MorphOne

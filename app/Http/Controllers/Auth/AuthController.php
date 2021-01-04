@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Profile\AdminController;
+use App\Http\Controllers\Profile\CompanyController;
+use App\Http\Controllers\Profile\StudentController;
+use App\Http\Controllers\Profile\TeacherController;
+use App\Http\Requests\UserChangeRequest;
 use App\Http\Requests\UserPasswordChangeRequest;
 use App\Http\Resources\UserResource;
+use App\Models\Admin;
+use App\Models\Company;
+use App\Models\Student;
+use App\Models\Teacher;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -30,6 +40,35 @@ class AuthController extends Controller
         }
 
         return response()->json(['message' => 'Something went wrong well getting user data'], 400);
+    }
+
+    public function changeProfile(UserChangeRequest $request)
+    {
+        $validation = (object) $request->validated();
+
+        $id = Auth::id();
+        $user = Auth::user();
+        $type = $user->profile;
+
+        if ($type instanceof Company) {
+            $profile = CompanyController::createOrUpdate($validation, $id);
+        } elseif ($type instanceof Teacher) {
+            $profile = TeacherController::createOrUpdate($validation, $id);
+        } elseif ($type instanceof Student) {
+            $profile = StudentController::createOrUpdate($validation, $id);
+        } elseif ($type instanceof Admin) {
+            $profile = AdminController::createOrUpdate($validation, $id);
+        } else {
+            $profile = false;
+        }
+
+        if ($profile) {
+            $user->refresh();
+
+            return new UserResource($user);
+        }
+
+        return response()->json(['message' => 'Something went wrong while updating your profile'], Response::HTTP_BAD_REQUEST);
     }
 
     /**

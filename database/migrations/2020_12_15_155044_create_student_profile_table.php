@@ -31,6 +31,8 @@ class CreateStudentProfileTable extends Migration
             $table->foreignId('mentor_id')->constrained('users');
             $table->date('started_at');
             $table->integer('grade')->default(1);
+            $table->foreignId('curriculum_vitae_id')->nullable()->constrained('files')->nullOnDelete();
+            $table->foreignId('motivation_letter_id')->nullable()->constrained('files')->nullOnDelete();
             $table->timestamps();
         });
     }

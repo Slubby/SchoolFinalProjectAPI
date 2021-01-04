@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\User;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -13,15 +15,19 @@ class CompanyController extends Controller
 {
     /**
      * @param object $data
+     * @param int $id
      * @return Company|bool
      */
-    public static function create(object $data)
+    public static function createOrUpdate(object $data, int $id = 0)
     {
         try {
-            $company = new Company();
+            $company = Company::findOrNew($id);
 
-            $company->number = $data->number;
-            $company->name = $data->name;
+            if (!$company->exists) {
+                $company->number = $data->number;
+                $company->name = $data->name;
+            }
+
             $company->country = $data->country;
             $company->region = $data->region;
             $company->city = $data->city;
@@ -72,26 +78,21 @@ class CompanyController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
+     * @param Company $company
+     * @return JsonResponse
      */
-    public function edit($id)
+    public function verify(Company $company): JsonResponse
     {
-        //
-    }
+        try {
+            $company->verified = true;
+            $company->save();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+            return response()->json(['message' => "Company \"{$company->name}\" success fully verified"]);
+        } catch (Exception $e) {
+            report($e);
+        }
+
+        return response()->json(['message' => 'Something went wrong while verifying the company'], Response::HTTP_BAD_REQUEST);
     }
 
     /**

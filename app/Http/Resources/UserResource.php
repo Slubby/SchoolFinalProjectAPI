@@ -2,9 +2,11 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\Profile\AdminResource;
 use App\Http\Resources\Profile\CompanyResource;
 use App\Http\Resources\Profile\StudentResource;
 use App\Http\Resources\Profile\TeacherResource;
+use App\Models\Admin;
 use App\Models\Company;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -25,17 +27,19 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'email_verified_at' => $this->email_verified_at,
             'profile' => $this->whenLoaded('profile', function () {
-                if ($this->profile instanceof Student) {
-                    return new StudentResource($this->profile);
+                $profile = $this->profile;
+
+                if ($profile instanceof Student) {
+                    return new StudentResource($profile);
+                } elseif ($profile instanceof Teacher) {
+                    return new TeacherResource($profile);
+                } elseif ($profile instanceof Company) {
+                    return new CompanyResource($profile);
+                } elseif ($profile instanceof Admin) {
+                    return new AdminResource($profile);
                 }
 
-                if ($this->profile instanceof Teacher) {
-                    return new TeacherResource($this->profile);
-                }
-
-                if ($this->profile instanceof Company) {
-                    return new CompanyResource($this->profile);
-                }
+                return null;
             })
         ];
     }

@@ -15,6 +15,7 @@ use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
  * App\Models\User
@@ -54,7 +55,7 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
  * @mixin Eloquent
  */
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable, SoftDeletes;
 
@@ -66,6 +67,7 @@ class User extends Authenticatable
     protected $fillable = [
         'mobile',
         'email',
+        'email_verified_at',
         'password',
     ];
 
@@ -88,14 +90,6 @@ class User extends Authenticatable
     }
 
     /**
-     * @return string
-     */
-    public function fullName(): string
-    {
-        return $this->first_name . ($this->middle_name ? ' ' . $this->middle_name . ' ' : ' ') . $this->last_name;
-    }
-
-    /**
      * @return HasOne
      */
     public function verification(): HasOne
@@ -109,5 +103,21 @@ class User extends Authenticatable
     public function passwordReset(): HasOne
     {
         return $this->hasOne(PasswordReset::class);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * @return array
+     */
+    public function getJWTCustomClaims(): array
+    {
+        return [];
     }
 }

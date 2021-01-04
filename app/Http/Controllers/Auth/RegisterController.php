@@ -36,10 +36,10 @@ class RegisterController extends Controller
 
                 switch ($type) {
                     case 'company':
-                        $profile = CompanyController::create($validation);
+                        $profile = CompanyController::createOrUpdate($validation);
                         break;
                     case 'teacher':
-                        $profile = TeacherController::create($validation);
+                        $profile = TeacherController::createOrUpdate($validation);
                         break;
                     default:
                         $profile = false;

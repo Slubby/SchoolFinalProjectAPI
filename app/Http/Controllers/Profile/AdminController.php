@@ -3,46 +3,29 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
-use App\Models\Student;
+use App\Models\Admin;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
-class StudentController extends Controller
+class AdminController extends Controller
 {
     /**
      * @param object $data
      * @param int $id
-     * @return Student|bool
+     * @return Admin|bool
      */
     public static function createOrUpdate(object $data, int $id = 0)
     {
         try {
-            $student = Student::findOrNew($id);
+            $admin = Admin::findOrNew($id);
 
-            if (!$student->exists) {
-                $student->number = $data->number;
-                $student->education = $data->education;
-                $student->mentor_id = $data->mentor;
-                $student->started_at = $data->started;
-                $student->grade = $data->grade;
-            }
+            $admin->first_name = $data->first_name;
+            $admin->middle_name = $data->middle_name ?? null;
+            $admin->last_name = $data->last_name;
 
-            $student->first_name = $data->first_name;
-            $student->middle_name = $data->middle_name;
-            $student->last_name = $data->last_name;
-            $student->gender = $data->gender;
-            $student->birthday = $data->birthday;
-            $student->country = $data->country;
-            $student->region = $data->region;
-            $student->city = $data->city;
-            $student->street = $data->street;
-            $student->house_number = $data->house_number;
-            $student->postal_code = $data->postal_code;
+            $admin->save();
 
-            $student->save();
-
-            return $student;
+            return $admin;
         } catch (Exception $e) {
             report($e);
         }
@@ -53,7 +36,7 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -63,7 +46,7 @@ class StudentController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -73,8 +56,8 @@ class StudentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -85,7 +68,7 @@ class StudentController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -96,7 +79,7 @@ class StudentController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
@@ -106,9 +89,9 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -119,7 +102,7 @@ class StudentController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {

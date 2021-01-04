@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Company;
+use App\Models\Teacher;
+use App\Models\User;
 use Exception;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Response;
@@ -26,6 +29,26 @@ class LoginController extends Controller
     }
 
     /**
+     * @param User $user
+     * @return false|string
+     */
+    private static function checkAccountIsVerified(User $user)
+    {
+        if (!$user->profile->verified) {
+            if ($user->profile instanceof Company) {
+                return "you can only log in when you have been verified by us";
+            }
+
+            if ($user->profile instanceof Teacher) {
+                $school = $user->profile->school->name;
+                return "the {$school} must first verify you in order to log in";
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * @param Request $request
      * @return JsonResponse|void
      */
@@ -39,14 +62,19 @@ class LoginController extends Controller
             }
 
             $credentials = $request->only('email', 'password');
-            if ($token = Auth::guard()->attempt($credentials, $request->filled('remember'))) {
+            if ($token = Auth::guard()->attempt($credentials)) {
+                $user = Auth::user();
 
-                if (is_null(Auth::user()->email_verified_at)) {
-                    if (VerificationController::emailVerifyCode(Auth::user())) {
+                if (is_null($user->email_verified_at)) {
+                    if (VerificationController::emailVerifyCode($user)) {
                         return response()->json(['errors' => ['email' => 'Please verify your email']],  Response::HTTP_UNAUTHORIZED);
                     }
 
                     return response()->json(['message' => 'Something went wrong while sending the email'], Response::HTTP_BAD_REQUEST);
+                }
+
+                if ($message = self::checkAccountIsVerified($user)) {
+                    return response()->json(['message' => $message],  Response::HTTP_UNAUTHORIZED);
                 }
 
                 $this->clearLoginAttempts($request);

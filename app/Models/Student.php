@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\UseFile;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -60,13 +61,35 @@ use Illuminate\Support\Carbon;
  */
 class Student extends Model
 {
-    use HasFactory;
+    use HasFactory, UseFile;
 
     protected $table = 'student_profile';
 
     protected $fillable = [
-
+        'first_name',
+        'middle_name',
+        'last_name',
+        'gender',
+        'birthday',
+        'country',
+        'region',
+        'city',
+        'street',
+        'house_number',
+        'postal_code',
+        'education',
+        'mentor_id',
+        'started_at',
+        'grade',
     ];
+
+    /**
+     * @return string
+     */
+    public function fullName(): string
+    {
+        return $this->first_name . ($this->middle_name ? ' ' . $this->middle_name . ' ' : ' ') . $this->last_name;
+    }
 
     /**
      * @return MorphOne

@@ -4,7 +4,7 @@ namespace App\Http\Resources\Profile;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TeacherResource extends JsonResource
+class AdminResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,8 +19,6 @@ class TeacherResource extends JsonResource
             'middle_name' => $this->middle_name,
             'last_name' => $this->last_name,
             'full_name' => $this->fullName(),
-            'short_name' => $this->short_name,
-            'active' => $this->active
         ];
     }
 }

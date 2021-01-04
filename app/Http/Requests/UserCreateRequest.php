@@ -34,14 +34,28 @@ class UserCreateRequest extends FormRequest
      * @var array
      */
     private array $student = [
-
+        'first_name' => ['required'],
+        'last_name' => ['required'],
+        'gender' => ['required', 'in:male,female,other'],
+        'birthday' => ['required', 'date'],
+        'country' => ['required'],
+        'region' => ['required'],
+        'city' => ['required'],
+        'street' => ['required'],
+        'house_number' => ['required'],
+        'postal_code' => ['required'],
+        'education' => ['required'],
+        'mentor' => ['required', 'integer'],
+        'started' => ['required', 'date'],
+        'grade' => ['required', 'integer'],
     ];
 
     /**
      * @var array
      */
     private array $admin = [
-
+        'first_name' => ['required'],
+        'last_name' => ['required'],
     ];
 
     /**
