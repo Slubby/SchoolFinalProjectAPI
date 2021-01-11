@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Response;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
@@ -36,6 +37,10 @@ class Handler extends ExceptionHandler
     {
         $this->renderable(function (NotFoundHttpException $e) {
             return response()->json(['message' => 'The given id was not found'], Response::HTTP_BAD_REQUEST);
+        });
+
+        $this->renderable(function (AccessDeniedHttpException $e) {
+            return response()->json(['message' => 'Your not authorized for this action'], Response::HTTP_FORBIDDEN);
         });
     }
 }

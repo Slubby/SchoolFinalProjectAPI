@@ -31,10 +31,14 @@ class CheckUserPermission
             }
         }
 
-        return response()->json(['message' => 'You has no permissions for this'], Response::HTTP_FORBIDDEN);
+        return response()->json(['message' => 'You have no permissions for this action'], Response::HTTP_FORBIDDEN);
     }
 
-    private static function types(string $type): string
+    /**
+     * @param string $type
+     * @return false|string
+     */
+    private static function types(string $type)
     {
         switch ($type) {
             case 'company':

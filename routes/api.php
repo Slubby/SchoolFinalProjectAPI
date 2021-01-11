@@ -64,23 +64,23 @@ Route::middleware('auth:api')->name('user.')->group(function () {
         Route::prefix('{company}')->group(function () {
 
             Route::prefix('supervisor')->name('supervisor.')->group(function () {
-                Route::get('/', [SupervisorController::class, 'index'])->name('all');
-                Route::post('create', [SupervisorController::class, 'store'])->name('create');
+                Route::get('/', [SupervisorController::class, 'index'])->name('all')->middleware('can:supervisor,company');
+                Route::post('create', [SupervisorController::class, 'store'])->name('create')->middleware('can:supervisor,company');
 
                 Route::prefix('{supervisor}')->group(function () {
-                    Route::patch('update', [SupervisorController::class, 'update'])->name('update');
-                    Route::delete('delete', [SupervisorController::class, 'destroy'])->name('delete');
+                    Route::patch('update', [SupervisorController::class, 'update'])->name('update')->middleware('can:update,supervisor');
+                    Route::delete('delete', [SupervisorController::class, 'destroy'])->name('delete')->middleware('can:delete,supervisor');
                 });
             });
 
             Route::prefix('vacancy')->name('supervisor.')->group(function () {
-                Route::get('/', [VacancyController::class, 'index'])->name('all');
-                Route::post('create', [VacancyController::class, 'store'])->name('create');
+                Route::get('/', [VacancyController::class, 'index'])->name('all')->middleware('can:vacancy,company');
+                Route::post('create', [VacancyController::class, 'store'])->name('create')->middleware('can:vacancy,company');;
 
                 Route::prefix('{vacancy}')->group(function () {
-                    Route::put('edit', [VacancyController::class, 'edit'])->name('edit');
-                    Route::patch('update', [VacancyController::class, 'update'])->name('update');
-                    Route::delete('delete', [VacancyController::class, 'destroy'])->name('delete');
+                    Route::put('edit', [VacancyController::class, 'edit'])->name('edit')->middleware('can:update,vacancy');
+                    Route::patch('update', [VacancyController::class, 'update'])->name('update')->middleware('can:update,vacancy');
+                    Route::delete('delete', [VacancyController::class, 'destroy'])->name('delete')->middleware('can:delete,vacancy');
                 });
             });
         });
@@ -89,7 +89,7 @@ Route::middleware('auth:api')->name('user.')->group(function () {
     Route::prefix('teacher')->middleware('permission:teacher')->name('teacher.')->group(function () {
 
         Route::prefix('{teacher}')->group(function () {
-            Route::put('verify', [TeacherController::class, 'verify'])->name('verify');
+            Route::put('verify', [TeacherController::class, 'verify'])->name('verify')->middleware('can:verify,teacher');;
         });
     });
 });
