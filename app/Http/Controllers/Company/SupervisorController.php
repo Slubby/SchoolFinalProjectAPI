@@ -9,7 +9,6 @@ use App\Http\Resources\Company\SupervisorResource;
 use App\Models\Company;
 use App\Models\Supervisor;
 use Exception;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
