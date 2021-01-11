@@ -2,9 +2,13 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Company
@@ -19,25 +23,29 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @property string $house_number
  * @property string $postal_code
  * @property bool $verified
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Supervisor[] $supervisors
+ * @property-read int|null $supervisors_count
  * @property-read \App\Models\User|null $user
- * @method static \Illuminate\Database\Eloquent\Builder|Company newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Company newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Company query()
- * @method static \Illuminate\Database\Eloquent\Builder|Company whereCity($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Company whereCountry($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Company whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Company whereHouseNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Company whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Company whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Company whereNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Company wherePostalCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Company whereRegion($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Company whereStreet($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Company whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Company whereVerified($value)
- * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Vacancy[] $vacancies
+ * @property-read int|null $vacancies_count
+ * @method static Builder|Company newModelQuery()
+ * @method static Builder|Company newQuery()
+ * @method static Builder|Company query()
+ * @method static Builder|Company whereCity($value)
+ * @method static Builder|Company whereCountry($value)
+ * @method static Builder|Company whereCreatedAt($value)
+ * @method static Builder|Company whereHouseNumber($value)
+ * @method static Builder|Company whereId($value)
+ * @method static Builder|Company whereName($value)
+ * @method static Builder|Company whereNumber($value)
+ * @method static Builder|Company wherePostalCode($value)
+ * @method static Builder|Company whereRegion($value)
+ * @method static Builder|Company whereStreet($value)
+ * @method static Builder|Company whereUpdatedAt($value)
+ * @method static Builder|Company whereVerified($value)
+ * @mixin Eloquent
  */
 class Company extends Model
 {
@@ -67,5 +75,21 @@ class Company extends Model
     public function user(): MorphOne
     {
         return $this->morphOne(User::class, 'profile');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function supervisors(): HasMany
+    {
+        return $this->hasMany(Supervisor::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function vacancies(): HasMany
+    {
+        return $this->hasMany(Vacancy::class);
     }
 }

@@ -12,6 +12,11 @@ use Illuminate\Support\Str;
 use stdClass;
 use Exception;
 
+/**
+ * @group Auth
+ *
+ * APIs for Accounts
+ */
 class ForgotPasswordController extends Controller
 {
     /**
@@ -41,14 +46,16 @@ class ForgotPasswordController extends Controller
             return true;
         } catch (Exception $e) {
             report($e);
-
-            dd($e);
         }
 
         return false;
     }
 
     /**
+     * Account recovery
+     *
+     * @bodyParam email string required
+     *
      * @param Request $request
      * @return JsonResponse
      */

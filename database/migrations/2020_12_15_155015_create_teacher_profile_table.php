@@ -15,7 +15,7 @@ class CreateTeacherProfileTable extends Migration
     {
         Schema::create('teacher_profile', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('school_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('school_id')->nullable()->constrained()->nullOnDelete();
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');

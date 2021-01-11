@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
 
+/**
+ * @group Auth
+ *
+ * APIs for Accounts
+ */
 class LoginController extends Controller
 {
     use ThrottlesLogins;
@@ -37,9 +42,7 @@ class LoginController extends Controller
         if (!$user->profile->verified) {
             if ($user->profile instanceof Company) {
                 return "you can only log in when you have been verified by us";
-            }
-
-            if ($user->profile instanceof Teacher) {
+            } elseif ($user->profile instanceof Teacher) {
                 $school = $user->profile->school->name;
                 return "the {$school} must first verify you in order to log in";
             }
@@ -49,6 +52,11 @@ class LoginController extends Controller
     }
 
     /**
+     * Account login
+     *
+     * @bodyParam email string required
+     * @bodyParam password string required
+     *
      * @param Request $request
      * @return JsonResponse|void
      */

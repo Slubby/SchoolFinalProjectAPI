@@ -18,7 +18,7 @@ class SchoolCollection extends ResourceCollection
     public function toArray($request): array
     {
         return [
-            'data' => $this->collects()
+            'data' => $this->collection
         ];
     }
 }

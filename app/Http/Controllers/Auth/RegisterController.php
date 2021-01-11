@@ -6,15 +6,27 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Profile\CompanyController;
 use App\Http\Controllers\Profile\TeacherController;
 use App\Http\Requests\UserCreateRequest;
+use App\Models\Company;
+use App\Models\Teacher;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * @group Auth
+ *
+ * APIs for Accounts
+ */
 class RegisterController extends Controller
 {
     /**
+     * Account create
+     *
+     * @urlParam type required The type of user Example teacher or company.
+     *
+     *
      * @param UserCreateRequest $request
      * @param string $type
      * @return JsonResponse
@@ -36,10 +48,10 @@ class RegisterController extends Controller
 
                 switch ($type) {
                     case 'company':
-                        $profile = CompanyController::createOrUpdate($validation);
+                        $profile = CompanyController::createOrUpdate($validation, new Company());
                         break;
                     case 'teacher':
-                        $profile = TeacherController::createOrUpdate($validation);
+                        $profile = TeacherController::createOrUpdate($validation, new Teacher());
                         break;
                     default:
                         $profile = false;

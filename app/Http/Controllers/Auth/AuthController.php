@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Profile\AdminController;
 use App\Http\Controllers\Profile\CompanyController;
 use App\Http\Controllers\Profile\StudentController;
@@ -16,16 +17,24 @@ use App\Models\Teacher;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 
+/**
+ * @group Auth
+ *
+ * APIs for Account
+ */
 class AuthController extends Controller
 {
     /**
+     * Account
+     *
+     * @authenticated
+     *
      * @return UserResource|JsonResponse
      */
     public function user()
@@ -42,22 +51,29 @@ class AuthController extends Controller
         return response()->json(['message' => 'Something went wrong well getting user data'], 400);
     }
 
+    /**
+     * Account update
+     *
+     * @authenticated
+     *
+     * @param UserChangeRequest $request
+     * @return UserResource|JsonResponse
+     */
     public function changeProfile(UserChangeRequest $request)
     {
         $validation = (object) $request->validated();
 
-        $id = Auth::id();
         $user = Auth::user();
         $type = $user->profile;
 
         if ($type instanceof Company) {
-            $profile = CompanyController::createOrUpdate($validation, $id);
+            $profile = CompanyController::createOrUpdate($validation, $type);
         } elseif ($type instanceof Teacher) {
-            $profile = TeacherController::createOrUpdate($validation, $id);
+            $profile = TeacherController::createOrUpdate($validation, $type);
         } elseif ($type instanceof Student) {
-            $profile = StudentController::createOrUpdate($validation, $id);
+            $profile = StudentController::createOrUpdate($validation, $type);
         } elseif ($type instanceof Admin) {
-            $profile = AdminController::createOrUpdate($validation, $id);
+            $profile = AdminController::createOrUpdate($validation, $type);
         } else {
             $profile = false;
         }
@@ -72,6 +88,14 @@ class AuthController extends Controller
     }
 
     /**
+     * Account change Password
+     *
+     * @authenticated
+     *
+     * @bodyParam previous_password string required
+     * @bodyParam new_password string required
+     * @bodyParam password_confirm string required
+     *
      * @param UserPasswordChangeRequest $request
      * @return JsonResponse
      */
@@ -96,6 +120,8 @@ class AuthController extends Controller
 
 
     /**
+     * Account refresh token
+     *
      * @return JsonResponse
      */
     public function refresh(): JsonResponse
@@ -109,6 +135,8 @@ class AuthController extends Controller
     }
 
     /**
+     * Account logout
+     *
      * @return JsonResponse
      */
     public function logout(): JsonResponse

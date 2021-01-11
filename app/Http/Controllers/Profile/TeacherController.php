@@ -5,15 +5,26 @@ namespace App\Http\Controllers\Profile;
 use App\Http\Controllers\Controller;
 use App\Models\Teacher;
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
+/**
+ * @group Teacher
+ * @authenticated
+ *
+ * APIs for Teachers
+ */
 class TeacherController extends Controller
 {
-    public static function createOrUpdate(object $data, int $id = 0)
+    /**
+     * @param object $data
+     * @param Teacher $teacher
+     * @return Teacher|false
+     */
+    public static function createOrUpdate(object $data, Teacher $teacher)
     {
         try {
-            $teacher = Teacher::findOrNew($id);
-
             if (!$teacher->exists) {
                 $teacher->school_id = $data->school;
             }
@@ -22,7 +33,6 @@ class TeacherController extends Controller
             $teacher->middle_name = $data->middle_name ?? null;
             $teacher->last_name = $data->last_name;
             $teacher->short_name = $data->last_name;
-
             $teacher->save();
 
             return $teacher;
@@ -36,7 +46,7 @@ class TeacherController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -46,8 +56,8 @@ class TeacherController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -58,7 +68,7 @@ class TeacherController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -69,7 +79,7 @@ class TeacherController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -79,9 +89,9 @@ class TeacherController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -89,10 +99,32 @@ class TeacherController extends Controller
     }
 
     /**
+     * Teacher verify
+     *
+     * @urlParam teacher required The id of the teacher.
+     *
+     * @param Teacher $teacher
+     * @return JsonResponse
+     */
+    public function verify(Teacher $teacher): JsonResponse
+    {
+        try {
+            $teacher->verified = true;
+            $teacher->save();
+
+            return response()->json(['message' => "teacher \"{$teacher->fullName()}\" success fully verified"]);
+        } catch (Exception $e) {
+            report($e);
+        }
+
+        return response()->json(['message' => 'Something went wrong while verifying the company'], Response::HTTP_BAD_REQUEST);
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {

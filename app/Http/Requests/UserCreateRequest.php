@@ -24,7 +24,7 @@ class UserCreateRequest extends FormRequest
      * @var array
      */
     private array $teacher = [
-        'school' => ['required', 'integer'],
+        'school' => ['required', 'integer', 'exists:schools,id'],
         'first_name' => ['required'],
         'last_name' => ['required'],
         'short_name' => ['required'],
@@ -44,8 +44,9 @@ class UserCreateRequest extends FormRequest
         'street' => ['required'],
         'house_number' => ['required'],
         'postal_code' => ['required'],
-        'education' => ['required'],
-        'mentor' => ['required', 'integer'],
+        'school' => ['required', 'integer', 'exists:schools,id'],
+        'education' => ['required', 'integer', 'exists:educations,id'],
+        'mentor' => ['required', 'integer', 'exists:users,id'],
         'started' => ['required', 'date'],
         'grade' => ['required', 'integer'],
     ];
@@ -67,7 +68,6 @@ class UserCreateRequest extends FormRequest
     {
         $profile = $this->{$this->type};
         $user = [
-            'mobile' => ['required'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'min:' . env('PASSWORD_MIN_LENGTH'), 'max:' . env('PASSWORD_MAX_LENGTH'), 'case_diff', 'numbers', 'symbols'],
             'password_confirm' => ['required', 'same:password'],

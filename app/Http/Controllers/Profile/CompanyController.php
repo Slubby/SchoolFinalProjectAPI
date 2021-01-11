@@ -11,18 +11,22 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
+/**
+ * @group Company
+ * @authenticated
+ *
+ * APIs for Companies
+ */
 class CompanyController extends Controller
 {
     /**
      * @param object $data
-     * @param int $id
+     * @param Company $company
      * @return Company|bool
      */
-    public static function createOrUpdate(object $data, int $id = 0)
+    public static function createOrUpdate(object $data, Company $company)
     {
         try {
-            $company = Company::findOrNew($id);
-
             if (!$company->exists) {
                 $company->number = $data->number;
                 $company->name = $data->name;
@@ -34,7 +38,6 @@ class CompanyController extends Controller
             $company->street = $data->street;
             $company->house_number = $data->house_number;
             $company->postal_code = $data->postal_code;
-
             $company->save();
 
             return $company;
@@ -78,6 +81,12 @@ class CompanyController extends Controller
     }
 
     /**
+     * @group Admin
+     *
+     * Company verify
+     *
+     * @urlParam company required The id of the company.
+     *
      * @param Company $company
      * @return JsonResponse
      */

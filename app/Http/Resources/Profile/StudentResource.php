@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources\Profile;
 
+use App\Http\Resources\EducationResource;
+use App\Http\Resources\SchoolResource;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -29,11 +31,14 @@ class StudentResource extends JsonResource
             'street' => $this->street,
             'house_number' => $this->house_number,
             'postal_code' => $this->postal_code,
-            'education' => $this->education,
+            'education' => new EducationResource($this->education),
             'started_at' => $this->started_at,
             'grade' => $this->grade,
             'mentor' => $this->whenLoaded('mentor', function () {
                 return new UserResource($this->mentor);
+            }),
+            'school' => $this->whenLoaded('school', function () {
+                return new SchoolResource($this->school);
             }),
         ];
     }

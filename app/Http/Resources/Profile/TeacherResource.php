@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Profile;
 
+use App\Http\Resources\SchoolResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TeacherResource extends JsonResource
@@ -20,7 +21,10 @@ class TeacherResource extends JsonResource
             'last_name' => $this->last_name,
             'full_name' => $this->fullName(),
             'short_name' => $this->short_name,
-            'active' => $this->active
+            'active' => $this->active,
+            'school' => $this->whenLoaded('school', function () {
+                return new SchoolResource($this->school);
+            }),
         ];
     }
 }

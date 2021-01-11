@@ -15,7 +15,7 @@ class CreateUsersVerificationTable extends Migration
     {
         Schema::create('users_verification', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('verification_code');
             $table->timestamps();
         });

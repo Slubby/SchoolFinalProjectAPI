@@ -83,12 +83,7 @@ class UserChangeRequest extends FormRequest
      */
     public function rules(): array
     {
-        $profile = self::type();
-        $user = [
-            'mobile' => ['required']
-        ];
-
-        return array_merge($user, $profile);
+        return self::type();
     }
 
     protected function prepareForValidation()

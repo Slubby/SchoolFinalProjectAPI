@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\FullName;
 use App\Traits\UseFile;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -27,13 +28,18 @@ use Illuminate\Support\Carbon;
  * @property string $street
  * @property string $house_number
  * @property string $postal_code
- * @property string $education
- * @property int $mentor_id
+ * @property int|null $school_id
+ * @property int|null $education_id
+ * @property int|null $mentor_id
  * @property string $started_at
  * @property int $grade
+ * @property int|null $curriculum_vitae_id
+ * @property int|null $motivation_letter_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read \App\Models\User $mentor
+ * @property-read \App\Models\Education|null $education
+ * @property-read \App\Models\Teacher|null $mentor
+ * @property-read \App\Models\School|null $school
  * @property-read \App\Models\User|null $user
  * @method static Builder|Student newModelQuery()
  * @method static Builder|Student newQuery()
@@ -42,7 +48,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Student whereCity($value)
  * @method static Builder|Student whereCountry($value)
  * @method static Builder|Student whereCreatedAt($value)
- * @method static Builder|Student whereEducation($value)
+ * @method static Builder|Student whereCurriculumVitaeId($value)
+ * @method static Builder|Student whereEducationId($value)
  * @method static Builder|Student whereFirstName($value)
  * @method static Builder|Student whereGender($value)
  * @method static Builder|Student whereGrade($value)
@@ -51,9 +58,11 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Student whereLastName($value)
  * @method static Builder|Student whereMentorId($value)
  * @method static Builder|Student whereMiddleName($value)
+ * @method static Builder|Student whereMotivationLetterId($value)
  * @method static Builder|Student whereNumber($value)
  * @method static Builder|Student wherePostalCode($value)
  * @method static Builder|Student whereRegion($value)
+ * @method static Builder|Student whereSchoolId($value)
  * @method static Builder|Student whereStartedAt($value)
  * @method static Builder|Student whereStreet($value)
  * @method static Builder|Student whereUpdatedAt($value)
@@ -61,7 +70,7 @@ use Illuminate\Support\Carbon;
  */
 class Student extends Model
 {
-    use HasFactory, UseFile;
+    use HasFactory, UseFile, FullName;
 
     protected $table = 'student_profile';
 
@@ -77,19 +86,12 @@ class Student extends Model
         'street',
         'house_number',
         'postal_code',
-        'education',
+        'school_id',
+        'education_id',
         'mentor_id',
         'started_at',
         'grade',
     ];
-
-    /**
-     * @return string
-     */
-    public function fullName(): string
-    {
-        return $this->first_name . ($this->middle_name ? ' ' . $this->middle_name . ' ' : ' ') . $this->last_name;
-    }
 
     /**
      * @return MorphOne
@@ -102,9 +104,24 @@ class Student extends Model
     /**
      * @return BelongsTo
      */
-    public function mentor(): BelongsTo
+    public function education(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Education::class);
     }
 
+    /**
+     * @return BelongsTo
+     */
+    public function mentor(): BelongsTo
+    {
+        return $this->belongsTo(Teacher::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function school(): BelongsTo
+    {
+        return $this->belongsTo(School::class);
+    }
 }

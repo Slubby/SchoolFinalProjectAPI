@@ -12,6 +12,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Mail;
 use stdClass;
 
+/**
+ * @group Auth
+ *
+ * APIs for Accounts
+ */
 class ResetPasswordController extends Controller
 {
     /**
@@ -19,7 +24,6 @@ class ResetPasswordController extends Controller
      * @param string $Password
      * @return string
      */
-
     public static function changePassword(int $UserId, string $Password) {
         try {
 
@@ -42,11 +46,17 @@ class ResetPasswordController extends Controller
     }
 
     /**
+     * Account reset password
+     *
+     * @urlParam code required The reset code in the email.
+     *
+     * @bodyParam password string required
+     * @bodyParam password_confirm string required
+     *
      * @param ResetPasswordRequest $request
      * @param string $Code
      * @return JsonResponse
      */
-
     public function check(ResetPasswordRequest $request, string $Code): JsonResponse
     {
         try {

@@ -10,8 +10,18 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
+/**
+ * @group School
+ *
+ * APIs for School
+ */
 class SchoolController extends Controller
 {
+    /**
+     * @param object $data
+     * @param School $school
+     * @return School|false
+     */
     public static function school(object $data, School $school)
     {
         try {
@@ -27,7 +37,7 @@ class SchoolController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Schools
      *
      * @return SchoolCollection
      */
@@ -39,7 +49,13 @@ class SchoolController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @group Admin
+     *
+     * School create
+     *
+     * @authenticated
+     *
+     * @bodyParam name string required
      *
      * @param SchoolRequest $request
      * @return SchoolResource|JsonResponse
@@ -49,14 +65,22 @@ class SchoolController extends Controller
         $validation = (object) $request->validated();
 
         if ($school = self::school($validation, new School())) {
-            return (new SchoolResource($school))->additional(['message' => 'School name success fully created']);
+            return (new SchoolResource($school))->additional(['message' => "\"{$school->name}\" is successfully created"]);
         }
 
         return response()->json(['message' => 'Something went wrong while creating a school name'], Response::HTTP_BAD_REQUEST);
     }
 
     /**
-     * Update the specified resource in storage.
+     * @group Admin
+     *
+     * School update
+     *
+     * @authenticated
+     *
+     * @urlParam school required The id of the school.
+     *
+     * @bodyParam name string required
      *
      * @param SchoolRequest $request
      * @param School $school
@@ -66,15 +90,21 @@ class SchoolController extends Controller
     {
         $validation = (object) $request->validated();
 
-        if ($data = self::school($validation, $school)) {
-            return (new SchoolResource($data))->additional(['message' => 'School name success fully updated']);
+        if ($updateSchool = self::school($validation, $school)) {
+            return (new SchoolResource($updateSchool))->additional(['message' => "\"{$school->name}\" is successfully updated"]);
         }
 
-        return response()->json(['message' => 'Something went wrong while updating the school name'], Response::HTTP_BAD_REQUEST);
+        return response()->json(['message' => "Something went wrong while updating \"{$school->name}\""], Response::HTTP_BAD_REQUEST);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @group Admin
+     *
+     * School delete
+     *
+     * @authenticated
+     *
+     * @urlParam school required The id of the school.
      *
      * @param School $school
      * @return JsonResponse
@@ -83,13 +113,14 @@ class SchoolController extends Controller
     public function destroy(School $school): JsonResponse
     {
         try {
+            $name = $school->name;
             $school->delete();
 
-            return response()->json(['message' => 'The School name is success fully deleted']);
+            return response()->json(['message' => "\"{$name}\" is success fully deleted"]);
         } catch (Exception $e) {
             report($e);
         }
 
-        return response()->json(['message' => 'Something went wrong while deleting the school name'], Response::HTTP_BAD_REQUEST);
+        return response()->json(['message' => "Something went wrong while deleting \"{$school->name}\""], Response::HTTP_BAD_REQUEST);
     }
 }

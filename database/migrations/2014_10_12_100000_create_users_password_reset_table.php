@@ -15,7 +15,7 @@ class CreateUsersPasswordResetTable extends Migration
     {
         Schema::create('users_password_reset', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('verification_code');
             $table->boolean('used');
             $table->timestamps();

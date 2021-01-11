@@ -13,6 +13,11 @@ use App\Http\Controllers\Controller;
 use stdClass;
 use Exception;
 
+/**
+ * @group Auth
+ *
+ * APIs for Accounts
+ */
 class VerificationController extends Controller
 {
     /**
@@ -46,10 +51,13 @@ class VerificationController extends Controller
     }
 
     /**
+     * Account verify
+     *
+     * @urlParam Code required The code in the email.
+     *
      * @param string $Code
      * @return JsonResponse
      */
-
     public function check(string $Code): JsonResponse
     {
         try {

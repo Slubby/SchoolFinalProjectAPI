@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\FullName;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Support\Carbon;
 
@@ -14,7 +16,7 @@ use Illuminate\Support\Carbon;
  * App\Models\Teacher
  *
  * @property int $id
- * @property int $school_id
+ * @property int|null $school_id
  * @property string $first_name
  * @property string|null $middle_name
  * @property string $last_name
@@ -23,7 +25,9 @@ use Illuminate\Support\Carbon;
  * @property bool $verified
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read \App\Models\School $school
+ * @property-read \App\Models\School|null $school
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Student[] $students
+ * @property-read int|null $students_count
  * @property-read \App\Models\User|null $user
  * @method static Builder|Teacher newModelQuery()
  * @method static Builder|Teacher newQuery()
@@ -42,7 +46,7 @@ use Illuminate\Support\Carbon;
  */
 class Teacher extends Model
 {
-    use HasFactory;
+    use HasFactory, FullName;
 
     protected $table = 'teacher_profile';
 
@@ -62,14 +66,6 @@ class Teacher extends Model
     ];
 
     /**
-     * @return string
-     */
-    public function fullName(): string
-    {
-        return $this->first_name . ($this->middle_name ? ' ' . $this->middle_name . ' ' : ' ') . $this->last_name;
-    }
-
-    /**
      * @return MorphOne
      */
     public function user(): MorphOne
@@ -83,5 +79,13 @@ class Teacher extends Model
     public function school(): BelongsTo
     {
         return $this->belongsTo(School::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function students(): HasMany
+    {
+        return $this->hasMany(Student::class);
     }
 }

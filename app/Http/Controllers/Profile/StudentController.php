@@ -12,17 +12,16 @@ class StudentController extends Controller
 {
     /**
      * @param object $data
-     * @param int $id
-     * @return Student|bool
+     * @param Student $student
+     * @return Student|false
      */
-    public static function createOrUpdate(object $data, int $id = 0)
+    public static function createOrUpdate(object $data, Student $student)
     {
         try {
-            $student = Student::findOrNew($id);
-
             if (!$student->exists) {
+                $student->school_id = $data->school;
                 $student->number = $data->number;
-                $student->education = $data->education;
+                $student->education_id = $data->education;
                 $student->mentor_id = $data->mentor;
                 $student->started_at = $data->started;
                 $student->grade = $data->grade;
@@ -39,7 +38,6 @@ class StudentController extends Controller
             $student->street = $data->street;
             $student->house_number = $data->house_number;
             $student->postal_code = $data->postal_code;
-
             $student->save();
 
             return $student;

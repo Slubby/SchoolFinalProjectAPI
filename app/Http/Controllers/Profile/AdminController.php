@@ -11,18 +11,15 @@ class AdminController extends Controller
 {
     /**
      * @param object $data
-     * @param int $id
+     * @param Admin $admin
      * @return Admin|bool
      */
-    public static function createOrUpdate(object $data, int $id = 0)
+    public static function createOrUpdate(object $data, Admin $admin)
     {
         try {
-            $admin = Admin::findOrNew($id);
-
             $admin->first_name = $data->first_name;
             $admin->middle_name = $data->middle_name ?? null;
             $admin->last_name = $data->last_name;
-
             $admin->save();
 
             return $admin;
