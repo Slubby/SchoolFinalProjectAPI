@@ -5,9 +5,9 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class AdvertisementCollection extends ResourceCollection
+class JobApplicationCollection extends ResourceCollection
 {
-    public $collects = AdvertisementResource::class;
+    public $collects = JobApplicationResource::class;
 
     /**
      * Transform the resource collection into an array.

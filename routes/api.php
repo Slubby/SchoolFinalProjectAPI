@@ -10,8 +10,9 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Company\SupervisorController;
 use App\Http\Controllers\Company\VacancyController;
 use App\Http\Controllers\Profile\CompanyController;
-    use App\Http\Controllers\Profile\TeacherController;
-    use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\Profile\TeacherController;
+use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\Student\JobApplicationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -95,10 +96,16 @@ Route::middleware('auth:api')->name('user.')->group(function () {
 
     Route::prefix('s')->middleware('permission:student')->name('student.')->group(function () {
 
-        Route::prefix('advertisement')->name('advertisement.')->group(function () {
+        Route::prefix('job/application')->name('job.application.')->group(function () {
+            Route::get('/', [JobApplicationController::class , 'index'])->name('all');
 
             Route::prefix('{vacancy}')->group(function () {
-                Route::put('apply', [AdvertisementController::class, 'apply'])->name('apply');
+                Route::put('apply', [JobApplicationController::class, 'apply'])->name('apply');
+            });
+
+            Route::prefix('{jobApplication}')->group(function () {
+                Route::get('show', [JobApplicationController::class, 'show'])->name('show');
+                Route::put('cancel', [JobApplicationController::class, 'cancel'])->name('cancel')->middleware('can:cancel,jobApplication');;
             });
         });
     });

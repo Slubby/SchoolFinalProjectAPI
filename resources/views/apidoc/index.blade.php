@@ -65,7 +65,7 @@ let headers = {
 };
 
 let body = {
-    "name": "dolores"
+    "name": "qui"
 }
 
 fetch(url, {
@@ -103,7 +103,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/school/nostrum/update"
+    "https://school.wedevelop4you.nl/api/school/natus/update"
 );
 
 let headers = {
@@ -113,7 +113,7 @@ let headers = {
 };
 
 let body = {
-    "name": "eos"
+    "name": "placeat"
 }
 
 fetch(url, {
@@ -168,7 +168,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/fugit/verify"
+    "https://school.wedevelop4you.nl/api/company/ut/verify"
 );
 
 let headers = {
@@ -204,9 +204,9 @@ fetch(url, {
 </table>
 <!-- END_6e6ddc6ddb95f1bc82644901a12e340a -->
 <h1>Advertisement</h1>
-<p>APIs for Companies</p>
 <!-- START_f8f4c48a1cc0f75cb15d9ff0cb6f84f1 -->
 <h2>Advertisements</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -228,6 +228,47 @@ fetch(url, {
 <h3>HTTP Request</h3>
 <p><code>GET api/advertisement</code></p>
 <!-- END_f8f4c48a1cc0f75cb15d9ff0cb6f84f1 -->
+<!-- START_2bd5d3071393c925e38d872ab110c546 -->
+<h2>Advertisement show</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "https://school.wedevelop4you.nl/api/advertisement/voluptatum"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/advertisement/{vacancy}</code></p>
+<h4>URL Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vacancy</code></td>
+<td>required</td>
+<td>The id of the vacancy.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_2bd5d3071393c925e38d872ab110c546 -->
 <h1>Auth</h1>
 <p>APIs for Accounts</p>
 <!-- START_a925a8d22b3615f12fca79456d286859 -->
@@ -245,8 +286,8 @@ let headers = {
 };
 
 let body = {
-    "email": "dolorum",
-    "password": "blanditiis"
+    "email": "iste",
+    "password": "vitae"
 }
 
 fetch(url, {
@@ -297,19 +338,19 @@ let headers = {
 };
 
 let body = {
-    "number": 17,
-    "name": "id",
+    "number": 15,
+    "name": "dolores",
     "country": "NL",
     "region": "GR",
-    "city": "voluptatem",
-    "street": "dolor",
+    "city": "earum",
+    "street": "cum",
     "house_number": "81",
     "postal_code": "9603HL",
-    "school": 15,
-    "first_name": "magni",
-    "middle_name": "esse",
-    "last_name": "et",
-    "short_name": "voluptas"
+    "school": 18,
+    "first_name": "sunt",
+    "middle_name": "praesentium",
+    "last_name": "ab",
+    "short_name": "mollitia"
 }
 
 fetch(url, {
@@ -508,7 +549,7 @@ let headers = {
 };
 
 let body = {
-    "email": "minima"
+    "email": "sapiente"
 }
 
 fetch(url, {
@@ -554,8 +595,8 @@ let headers = {
 };
 
 let body = {
-    "password": "repudiandae",
-    "password_confirm": "placeat"
+    "password": "corporis",
+    "password_confirm": "itaque"
 }
 
 fetch(url, {
@@ -674,17 +715,17 @@ let headers = {
 };
 
 let body = {
-    "first_name": "neque",
-    "middle_name": "dicta",
-    "last_name": "reprehenderit",
+    "first_name": "provident",
+    "middle_name": "dolores",
+    "last_name": "et",
     "country": "NL",
     "region": "GR",
-    "city": "dignissimos",
-    "street": "necessitatibus",
+    "city": "nostrum",
+    "street": "adipisci",
     "house_number": "81",
     "postal_code": "9603HL",
-    "short_name": "autem",
-    "gender": "ad",
+    "short_name": "vel",
+    "gender": "quas",
     "birthday": "2001-09-29"
 }
 
@@ -800,9 +841,9 @@ let headers = {
 };
 
 let body = {
-    "previous_password": "omnis",
-    "new_password": "quae",
-    "password_confirm": "tenetur"
+    "previous_password": "ut",
+    "new_password": "consequatur",
+    "password_confirm": "autem"
 }
 
 fetch(url, {
@@ -844,14 +885,14 @@ fetch(url, {
 </table>
 <!-- END_275f3a21a40a3c943e11c3042e080a07 -->
 <h1>Company</h1>
-<!-- START_45c3325e560a74462a05162f44a4ea87 -->
+<!-- START_7401be7be8155c6986377a13f3994979 -->
 <h2>Supervisors</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/qui/supervisor"
+    "https://school.wedevelop4you.nl/api/c/veniam/supervisor"
 );
 
 let headers = {
@@ -867,7 +908,7 @@ fetch(url, {
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <h3>HTTP Request</h3>
-<p><code>GET api/company/{company}/supervisor</code></p>
+<p><code>GET api/c/{company}/supervisor</code></p>
 <h4>URL Parameters</h4>
 <table>
 <thead>
@@ -885,15 +926,15 @@ fetch(url, {
 </tr>
 </tbody>
 </table>
-<!-- END_45c3325e560a74462a05162f44a4ea87 -->
-<!-- START_00cdfb37adc68f61ce20eb2e3ba5d41b -->
+<!-- END_7401be7be8155c6986377a13f3994979 -->
+<!-- START_3feaedccfb9b487da2991d96f67a1c0a -->
 <h2>Supervisor create</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/officiis/supervisor/create"
+    "https://school.wedevelop4you.nl/api/c/exercitationem/supervisor/create"
 );
 
 let headers = {
@@ -903,9 +944,9 @@ let headers = {
 };
 
 let body = {
-    "first_name": "omnis",
-    "middle_name": "iure",
-    "last_name": "laborum"
+    "first_name": "aspernatur",
+    "middle_name": "autem",
+    "last_name": "culpa"
 }
 
 fetch(url, {
@@ -916,7 +957,7 @@ fetch(url, {
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <h3>HTTP Request</h3>
-<p><code>POST api/company/{company}/supervisor/create</code></p>
+<p><code>POST api/c/{company}/supervisor/create</code></p>
 <h4>URL Parameters</h4>
 <table>
 <thead>
@@ -962,15 +1003,15 @@ fetch(url, {
 </tr>
 </tbody>
 </table>
-<!-- END_00cdfb37adc68f61ce20eb2e3ba5d41b -->
-<!-- START_f0fd000d41d1fa73e9401671658fe01c -->
+<!-- END_3feaedccfb9b487da2991d96f67a1c0a -->
+<!-- START_81ce8348ad6e5add7d556d8ead81ffbd -->
 <h2>Supervisor update</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/aut/supervisor/atque/update"
+    "https://school.wedevelop4you.nl/api/c/accusamus/supervisor/et/update"
 );
 
 let headers = {
@@ -980,9 +1021,9 @@ let headers = {
 };
 
 let body = {
-    "first_name": "itaque",
-    "middle_name": "dignissimos",
-    "last_name": "dolorem"
+    "first_name": "occaecati",
+    "middle_name": "architecto",
+    "last_name": "totam"
 }
 
 fetch(url, {
@@ -993,7 +1034,7 @@ fetch(url, {
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <h3>HTTP Request</h3>
-<p><code>PATCH api/company/{company}/supervisor/{supervisor}/update</code></p>
+<p><code>PATCH api/c/{company}/supervisor/{supervisor}/update</code></p>
 <h4>URL Parameters</h4>
 <table>
 <thead>
@@ -1044,15 +1085,15 @@ fetch(url, {
 </tr>
 </tbody>
 </table>
-<!-- END_f0fd000d41d1fa73e9401671658fe01c -->
-<!-- START_7acd45786dfc3b55b7dcdb0ce3ed9971 -->
+<!-- END_81ce8348ad6e5add7d556d8ead81ffbd -->
+<!-- START_7194fee105731338b6eee6961b60522d -->
 <h2>Supervisor delete</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/quia/supervisor/accusamus/delete"
+    "https://school.wedevelop4you.nl/api/c/amet/supervisor/sit/delete"
 );
 
 let headers = {
@@ -1068,7 +1109,7 @@ fetch(url, {
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <h3>HTTP Request</h3>
-<p><code>DELETE api/company/{company}/supervisor/{supervisor}/delete</code></p>
+<p><code>DELETE api/c/{company}/supervisor/{supervisor}/delete</code></p>
 <h4>URL Parameters</h4>
 <table>
 <thead>
@@ -1091,15 +1132,15 @@ fetch(url, {
 </tr>
 </tbody>
 </table>
-<!-- END_7acd45786dfc3b55b7dcdb0ce3ed9971 -->
-<!-- START_6add4ed3cbcda9c00ad8fa4423767d51 -->
+<!-- END_7194fee105731338b6eee6961b60522d -->
+<!-- START_2a11e7f3f2c6d32018f0696a9bd8477b -->
 <h2>Vacancies</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/laborum/vacancy"
+    "https://school.wedevelop4you.nl/api/c/tempora/vacancy"
 );
 
 let headers = {
@@ -1115,7 +1156,7 @@ fetch(url, {
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <h3>HTTP Request</h3>
-<p><code>GET api/company/{company}/vacancy</code></p>
+<p><code>GET api/c/{company}/vacancy</code></p>
 <h4>URL Parameters</h4>
 <table>
 <thead>
@@ -1133,15 +1174,15 @@ fetch(url, {
 </tr>
 </tbody>
 </table>
-<!-- END_6add4ed3cbcda9c00ad8fa4423767d51 -->
-<!-- START_c97fba5080129c56e4e169e71e27937d -->
+<!-- END_2a11e7f3f2c6d32018f0696a9bd8477b -->
+<!-- START_2259c035b025eea4377f398d4f8cc528 -->
 <h2>Vacancy create</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/saepe/vacancy/create"
+    "https://school.wedevelop4you.nl/api/c/repellendus/vacancy/create"
 );
 
 let headers = {
@@ -1151,12 +1192,12 @@ let headers = {
 };
 
 let body = {
-    "type": 11,
-    "title": "explicabo",
-    "description": "ad",
-    "about_us": "officia",
+    "type": 8,
+    "title": "id",
+    "description": "vel",
+    "about_us": "dolorem",
     "requirements": [],
-    "total": 7
+    "total": 12
 }
 
 fetch(url, {
@@ -1167,7 +1208,7 @@ fetch(url, {
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <h3>HTTP Request</h3>
-<p><code>POST api/company/{company}/vacancy/create</code></p>
+<p><code>POST api/c/{company}/vacancy/create</code></p>
 <h4>URL Parameters</h4>
 <table>
 <thead>
@@ -1228,15 +1269,15 @@ fetch(url, {
 </tr>
 </tbody>
 </table>
-<!-- END_c97fba5080129c56e4e169e71e27937d -->
-<!-- START_4e4e2e23a251ba2dd76825407c784448 -->
+<!-- END_2259c035b025eea4377f398d4f8cc528 -->
+<!-- START_225547dbd788d2d38c387e6abd7e3b44 -->
 <h2>Vacancy edit status</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/molestiae/vacancy/totam/edit"
+    "https://school.wedevelop4you.nl/api/c/earum/vacancy/et/edit"
 );
 
 let headers = {
@@ -1252,7 +1293,7 @@ fetch(url, {
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <h3>HTTP Request</h3>
-<p><code>PUT api/company/{company}/vacancy/{vacancy}/edit</code></p>
+<p><code>PUT api/c/{company}/vacancy/{vacancy}/edit</code></p>
 <h4>URL Parameters</h4>
 <table>
 <thead>
@@ -1275,15 +1316,15 @@ fetch(url, {
 </tr>
 </tbody>
 </table>
-<!-- END_4e4e2e23a251ba2dd76825407c784448 -->
-<!-- START_fad902eb7bbc3bb00af90ed8e5b458ab -->
+<!-- END_225547dbd788d2d38c387e6abd7e3b44 -->
+<!-- START_cd225c9848cc9d84101b369a6f769756 -->
 <h2>Vacancy update</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/eius/vacancy/perspiciatis/update"
+    "https://school.wedevelop4you.nl/api/c/non/vacancy/repellat/update"
 );
 
 let headers = {
@@ -1293,12 +1334,12 @@ let headers = {
 };
 
 let body = {
-    "type": 18,
-    "title": "adipisci",
-    "description": "et",
-    "about_us": "eos",
+    "type": 19,
+    "title": "odit",
+    "description": "velit",
+    "about_us": "omnis",
     "requirements": [],
-    "total": 17
+    "total": 6
 }
 
 fetch(url, {
@@ -1309,7 +1350,7 @@ fetch(url, {
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <h3>HTTP Request</h3>
-<p><code>PATCH api/company/{company}/vacancy/{vacancy}/update</code></p>
+<p><code>PATCH api/c/{company}/vacancy/{vacancy}/update</code></p>
 <h4>URL Parameters</h4>
 <table>
 <thead>
@@ -1375,15 +1416,15 @@ fetch(url, {
 </tr>
 </tbody>
 </table>
-<!-- END_fad902eb7bbc3bb00af90ed8e5b458ab -->
-<!-- START_3e08d2f8e96993583f817c2b5dc5a738 -->
+<!-- END_cd225c9848cc9d84101b369a6f769756 -->
+<!-- START_ecc31f7517441b1fdd98be2d28e14a0a -->
 <h2>vacancy delete</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/ducimus/vacancy/impedit/delete"
+    "https://school.wedevelop4you.nl/api/c/dicta/vacancy/aut/delete"
 );
 
 let headers = {
@@ -1399,7 +1440,7 @@ fetch(url, {
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <h3>HTTP Request</h3>
-<p><code>DELETE api/company/{company}/vacancy/{vacancy}/delete</code></p>
+<p><code>DELETE api/c/{company}/vacancy/{vacancy}/delete</code></p>
 <h4>URL Parameters</h4>
 <table>
 <thead>
@@ -1422,7 +1463,159 @@ fetch(url, {
 </tr>
 </tbody>
 </table>
-<!-- END_3e08d2f8e96993583f817c2b5dc5a738 -->
+<!-- END_ecc31f7517441b1fdd98be2d28e14a0a -->
+<h1>Job Application</h1>
+<!-- START_249c21e8f8bb8b93787292469a91e774 -->
+<h2>job Applications</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "https://school.wedevelop4you.nl/api/s/job/application"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {token}",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/s/job/application</code></p>
+<!-- END_249c21e8f8bb8b93787292469a91e774 -->
+<!-- START_668efa6ddac00565507a5ea7460441b2 -->
+<h2>Job Application apply</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "https://school.wedevelop4you.nl/api/s/job/application/sed/apply"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {token}",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT api/s/job/application/{vacancy}/apply</code></p>
+<h4>URL Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vacancy</code></td>
+<td>required</td>
+<td>The id of the vacancy.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_668efa6ddac00565507a5ea7460441b2 -->
+<!-- START_6bebedf796bd8893c1d18337fbdd56a9 -->
+<h2>Job Application show</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "https://school.wedevelop4you.nl/api/s/job/application/quas/show"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {token}",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/s/job/application/{jobApplication}/show</code></p>
+<h4>URL Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>jobApplication</code></td>
+<td>required</td>
+<td>The id of the job application.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_6bebedf796bd8893c1d18337fbdd56a9 -->
+<!-- START_bde744845010e916d694399ffd06eeb4 -->
+<h2>Job Application cancel</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "https://school.wedevelop4you.nl/api/s/job/application/quibusdam/cancel"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {token}",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT api/s/job/application/{jobApplication}/cancel</code></p>
+<h4>URL Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>jobApplication</code></td>
+<td>required</td>
+<td>The id of the job application.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_bde744845010e916d694399ffd06eeb4 -->
 <h1>School</h1>
 <p>APIs for School</p>
 <!-- START_c91fe29eb8917e9b7e23162e514eb7c1 -->
@@ -1449,14 +1642,14 @@ fetch(url, {
 <p><code>GET api/school</code></p>
 <!-- END_c91fe29eb8917e9b7e23162e514eb7c1 -->
 <h1>Teacher</h1>
-<!-- START_b046d6dbd447e86d353dcad92f9d59de -->
+<!-- START_0722e37e780f1be2628fc8f075cdf5a0 -->
 <h2>Teacher verify</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/teacher/fugiat/verify"
+    "https://school.wedevelop4you.nl/api/t/autem/verify"
 );
 
 let headers = {
@@ -1472,7 +1665,7 @@ fetch(url, {
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <h3>HTTP Request</h3>
-<p><code>PUT api/teacher/{teacher}/verify</code></p>
+<p><code>PUT api/t/{teacher}/verify</code></p>
 <h4>URL Parameters</h4>
 <table>
 <thead>
@@ -1490,7 +1683,7 @@ fetch(url, {
 </tr>
 </tbody>
 </table>
-<!-- END_b046d6dbd447e86d353dcad92f9d59de -->
+<!-- END_0722e37e780f1be2628fc8f075cdf5a0 -->
       </div>
       <div class="dark-box">
                         <div class="lang-selector">

@@ -17,7 +17,7 @@ class CreateJobApplicationsTable extends Migration
             $table->id();
             $table->foreignId('student_id')->constrained('student_profile')->cascadeOnDelete();
             $table->foreignId('vacancy_id')->constrained()->cascadeOnDelete();
-            $table->enum('status', ['denied', 'approved', 'done', 'pending'])->default('pending');
+            $table->enum('status', ['denied', 'approved', 'completed', 'pending', 'cancelled'])->default('pending');
             $table->timestamps();
         });
     }

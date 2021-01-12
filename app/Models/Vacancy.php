@@ -4,8 +4,11 @@ namespace App\Models;
 
 use App\Casts\Json;
 use Eloquent;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\HigherOrderBuilderProxy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -45,7 +48,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Vacancy whereTypeId($value)
  * @method static Builder|Vacancy whereUpdatedAt($value)
  * @mixin Eloquent
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\JobApplication[] $applied
+ * @property-read Collection|JobApplication[] $applied
  * @property-read int|null $applied_count
  * @method static \Illuminate\Database\Query\Builder|Vacancy onlyTrashed()
  * @method static \Illuminate\Database\Query\Builder|Vacancy withTrashed()
@@ -94,7 +97,7 @@ class Vacancy extends Model
      */
     public function applied(): BelongsToMany
     {
-        return $this->belongsToMany(Student::class, 'job_applications')->withTimestamps()->withPivot(['status']);
+        return $this->belongsToMany(Student::class, 'job_applications')->withTimestamps()->withPivot(['id', 'status']);
     }
 
     /**
@@ -104,9 +107,10 @@ class Vacancy extends Model
     public function studentApplied(Student $student)
     {
         return $this->applied()
-            ->where('student_id', $student->id)
-            ->where('job_applications.created_at', '>=', Carbon::now()->subMonths(6))
-            ->whereNotIn('status', ['done'])
-            ->latest()->first();
+                    ->wherePivot('student_id', $student->id)
+                    ->wherePivotNotIn('status', ['completed'])
+                    ->wherePivot('created_at', '>=', Carbon::now()->subMonths(6))
+                    ->orderByPivot('created_at', 'desc')
+                    ->first();
     }
 }

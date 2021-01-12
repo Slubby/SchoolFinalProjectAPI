@@ -133,6 +133,6 @@ class Student extends Model
      */
     public function jobApplications(): BelongsToMany
     {
-        return $this->belongsToMany(Vacancy::class, 'job_applications')->withTimestamps()->withPivot(['status']);
+        return $this->belongsToMany(Vacancy::class, 'job_applications')->withTimestamps()->withPivot(['id', 'status']);
     }
 }
