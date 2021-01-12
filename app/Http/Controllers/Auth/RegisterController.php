@@ -24,8 +24,22 @@ class RegisterController extends Controller
     /**
      * Account create
      *
-     * @urlParam type required The type of user Example teacher or company.
+     * @urlParam type required The type of user Example teacher or company. Example: teacher
      *
+     * @bodyParam number integer required Company
+     * @bodyParam name string required Company
+     * @bodyParam country string required Company Example: NL
+     * @bodyParam region string required Company Example: GR
+     * @bodyParam city string required Company
+     * @bodyParam street string required Company
+     * @bodyParam house_number string required Company Example: 81
+     * @bodyParam postal_code string required Company Example: 9603HL
+     *
+     * @bodyParam school integer required Teacher
+     * @bodyParam first_name string required Teacher
+     * @bodyParam middle_name string Teacher
+     * @bodyParam last_name string required Teacher
+     * @bodyParam short_name string required Teacher
      *
      * @param UserCreateRequest $request
      * @param string $type

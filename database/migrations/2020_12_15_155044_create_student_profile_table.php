@@ -27,7 +27,7 @@ class CreateStudentProfileTable extends Migration
             $table->string('street');
             $table->string('house_number');
             $table->string('postal_code');
-            $table->foreignId('school_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('school_id')->constrained()->cascadeOnDelete();
             $table->foreignId('education_id')->nullable()->constrained('educations')->nullOnDelete();
             $table->foreignId('mentor_id')->nullable()->constrained('teacher_profile')->nullOnDelete();
             $table->date('started_at');

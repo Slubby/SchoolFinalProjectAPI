@@ -56,6 +56,22 @@ class AuthController extends Controller
      *
      * @authenticated
      *
+     * @bodyParam first_name string required Teacher/Student/Admin
+     * @bodyParam middle_name string Teacher/Student/Admin
+     * @bodyParam last_name string required Teacher/Student/Admin
+     *
+     * @bodyParam country string required Company/Student Example: NL
+     * @bodyParam region string required Company/Student Example: GR
+     * @bodyParam city string required Company/Student
+     * @bodyParam street string required Company/Student
+     * @bodyParam house_number string required Company/Student Example: 81
+     * @bodyParam postal_code string required Company/Student Example: 9603HL
+     *
+     * @bodyParam short_name string required Teacher
+     *
+     * @bodyParam gender string required Student
+     * @bodyParam birthday date required Student Example: 2001-09-29
+     *
      * @param UserChangeRequest $request
      * @return UserResource|JsonResponse
      */

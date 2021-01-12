@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Support\Carbon;
 
@@ -37,10 +38,10 @@ use Illuminate\Support\Carbon;
  * @property int|null $motivation_letter_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read \App\Models\Education|null $education
- * @property-read \App\Models\Teacher|null $mentor
- * @property-read \App\Models\School|null $school
- * @property-read \App\Models\User|null $user
+ * @property-read Education|null $education
+ * @property-read Teacher|null $mentor
+ * @property-read School|null $school
+ * @property-read User|null $user
  * @method static Builder|Student newModelQuery()
  * @method static Builder|Student newQuery()
  * @method static Builder|Student query()
@@ -67,6 +68,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Student whereStreet($value)
  * @method static Builder|Student whereUpdatedAt($value)
  * @mixin Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\JobApplication[] $jobApplications
+ * @property-read int|null $job_applications_count
  */
 class Student extends Model
 {
@@ -123,5 +126,13 @@ class Student extends Model
     public function school(): BelongsTo
     {
         return $this->belongsTo(School::class);
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function jobApplications(): BelongsToMany
+    {
+        return $this->belongsToMany(Vacancy::class, 'job_applications')->withTimestamps()->withPivot(['status']);
     }
 }

@@ -59,7 +59,7 @@ Route::middleware('auth:api')->name('user.')->group(function () {
         });
     });
 
-    Route::prefix('company')->middleware('permission:company')->name('company.')->group(function () {
+    Route::prefix('c')->middleware('permission:company')->name('company.')->group(function () {
 
         Route::prefix('{company}')->group(function () {
 
@@ -75,7 +75,7 @@ Route::middleware('auth:api')->name('user.')->group(function () {
 
             Route::prefix('vacancy')->name('supervisor.')->group(function () {
                 Route::get('/', [VacancyController::class, 'index'])->name('all')->middleware('can:vacancy,company');
-                Route::post('create', [VacancyController::class, 'store'])->name('create')->middleware('can:vacancy,company');;
+                Route::post('create', [VacancyController::class, 'store'])->name('create')->middleware('can:vacancy,company');
 
                 Route::prefix('{vacancy}')->group(function () {
                     Route::put('edit', [VacancyController::class, 'edit'])->name('edit')->middleware('can:update,vacancy');
@@ -86,15 +86,29 @@ Route::middleware('auth:api')->name('user.')->group(function () {
         });
     });
 
-    Route::prefix('teacher')->middleware('permission:teacher')->name('teacher.')->group(function () {
+    Route::prefix('t')->middleware('permission:teacher')->name('teacher.')->group(function () {
 
         Route::prefix('{teacher}')->group(function () {
-            Route::put('verify', [TeacherController::class, 'verify'])->name('verify')->middleware('can:verify,teacher');;
+            Route::put('verify', [TeacherController::class, 'verify'])->name('verify')->middleware('can:verify,teacher');
+        });
+    });
+
+    Route::prefix('s')->middleware('permission:student')->name('student.')->group(function () {
+
+        Route::prefix('advertisement')->name('advertisement.')->group(function () {
+
+            Route::prefix('{vacancy}')->group(function () {
+                Route::put('apply', [AdvertisementController::class, 'apply'])->name('apply');
+            });
         });
     });
 });
 
 Route::name('open.')->group(function () {
-    Route::get('advertisement', [AdvertisementController::class, 'index'])->name('advertisement');
     Route::get('school', [SchoolController::class, 'index'])->name('school');
+
+    Route::prefix('advertisement')->name('advertisement.')->group(function () {
+        Route::get('/', [AdvertisementController::class, 'index'])->name('all');
+        Route::get('{vacancy}', [AdvertisementController::class, 'show'])->name('show');
+    });
 });

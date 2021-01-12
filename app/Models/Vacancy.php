@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 /**
@@ -25,8 +27,8 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
- * @property-read \App\Models\Company $company
- * @property-read \App\Models\Education|null $type
+ * @property-read Company $company
+ * @property-read Education|null $type
  * @method static Builder|Vacancy newModelQuery()
  * @method static Builder|Vacancy newQuery()
  * @method static Builder|Vacancy query()
@@ -43,10 +45,15 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Vacancy whereTypeId($value)
  * @method static Builder|Vacancy whereUpdatedAt($value)
  * @mixin Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\JobApplication[] $applied
+ * @property-read int|null $applied_count
+ * @method static \Illuminate\Database\Query\Builder|Vacancy onlyTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Vacancy withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Vacancy withoutTrashed()
  */
 class Vacancy extends Model
 {
-    use HasFactory;
+    use HasFactory, softDeletes;
 
     protected $table = 'vacancies';
 
@@ -80,5 +87,26 @@ class Vacancy extends Model
     public function type(): BelongsTo
     {
         return $this->belongsTo(Education::class);
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function applied(): BelongsToMany
+    {
+        return $this->belongsToMany(Student::class, 'job_applications')->withTimestamps()->withPivot(['status']);
+    }
+
+    /**
+     * @param Student $student
+     * @return mixed|null
+     */
+    public function studentApplied(Student $student)
+    {
+        return $this->applied()
+            ->where('student_id', $student->id)
+            ->where('job_applications.created_at', '>=', Carbon::now()->subMonths(6))
+            ->whereNotIn('status', ['done'])
+            ->latest()->first();
     }
 }

@@ -65,7 +65,7 @@ let headers = {
 };
 
 let body = {
-    "name": "qui"
+    "name": "dolores"
 }
 
 fetch(url, {
@@ -103,7 +103,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/school/molestiae/update"
+    "https://school.wedevelop4you.nl/api/school/nostrum/update"
 );
 
 let headers = {
@@ -113,7 +113,7 @@ let headers = {
 };
 
 let body = {
-    "name": "ex"
+    "name": "eos"
 }
 
 fetch(url, {
@@ -168,7 +168,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/voluptatem/verify"
+    "https://school.wedevelop4you.nl/api/company/fugit/verify"
 );
 
 let headers = {
@@ -245,8 +245,8 @@ let headers = {
 };
 
 let body = {
-    "email": "possimus",
-    "password": "voluptas"
+    "email": "dolorum",
+    "password": "blanditiis"
 }
 
 fetch(url, {
@@ -288,7 +288,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/auth/register/suscipit"
+    "https://school.wedevelop4you.nl/api/auth/register/teacher"
 );
 
 let headers = {
@@ -296,9 +296,26 @@ let headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "number": 17,
+    "name": "id",
+    "country": "NL",
+    "region": "GR",
+    "city": "voluptatem",
+    "street": "dolor",
+    "house_number": "81",
+    "postal_code": "9603HL",
+    "school": 15,
+    "first_name": "magni",
+    "middle_name": "esse",
+    "last_name": "et",
+    "short_name": "voluptas"
+}
+
 fetch(url, {
     method: "POST",
     headers: headers,
+    body: body
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
@@ -318,6 +335,97 @@ fetch(url, {
 <td><code>type</code></td>
 <td>required</td>
 <td>The type of user Example teacher or company.</td>
+</tr>
+</tbody>
+</table>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>number</code></td>
+<td>integer</td>
+<td>required</td>
+<td>Company</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>required</td>
+<td>Company</td>
+</tr>
+<tr>
+<td><code>country</code></td>
+<td>string</td>
+<td>required</td>
+<td>Company</td>
+</tr>
+<tr>
+<td><code>region</code></td>
+<td>string</td>
+<td>required</td>
+<td>Company</td>
+</tr>
+<tr>
+<td><code>city</code></td>
+<td>string</td>
+<td>required</td>
+<td>Company</td>
+</tr>
+<tr>
+<td><code>street</code></td>
+<td>string</td>
+<td>required</td>
+<td>Company</td>
+</tr>
+<tr>
+<td><code>house_number</code></td>
+<td>string</td>
+<td>required</td>
+<td>Company</td>
+</tr>
+<tr>
+<td><code>postal_code</code></td>
+<td>string</td>
+<td>required</td>
+<td>Company</td>
+</tr>
+<tr>
+<td><code>school</code></td>
+<td>integer</td>
+<td>required</td>
+<td>Teacher</td>
+</tr>
+<tr>
+<td><code>first_name</code></td>
+<td>string</td>
+<td>required</td>
+<td>Teacher</td>
+</tr>
+<tr>
+<td><code>middle_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Teacher</td>
+</tr>
+<tr>
+<td><code>last_name</code></td>
+<td>string</td>
+<td>required</td>
+<td>Teacher</td>
+</tr>
+<tr>
+<td><code>short_name</code></td>
+<td>string</td>
+<td>required</td>
+<td>Teacher</td>
 </tr>
 </tbody>
 </table>
@@ -400,7 +508,7 @@ let headers = {
 };
 
 let body = {
-    "email": "esse"
+    "email": "minima"
 }
 
 fetch(url, {
@@ -446,8 +554,8 @@ let headers = {
 };
 
 let body = {
-    "password": "quia",
-    "password_confirm": "iste"
+    "password": "repudiandae",
+    "password_confirm": "placeat"
 }
 
 fetch(url, {
@@ -565,14 +673,115 @@ let headers = {
     "Authorization": "Bearer {token}",
 };
 
+let body = {
+    "first_name": "neque",
+    "middle_name": "dicta",
+    "last_name": "reprehenderit",
+    "country": "NL",
+    "region": "GR",
+    "city": "dignissimos",
+    "street": "necessitatibus",
+    "house_number": "81",
+    "postal_code": "9603HL",
+    "short_name": "autem",
+    "gender": "ad",
+    "birthday": "2001-09-29"
+}
+
 fetch(url, {
     method: "PATCH",
     headers: headers,
+    body: body
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <h3>HTTP Request</h3>
 <p><code>PATCH api/auth/update</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>first_name</code></td>
+<td>string</td>
+<td>required</td>
+<td>Teacher/Student/Admin</td>
+</tr>
+<tr>
+<td><code>middle_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Teacher/Student/Admin</td>
+</tr>
+<tr>
+<td><code>last_name</code></td>
+<td>string</td>
+<td>required</td>
+<td>Teacher/Student/Admin</td>
+</tr>
+<tr>
+<td><code>country</code></td>
+<td>string</td>
+<td>required</td>
+<td>Company/Student</td>
+</tr>
+<tr>
+<td><code>region</code></td>
+<td>string</td>
+<td>required</td>
+<td>Company/Student</td>
+</tr>
+<tr>
+<td><code>city</code></td>
+<td>string</td>
+<td>required</td>
+<td>Company/Student</td>
+</tr>
+<tr>
+<td><code>street</code></td>
+<td>string</td>
+<td>required</td>
+<td>Company/Student</td>
+</tr>
+<tr>
+<td><code>house_number</code></td>
+<td>string</td>
+<td>required</td>
+<td>Company/Student</td>
+</tr>
+<tr>
+<td><code>postal_code</code></td>
+<td>string</td>
+<td>required</td>
+<td>Company/Student</td>
+</tr>
+<tr>
+<td><code>short_name</code></td>
+<td>string</td>
+<td>required</td>
+<td>Teacher</td>
+</tr>
+<tr>
+<td><code>gender</code></td>
+<td>string</td>
+<td>required</td>
+<td>Student</td>
+</tr>
+<tr>
+<td><code>birthday</code></td>
+<td>date</td>
+<td>required</td>
+<td>Student</td>
+</tr>
+</tbody>
+</table>
 <!-- END_1a8668c7c70c3102cfc031ff397c4814 -->
 <!-- START_275f3a21a40a3c943e11c3042e080a07 -->
 <h2>Account change Password</h2>
@@ -591,9 +800,9 @@ let headers = {
 };
 
 let body = {
-    "previous_password": "et",
-    "new_password": "sequi",
-    "password_confirm": "rem"
+    "previous_password": "omnis",
+    "new_password": "quae",
+    "password_confirm": "tenetur"
 }
 
 fetch(url, {
@@ -642,7 +851,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/alias/supervisor"
+    "https://school.wedevelop4you.nl/api/company/qui/supervisor"
 );
 
 let headers = {
@@ -684,7 +893,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/praesentium/supervisor/create"
+    "https://school.wedevelop4you.nl/api/company/officiis/supervisor/create"
 );
 
 let headers = {
@@ -694,9 +903,9 @@ let headers = {
 };
 
 let body = {
-    "first_name": "maiores",
-    "middle_name": "a",
-    "last_name": "porro"
+    "first_name": "omnis",
+    "middle_name": "iure",
+    "last_name": "laborum"
 }
 
 fetch(url, {
@@ -761,7 +970,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/dolores/supervisor/repellat/update"
+    "https://school.wedevelop4you.nl/api/company/aut/supervisor/atque/update"
 );
 
 let headers = {
@@ -771,9 +980,9 @@ let headers = {
 };
 
 let body = {
-    "first_name": "mollitia",
-    "middle_name": "sint",
-    "last_name": "earum"
+    "first_name": "itaque",
+    "middle_name": "dignissimos",
+    "last_name": "dolorem"
 }
 
 fetch(url, {
@@ -843,7 +1052,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/voluptatum/supervisor/rerum/delete"
+    "https://school.wedevelop4you.nl/api/company/quia/supervisor/accusamus/delete"
 );
 
 let headers = {
@@ -890,7 +1099,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/sed/vacancy"
+    "https://school.wedevelop4you.nl/api/company/laborum/vacancy"
 );
 
 let headers = {
@@ -932,7 +1141,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/accusamus/vacancy/create"
+    "https://school.wedevelop4you.nl/api/company/saepe/vacancy/create"
 );
 
 let headers = {
@@ -942,12 +1151,12 @@ let headers = {
 };
 
 let body = {
-    "type": 20,
-    "title": "tempora",
-    "description": "quis",
-    "about_us": "accusantium",
+    "type": 11,
+    "title": "explicabo",
+    "description": "ad",
+    "about_us": "officia",
     "requirements": [],
-    "total": 19
+    "total": 7
 }
 
 fetch(url, {
@@ -1027,7 +1236,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/dolores/vacancy/nobis/edit"
+    "https://school.wedevelop4you.nl/api/company/molestiae/vacancy/totam/edit"
 );
 
 let headers = {
@@ -1074,7 +1283,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/iste/vacancy/qui/update"
+    "https://school.wedevelop4you.nl/api/company/eius/vacancy/perspiciatis/update"
 );
 
 let headers = {
@@ -1084,10 +1293,10 @@ let headers = {
 };
 
 let body = {
-    "type": 15,
-    "title": "nam",
-    "description": "facilis",
-    "about_us": "et",
+    "type": 18,
+    "title": "adipisci",
+    "description": "et",
+    "about_us": "eos",
     "requirements": [],
     "total": 17
 }
@@ -1174,7 +1383,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/rerum/vacancy/et/delete"
+    "https://school.wedevelop4you.nl/api/company/ducimus/vacancy/impedit/delete"
 );
 
 let headers = {
@@ -1247,7 +1456,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/teacher/repudiandae/verify"
+    "https://school.wedevelop4you.nl/api/teacher/fugiat/verify"
 );
 
 let headers = {

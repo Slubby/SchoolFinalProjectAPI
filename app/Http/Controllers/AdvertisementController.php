@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\AdvertisementCollection;
+use App\Http\Resources\AdvertisementResource;
 use App\Models\Student;
 use App\Models\Vacancy;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -24,11 +27,21 @@ class AdvertisementController extends Controller
      */
     public function index()
     {
-        $advertisements = Vacancy::whereIsClosed(false)->get();
+        $advertisements = Vacancy::whereIsClosed(false)->get(['id', 'title', 'description', 'type_id']);
 
         if (Auth::check()) {
-            if (Auth::user()->profile instanceof Student) {
-                $advertisements = $advertisements->where('type_id', Auth::user()->profile->education_id);
+            $profile = Auth::user()->profile;
+
+            if ($profile instanceof Student) {
+                $advertisements = $advertisements->where('type_id', $profile->education_id);
+
+                foreach ($advertisements as $advertisement) {
+                    $applied = $advertisement->studentApplied($profile);
+
+                    if (!is_null($applied)) {
+                        $advertisement->setRelation('applied', $applied);
+                    }
+                }
             }
         }
 
@@ -36,41 +49,69 @@ class AdvertisementController extends Controller
             return response()->json(['message' => 'There are no vacancies found at this moment']);
         }
 
-
         return new AdvertisementCollection($advertisements);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return Response
+     * @param Vacancy $vacancy
+     * @return AdvertisementResource|JsonResponse
      */
-    public function show($id)
+    public function show(Vacancy $vacancy)
     {
-        //
+        try {
+            if (Auth::check()) {
+                $profile = Auth::user()->profile;
+
+                if ($profile instanceof Student) {
+                    $applied = $vacancy->studentApplied($profile);
+
+                    if (!is_null($applied)) {
+                        $vacancy->setRelation('applied', $applied);
+                    }
+                }
+            }
+
+            return new AdvertisementResource($vacancy);
+        } catch (Exception $e) {
+            report($e);
+        }
+
+        return response()->json(['message' => ''], Response::HTTP_BAD_REQUEST);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return Response
+     * @param Vacancy $vacancy
+     * @return JsonResponse
      */
-    public function edit($id)
+    public function apply(Vacancy $vacancy): JsonResponse
     {
-        //
+        try {
+            if ($vacancy->is_closed) {
+                return response()->json(['message' => "This vacancy is closed. you can't apply to this vacancy"], Response::HTTP_BAD_REQUEST);
+            }
+
+            $profile = Auth::user()->profile;
+
+            if ($profile instanceof Student) {
+                $applied = $vacancy->studentApplied($profile);
+
+                if ($applied) {
+                    return response()->json(['message' => 'You are already applied to this vacancy'], Response::HTTP_BAD_REQUEST);
+                }
+
+                $vacancy->applied()->attach($profile->id);
+
+                return response()->json(['message' => 'You successfully applied to this vacancy']);
+            }
+        } catch (Exception $e) {
+            report($e);
+        }
+
+        return response()->json(['message' => 'Something went wrong while applying to this vacancy'], Response::HTTP_BAD_REQUEST);
     }
 
     /**

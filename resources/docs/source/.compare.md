@@ -40,7 +40,7 @@ let headers = {
 };
 
 let body = {
-    "name": "qui"
+    "name": "dolores"
 }
 
 fetch(url, {
@@ -72,7 +72,7 @@ Parameter | Type | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/school/molestiae/update"
+    "https://school.wedevelop4you.nl/api/school/nostrum/update"
 );
 
 let headers = {
@@ -82,7 +82,7 @@ let headers = {
 };
 
 let body = {
-    "name": "ex"
+    "name": "eos"
 }
 
 fetch(url, {
@@ -119,7 +119,7 @@ Parameter | Type | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/voluptatem/verify"
+    "https://school.wedevelop4you.nl/api/company/fugit/verify"
 );
 
 let headers = {
@@ -204,8 +204,8 @@ let headers = {
 };
 
 let body = {
-    "email": "possimus",
-    "password": "voluptas"
+    "email": "dolorum",
+    "password": "blanditiis"
 }
 
 fetch(url, {
@@ -237,7 +237,7 @@ Parameter | Type | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/auth/register/suscipit"
+    "https://school.wedevelop4you.nl/api/auth/register/teacher"
 );
 
 let headers = {
@@ -245,9 +245,26 @@ let headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "number": 17,
+    "name": "id",
+    "country": "NL",
+    "region": "GR",
+    "city": "voluptatem",
+    "street": "dolor",
+    "house_number": "81",
+    "postal_code": "9603HL",
+    "school": 15,
+    "first_name": "magni",
+    "middle_name": "esse",
+    "last_name": "et",
+    "short_name": "voluptas"
+}
+
 fetch(url, {
     method: "POST",
     headers: headers,
+    body: body
 })
     .then(response => response.json())
     .then(json => console.log(json));
@@ -263,7 +280,23 @@ fetch(url, {
 Parameter | Status | Description
 --------- | ------- | ------- | -------
     `type` |  required  | The type of user Example teacher or company.
-
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `number` | integer |  required  | Company
+        `name` | string |  required  | Company
+        `country` | string |  required  | Company
+        `region` | string |  required  | Company
+        `city` | string |  required  | Company
+        `street` | string |  required  | Company
+        `house_number` | string |  required  | Company
+        `postal_code` | string |  required  | Company
+        `school` | integer |  required  | Teacher
+        `first_name` | string |  required  | Teacher
+        `middle_name` | string |  optional  | Teacher
+        `last_name` | string |  required  | Teacher
+        `short_name` | string |  required  | Teacher
+    
 <!-- END_b6998757ef91f32104e3b21b54ffa2ad -->
 
 <!-- START_46c2a6d1497a2724f8515eff6024367e -->
@@ -349,7 +382,7 @@ let headers = {
 };
 
 let body = {
-    "email": "esse"
+    "email": "minima"
 }
 
 fetch(url, {
@@ -389,8 +422,8 @@ let headers = {
 };
 
 let body = {
-    "password": "quia",
-    "password_confirm": "iste"
+    "password": "repudiandae",
+    "password_confirm": "placeat"
 }
 
 fetch(url, {
@@ -502,9 +535,25 @@ let headers = {
     "Authorization": "Bearer {token}",
 };
 
+let body = {
+    "first_name": "neque",
+    "middle_name": "dicta",
+    "last_name": "reprehenderit",
+    "country": "NL",
+    "region": "GR",
+    "city": "dignissimos",
+    "street": "necessitatibus",
+    "house_number": "81",
+    "postal_code": "9603HL",
+    "short_name": "autem",
+    "gender": "ad",
+    "birthday": "2001-09-29"
+}
+
 fetch(url, {
     method: "PATCH",
     headers: headers,
+    body: body
 })
     .then(response => response.json())
     .then(json => console.log(json));
@@ -515,7 +564,22 @@ fetch(url, {
 ### HTTP Request
 `PATCH api/auth/update`
 
-
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `first_name` | string |  required  | Teacher/Student/Admin
+        `middle_name` | string |  optional  | Teacher/Student/Admin
+        `last_name` | string |  required  | Teacher/Student/Admin
+        `country` | string |  required  | Company/Student
+        `region` | string |  required  | Company/Student
+        `city` | string |  required  | Company/Student
+        `street` | string |  required  | Company/Student
+        `house_number` | string |  required  | Company/Student
+        `postal_code` | string |  required  | Company/Student
+        `short_name` | string |  required  | Teacher
+        `gender` | string |  required  | Student
+        `birthday` | date |  required  | Student
+    
 <!-- END_1a8668c7c70c3102cfc031ff397c4814 -->
 
 <!-- START_275f3a21a40a3c943e11c3042e080a07 -->
@@ -536,9 +600,9 @@ let headers = {
 };
 
 let body = {
-    "previous_password": "et",
-    "new_password": "sequi",
-    "password_confirm": "rem"
+    "previous_password": "omnis",
+    "new_password": "quae",
+    "password_confirm": "tenetur"
 }
 
 fetch(url, {
@@ -575,7 +639,7 @@ Parameter | Type | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/alias/supervisor"
+    "https://school.wedevelop4you.nl/api/company/qui/supervisor"
 );
 
 let headers = {
@@ -613,7 +677,7 @@ Parameter | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/praesentium/supervisor/create"
+    "https://school.wedevelop4you.nl/api/company/officiis/supervisor/create"
 );
 
 let headers = {
@@ -623,9 +687,9 @@ let headers = {
 };
 
 let body = {
-    "first_name": "maiores",
-    "middle_name": "a",
-    "last_name": "porro"
+    "first_name": "omnis",
+    "middle_name": "iure",
+    "last_name": "laborum"
 }
 
 fetch(url, {
@@ -664,7 +728,7 @@ Parameter | Type | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/dolores/supervisor/repellat/update"
+    "https://school.wedevelop4you.nl/api/company/aut/supervisor/atque/update"
 );
 
 let headers = {
@@ -674,9 +738,9 @@ let headers = {
 };
 
 let body = {
-    "first_name": "mollitia",
-    "middle_name": "sint",
-    "last_name": "earum"
+    "first_name": "itaque",
+    "middle_name": "dignissimos",
+    "last_name": "dolorem"
 }
 
 fetch(url, {
@@ -716,7 +780,7 @@ Parameter | Type | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/voluptatum/supervisor/rerum/delete"
+    "https://school.wedevelop4you.nl/api/company/quia/supervisor/accusamus/delete"
 );
 
 let headers = {
@@ -755,7 +819,7 @@ Parameter | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/sed/vacancy"
+    "https://school.wedevelop4you.nl/api/company/laborum/vacancy"
 );
 
 let headers = {
@@ -793,7 +857,7 @@ Parameter | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/accusamus/vacancy/create"
+    "https://school.wedevelop4you.nl/api/company/saepe/vacancy/create"
 );
 
 let headers = {
@@ -803,12 +867,12 @@ let headers = {
 };
 
 let body = {
-    "type": 20,
-    "title": "tempora",
-    "description": "quis",
-    "about_us": "accusantium",
+    "type": 11,
+    "title": "explicabo",
+    "description": "ad",
+    "about_us": "officia",
     "requirements": [],
-    "total": 19
+    "total": 7
 }
 
 fetch(url, {
@@ -850,7 +914,7 @@ Parameter | Type | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/dolores/vacancy/nobis/edit"
+    "https://school.wedevelop4you.nl/api/company/molestiae/vacancy/totam/edit"
 );
 
 let headers = {
@@ -889,7 +953,7 @@ Parameter | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/iste/vacancy/qui/update"
+    "https://school.wedevelop4you.nl/api/company/eius/vacancy/perspiciatis/update"
 );
 
 let headers = {
@@ -899,10 +963,10 @@ let headers = {
 };
 
 let body = {
-    "type": 15,
-    "title": "nam",
-    "description": "facilis",
-    "about_us": "et",
+    "type": 18,
+    "title": "adipisci",
+    "description": "et",
+    "about_us": "eos",
     "requirements": [],
     "total": 17
 }
@@ -947,7 +1011,7 @@ Parameter | Type | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/rerum/vacancy/et/delete"
+    "https://school.wedevelop4you.nl/api/company/ducimus/vacancy/impedit/delete"
 );
 
 let headers = {
@@ -1024,7 +1088,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/teacher/repudiandae/verify"
+    "https://school.wedevelop4you.nl/api/teacher/fugiat/verify"
 );
 
 let headers = {
