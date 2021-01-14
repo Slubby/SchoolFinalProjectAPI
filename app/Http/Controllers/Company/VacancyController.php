@@ -53,7 +53,7 @@ class VacancyController extends Controller
     /**
      * Vacancies
      *
-     * @urlParam  company required The id of the company.
+     * @urlParam  company required The id of the company. Example: 1
      *
      * @param Company $company
      * @return VacancyCollection
@@ -68,7 +68,7 @@ class VacancyController extends Controller
     /**
      * Vacancy create
      *
-     * @urlParam  company required The id of the company.
+     * @urlParam  company required The id of the company. Example: 1
      *
      * @bodyParam  type integer required
      * @bodyParam  title string required
@@ -93,10 +93,37 @@ class VacancyController extends Controller
     }
 
     /**
+     * Vacancy show
+     *
+     * @urlParam  company required The id of the company. Example: 1
+     * @urlParam  vacancy required The id of the vacancy. Example: 1
+     *
+     * @param Company $company
+     * @param Vacancy $vacancy
+     * @return VacancyResource|JsonResponse
+     */
+    public function show(Company $company, Vacancy $vacancy)
+    {
+        try {
+            $applied = $vacancy->applied;
+
+            foreach ($applied as $item) {
+                $item->user;
+            }
+
+            return new VacancyResource($vacancy);
+        } catch (Exception $e) {
+            report($e);
+        }
+
+        return response()->json(['message' => 'Something went wrong while getting the Vacancy']. Response::HTTP_BAD_REQUEST);
+    }
+
+    /**
      * Vacancy edit status
      *
-     * @urlParam  company required The id of the company.
-     * @urlParam  vacancy required The id of the vacancy.
+     * @urlParam  company required The id of the company. Example: 1
+     * @urlParam  vacancy required The id of the vacancy. Example: 1
      *
      * @param Company $company
      * @param Vacancy $vacancy
@@ -121,8 +148,8 @@ class VacancyController extends Controller
     /**
      * Vacancy update
      *
-     * @urlParam  company required The id of the company.
-     * @urlParam  vacancy required The id of the vacancy.
+     * @urlParam  company required The id of the company. Example: 1
+     * @urlParam  vacancy required The id of the vacancy. Example: 1
      *
      * @bodyParam  type integer required
      * @bodyParam  title string required
@@ -148,10 +175,10 @@ class VacancyController extends Controller
     }
 
     /**
-     * vacancy delete
+     * Vacancy delete
      *
-     * @urlParam  company required The id of the company.
-     * @urlParam  vacancy required The id of the vacancy.
+     * @urlParam  company required The id of the company. Example: 1
+     * @urlParam  vacancy required The id of the vacancy. Example: 1
      *
      * @param Company $company
      * @param Vacancy $vacancy

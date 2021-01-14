@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Auth;
 class JobApplicationController extends Controller
 {
     /**
-     * job Applications
+     * Job Applications
      *
      * @return JobApplicationCollection|JsonResponse
      */
@@ -46,7 +46,7 @@ class JobApplicationController extends Controller
     /**
      * Job Application apply
      *
-     * @urlParam vacancy required The id of the vacancy.
+     * @urlParam vacancy required The id of the vacancy. Example: 1
      *
      * @param Vacancy $vacancy
      * @return JsonResponse
@@ -81,7 +81,7 @@ class JobApplicationController extends Controller
     /**
      * Job Application show
      *
-     * @urlParam jobApplication required The id of the job application.
+     * @urlParam jobApplication required The id of the job application. Example: 1
      *
      * @param JobApplication $jobApplication
      * @return JobApplicationResource|JsonResponse
@@ -106,7 +106,7 @@ class JobApplicationController extends Controller
     /**
      * Job Application cancel
      *
-     * @urlParam jobApplication required The id of the job application.
+     * @urlParam jobApplication required The id of the job application. Example: 1
      *
      * @param JobApplication $jobApplication
      * @return JsonResponse

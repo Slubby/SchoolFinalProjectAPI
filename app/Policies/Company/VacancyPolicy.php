@@ -11,6 +11,18 @@ class VacancyPolicy
     use HandlesAuthorization;
 
     /**
+     * Determine whether the user can view the model.
+     *
+     * @param User $user
+     * @param Vacancy $vacancy
+     * @return mixed
+     */
+    public function view(User $user, Vacancy $vacancy): bool
+    {
+        return $user->profile->id === $vacancy->company_id;
+    }
+
+    /**
      * Determine whether the user can update the model.
      *
      * @param User $user

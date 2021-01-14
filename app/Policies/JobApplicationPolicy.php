@@ -19,4 +19,14 @@ class JobApplicationPolicy
     {
         return $user->profile->school_id === $jobApplication->student_id;
     }
+
+    /**
+     * @param User $user
+     * @param JobApplication $jobApplication
+     * @return mixed
+     */
+    public function status(User $user, JobApplication $jobApplication): bool
+    {
+        return $user->profile->vacancies->contains($jobApplication->vacancy_id);
+    }
 }

@@ -101,7 +101,7 @@ class TeacherController extends Controller
     /**
      * Teacher verify
      *
-     * @urlParam teacher required The id of the teacher.
+     * @urlParam teacher required The id of the teacher. Example: 1
      *
      * @param Teacher $teacher
      * @return JsonResponse
@@ -112,7 +112,7 @@ class TeacherController extends Controller
             $teacher->verified = true;
             $teacher->save();
 
-            return response()->json(['message' => "teacher \"{$teacher->fullName()}\" success fully verified"]);
+            return response()->json(['message' => "teacher \"{$teacher->fullName()}\" successfully verified"]);
         } catch (Exception $e) {
             report($e);
         }

@@ -4,6 +4,7 @@ namespace App\Http\Resources\Profile;
 
 use App\Http\Resources\EducationResource;
 use App\Http\Resources\SchoolResource;
+use App\Http\Resources\AppliedStatusResource;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -40,6 +41,9 @@ class StudentResource extends JsonResource
             'school' => $this->whenLoaded('school', function () {
                 return new SchoolResource($this->school);
             }),
+            'applied' => $this->when(isset($this->pivot), function () {
+                return new AppliedStatusResource($this->pivot);
+            })
         ];
     }
 }

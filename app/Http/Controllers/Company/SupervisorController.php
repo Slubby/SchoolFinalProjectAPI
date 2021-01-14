@@ -49,7 +49,7 @@ class SupervisorController extends Controller
     /**
      * Supervisors
      *
-     * @urlParam  company required The id of the company.
+     * @urlParam  company required The id of the company. Example: 1
      *
      * @param Company $company
      * @return SupervisorCollection
@@ -64,7 +64,7 @@ class SupervisorController extends Controller
     /**
      * Supervisor create
      *
-     * @urlParam company required The id of the company.
+     * @urlParam company required The id of the company. Example: 1
      *
      * @bodyParam  first_name string required
      * @bodyParam  middle_name string
@@ -88,8 +88,8 @@ class SupervisorController extends Controller
     /**
      * Supervisor update
      *
-     * @urlParam  company required The id of the company.
-     * @urlParam  supervisor required The id of the supervisor.
+     * @urlParam  company required The id of the company. Example: 1
+     * @urlParam  supervisor required The id of the supervisor. Example: 1
      *
      * @bodyParam  first_name string required
      * @bodyParam  middle_name string
@@ -114,8 +114,8 @@ class SupervisorController extends Controller
     /**
      * Supervisor delete
      *
-     * @urlParam  company required The id of the company.
-     * @urlParam  supervisor required The id of the supervisor.
+     * @urlParam  company required The id of the company. Example: 1
+     * @urlParam  supervisor required The id of the supervisor. Example: 1
      *
      * @param Company $company
      * @param Supervisor $supervisor

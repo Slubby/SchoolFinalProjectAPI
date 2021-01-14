@@ -20,30 +20,24 @@ class JobApplicationResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
-            'about_us' => $this->when(!is_null($this->about_us), $this->about_us),
-            'requirements' => $this->when(!is_null($this->requirements), $this->requirements),
-            'total' => $this->when(!is_null($this->total), $this->total),
+            'about_us' => $this->when(isset($this->about_us), $this->about_us),
+            'requirements' => $this->when(isset($this->requirements), $this->requirements),
+            'total' => $this->when(isset($this->total), $this->total),
+            $this->merge($this->whenLoaded('applied',
+                function () {
+                    return new AppliedStatusResource($this->applied->pivot);
+                }, function () { return $this->when(isset($this->pivot),
+                    function () {
+                        return new AppliedStatusResource($this->pivot);
+                    }, function () {
+                        return [
+                            'applied' => false,
+                        ];
+                    });
+                }),
+            ),
             'type' => new EducationResource($this->type),
             'company' => new CompanyResource($this->company),
-            'job_application' => $this->whenLoaded('applied', function () {
-                return [
-                    'id' => $this->applied->pivot->id,
-                    'applied' => true,
-                    'status' => $this->applied->pivot->status,
-                ];
-            }, function () {
-                return $this->when(isset($this->pivot), function () {
-                    return [
-                        'id' => $this->pivot->id,
-                        'applied' => true,
-                        'status' => $this->pivot->status,
-                    ];
-                }, function () {
-                    return [
-                        'applied' => false,
-                    ];
-                });
-            }),
         ];
     }
 }

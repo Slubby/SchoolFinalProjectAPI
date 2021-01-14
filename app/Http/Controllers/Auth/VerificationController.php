@@ -21,15 +21,15 @@ use Exception;
 class VerificationController extends Controller
 {
     /**
-     * @param User $User
+     * @param User $user
      * @return bool
      */
-    static public function emailVerifyCode(User $User): bool
+    static public function emailVerifyCode(User $user): bool
     {
         try {
             $verificationCode = str::random(env('CODE_LENGTH'));
 
-            $verification = User::find($User->id)->verification()->firstOrNew();
+            $verification = User::find($user->id)->verification()->firstOrNew();
 
             $verification->verification_code = $verificationCode;
 
@@ -38,9 +38,9 @@ class VerificationController extends Controller
             $data->code = $verificationCode;
             $data->subject = 'Verify your email';
 
-            Mail::mailer($data->mailer)->to($User->email)->send(new VerifyMail($data));
+            Mail::mailer($data->mailer)->to($user->email)->send(new VerifyMail($data));
 
-            $User->verification()->save($verification);
+            $user->verification()->save($verification);
 
             return true;
         } catch (Exception $e) {
@@ -53,15 +53,15 @@ class VerificationController extends Controller
     /**
      * Account verify
      *
-     * @urlParam Code required The code in the email.
+     * @urlParam code required The code in the email. Example: WrCegVUunSCJPFETrBsp6nCmR398X9
      *
-     * @param string $Code
+     * @param string $code
      * @return JsonResponse
      */
-    public function check(string $Code): JsonResponse
+    public function check(string $code): JsonResponse
     {
         try {
-            $verification = Verification::whereVerificationCode($Code)->firstOrFail();
+            $verification = Verification::whereVerificationCode($code)->firstOrFail();
             $user = User::find($verification->user_id);
 
             if (is_null($user->email_verified_at)) {

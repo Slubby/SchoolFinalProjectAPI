@@ -85,7 +85,7 @@ class CompanyController extends Controller
      *
      * Company verify
      *
-     * @urlParam company required The id of the company.
+     * @urlParam company required The id of the company. Example: 1
      *
      * @param Company $company
      * @return JsonResponse
@@ -96,7 +96,7 @@ class CompanyController extends Controller
             $company->verified = true;
             $company->save();
 
-            return response()->json(['message' => "Company \"{$company->name}\" success fully verified"]);
+            return response()->json(['message' => "Company \"{$company->name}\" successfully verified"]);
         } catch (Exception $e) {
             report($e);
         }

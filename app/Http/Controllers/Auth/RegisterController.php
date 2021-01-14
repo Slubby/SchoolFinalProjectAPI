@@ -75,7 +75,7 @@ class RegisterController extends Controller
                     $profile->user()->save($user);
 
                     if (VerificationController::emailVerifyCode($user)) {
-                        return response()->json(['message' => "Your {$type} account is success fully created"]);
+                        return response()->json(['message' => "Your {$type} account is successfully created"]);
                     }
 
                     return response()->json(['message' => 'Something went wrong while sending the email'], Response::HTTP_BAD_REQUEST);

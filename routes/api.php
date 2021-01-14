@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\Company\AppliedController;
 use App\Http\Controllers\Company\SupervisorController;
 use App\Http\Controllers\Company\VacancyController;
 use App\Http\Controllers\Profile\CompanyController;
@@ -64,9 +65,9 @@ Route::middleware('auth:api')->name('user.')->group(function () {
 
         Route::prefix('{company}')->group(function () {
 
-            Route::prefix('supervisor')->name('supervisor.')->group(function () {
-                Route::get('/', [SupervisorController::class, 'index'])->name('all')->middleware('can:supervisor,company');
-                Route::post('create', [SupervisorController::class, 'store'])->name('create')->middleware('can:supervisor,company');
+            Route::prefix('supervisor')->name('supervisor.')->middleware('can:supervisor,company')->group(function () {
+                Route::get('/', [SupervisorController::class, 'index'])->name('all');
+                Route::post('create', [SupervisorController::class, 'store'])->name('create');
 
                 Route::prefix('{supervisor}')->group(function () {
                     Route::patch('update', [SupervisorController::class, 'update'])->name('update')->middleware('can:update,supervisor');
@@ -74,14 +75,19 @@ Route::middleware('auth:api')->name('user.')->group(function () {
                 });
             });
 
-            Route::prefix('vacancy')->name('supervisor.')->group(function () {
-                Route::get('/', [VacancyController::class, 'index'])->name('all')->middleware('can:vacancy,company');
-                Route::post('create', [VacancyController::class, 'store'])->name('create')->middleware('can:vacancy,company');
+            Route::prefix('vacancy')->name('vacancy.')->middleware('can:vacancy,company')->group(function () {
+                Route::get('/', [VacancyController::class, 'index'])->name('all');
+                Route::post('create', [VacancyController::class, 'store'])->name('create');
 
                 Route::prefix('{vacancy}')->group(function () {
+                    Route::get('show', [VacancyController::class, 'show'])->name('show')->middleware('can:view,vacancy');
                     Route::put('edit', [VacancyController::class, 'edit'])->name('edit')->middleware('can:update,vacancy');
                     Route::patch('update', [VacancyController::class, 'update'])->name('update')->middleware('can:update,vacancy');
                     Route::delete('delete', [VacancyController::class, 'destroy'])->name('delete')->middleware('can:delete,vacancy');
+
+                    Route::prefix('applied/{jobApplication}')->name('applied')->middleware('can:view,vacancy')->group(function () {
+                         route::put('status/{type}', [AppliedController::class, 'edit'])->name('change.status')->middleware('can:status,jobApplication');
+                    });
                 });
             });
         });
@@ -105,7 +111,7 @@ Route::middleware('auth:api')->name('user.')->group(function () {
 
             Route::prefix('{jobApplication}')->group(function () {
                 Route::get('show', [JobApplicationController::class, 'show'])->name('show');
-                Route::put('cancel', [JobApplicationController::class, 'cancel'])->name('cancel')->middleware('can:cancel,jobApplication');;
+                Route::put('cancel', [JobApplicationController::class, 'cancel'])->name('cancel')->middleware('can:cancel,jobApplication');
             });
         });
     });
@@ -116,6 +122,6 @@ Route::name('open.')->group(function () {
 
     Route::prefix('advertisement')->name('advertisement.')->group(function () {
         Route::get('/', [AdvertisementController::class, 'index'])->name('all');
-        Route::get('{vacancy}', [AdvertisementController::class, 'show'])->name('show');
+        Route::get('{vacancy}/show', [AdvertisementController::class, 'show'])->name('show');
     });
 });

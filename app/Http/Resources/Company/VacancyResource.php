@@ -24,6 +24,9 @@ class VacancyResource extends JsonResource
             'total' => $this->total,
             'closed' => $this->is_closed,
             'type' => new EducationResource($this->type),
+            'applied_students' => $this->whenLoaded('applied', function () {
+                return AppliedResource::collection($this->applied);
+            })
         ];
     }
 }

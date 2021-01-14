@@ -54,7 +54,7 @@ class AdvertisementController extends Controller
     /**
      * Advertisement show
      *
-     * @urlParam vacancy required The id of the vacancy.
+     * @urlParam vacancy required The id of the vacancy. Example: 1
      *
      * @param Vacancy $vacancy
      * @return JobApplicationResource|JsonResponse

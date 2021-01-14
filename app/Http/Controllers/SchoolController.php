@@ -78,7 +78,7 @@ class SchoolController extends Controller
      *
      * @authenticated
      *
-     * @urlParam school required The id of the school.
+     * @urlParam school required The id of the school. Example: 1
      *
      * @bodyParam name string required
      *
@@ -104,7 +104,7 @@ class SchoolController extends Controller
      *
      * @authenticated
      *
-     * @urlParam school required The id of the school.
+     * @urlParam school required The id of the school. Example: 1
      *
      * @param School $school
      * @return JsonResponse
@@ -116,7 +116,7 @@ class SchoolController extends Controller
             $name = $school->name;
             $school->delete();
 
-            return response()->json(['message' => "\"{$name}\" is success fully deleted"]);
+            return response()->json(['message' => "\"{$name}\" is successfully deleted"]);
         } catch (Exception $e) {
             report($e);
         }
