@@ -11,6 +11,7 @@ use App\Policies\Company\SupervisorPolicy;
 use App\Policies\Company\VacancyPolicy;
 use App\Policies\JobApplicationPolicy;
 use App\Policies\TeacherPolicy;
+use App\Policies\TypePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\View\Component;
@@ -39,6 +40,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('type-register', [TypePolicy::class, 'register']);
+
+        Gate::define('type-status-company', [TypePolicy::class, 'statusCompany']);
     }
 }

@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->name('account.')->group(function () {
     Route::post('login', [LoginController::class, 'login'])->name('login');
-    Route::post('register/{type}', [RegisterController::class, 'register'])->name('register');
+    Route::post('register/{type}', [RegisterController::class, 'register'])->name('register')->middleware('can:type-register,type');
     Route::get('refresh', [AuthController::class, 'refresh'])->name('refresh.token');
     Route::post('verify/account/{verification_code}', [VerificationController::class, 'check'])->name('verify.token');
     Route::get('recovery/account', [ForgotPasswordController::class , 'reset'])->name('password.reset');
@@ -86,7 +86,7 @@ Route::middleware('auth:api')->name('user.')->group(function () {
                     Route::delete('delete', [VacancyController::class, 'destroy'])->name('delete')->middleware('can:delete,vacancy');
 
                     Route::prefix('applied/{jobApplication}')->name('applied')->middleware('can:view,vacancy')->group(function () {
-                         route::put('status/{type}', [AppliedController::class, 'edit'])->name('change.status')->middleware('can:status,jobApplication');
+                         route::put('status/{type}', [AppliedController::class, 'edit'])->name('change.status')->middleware(['can:status,jobApplication', 'can:type-status-company,type']);
                     });
                 });
             });

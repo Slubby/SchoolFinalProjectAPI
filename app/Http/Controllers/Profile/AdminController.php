@@ -4,11 +4,22 @@ namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Traits\ProfileValidation;
 use Exception;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    use ProfileValidation;
+
+    /**
+     * @var array
+     */
+    private static array $default = [
+        'first_name' => ['required'],
+        'last_name' => ['required'],
+    ];
+
     /**
      * @param object $data
      * @param Admin $admin
@@ -28,6 +39,15 @@ class AdminController extends Controller
         }
 
         return false;
+    }
+
+    /**
+     * @param Admin $admin
+     * @return Admin
+     */
+    public static function user(Admin $admin): Admin
+    {
+        return $admin;
     }
 
     /**

@@ -24,7 +24,6 @@ class CompanyResource extends JsonResource
             'street' => $this->street,
             'house_number' => $this->house_number,
             'postal_code' => $this->postal_code,
-            'supervisor' => $this->supervisor
         ];
     }
 }

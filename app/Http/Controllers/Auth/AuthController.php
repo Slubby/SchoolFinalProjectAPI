@@ -15,6 +15,7 @@ use App\Models\Company;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
+use App\Traits\Profile;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
@@ -30,6 +31,8 @@ use Tymon\JWTAuth\Exceptions\TokenExpiredException;
  */
 class AuthController extends Controller
 {
+    use Profile;
+
     /**
      * Account
      *
@@ -41,7 +44,8 @@ class AuthController extends Controller
     {
         try {
             $user = Auth::user();
-            $user->profile;
+            $profile = $user->profile;
+            $user->profile = self::profile($profile, 'user', $profile);
 
             return new UserResource($user);
         } catch (Exception $e) {
@@ -82,19 +86,7 @@ class AuthController extends Controller
         $user = Auth::user();
         $type = $user->profile;
 
-        if ($type instanceof Company) {
-            $profile = CompanyController::createOrUpdate($validation, $type);
-        } elseif ($type instanceof Teacher) {
-            $profile = TeacherController::createOrUpdate($validation, $type);
-        } elseif ($type instanceof Student) {
-            $profile = StudentController::createOrUpdate($validation, $type);
-        } elseif ($type instanceof Admin) {
-            $profile = AdminController::createOrUpdate($validation, $type);
-        } else {
-            $profile = false;
-        }
-
-        if ($profile) {
+        if (self::profile($type, 'createOrUpdate', $validation, $type)) {
             $user->refresh();
 
             return new UserResource($user);

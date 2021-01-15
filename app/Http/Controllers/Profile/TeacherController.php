@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
 use App\Models\Teacher;
+use App\Traits\ProfileValidation;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -17,6 +18,24 @@ use Illuminate\Http\Response;
  */
 class TeacherController extends Controller
 {
+    use ProfileValidation;
+
+    /**
+     * @var array
+     */
+    private static array $default = [
+        'first_name' => ['required'],
+        'last_name' => ['required'],
+        'short_name' => ['required'],
+    ];
+
+    /**
+     * @var array
+     */
+    private static array $create = [
+        'school' => ['required', 'integer', 'exists:schools,id'],
+    ];
+
     /**
      * @param object $data
      * @param Teacher $teacher
@@ -41,6 +60,17 @@ class TeacherController extends Controller
         }
 
         return false;
+    }
+
+    /**
+     * @param Teacher $teacher
+     * @return Teacher
+     */
+    public static function user(Teacher $teacher): Teacher
+    {
+        $teacher->school;
+
+        return $teacher;
     }
 
     /**

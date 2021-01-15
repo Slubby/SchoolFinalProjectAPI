@@ -37,7 +37,7 @@ class ForgotPasswordController extends Controller
             $data = new stdClass();
             $data->mailer = 'noreply';
             $data->code = $verificationCode;
-            $data->subject = 'Verify your email';
+            $data->subject = 'Password Reset';
 
             Mail::mailer($data->mailer)->to($User->email)->send(new ResetPasswordMail($data));
 

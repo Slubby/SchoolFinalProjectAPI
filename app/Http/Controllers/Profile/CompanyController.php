@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Profile;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\User;
+use App\Traits\ProfileValidation;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
@@ -19,6 +20,28 @@ use Illuminate\Http\Response;
  */
 class CompanyController extends Controller
 {
+    use ProfileValidation;
+
+    /**
+     * @var array
+     */
+    private static array $default = [
+        'country' => ['required'],
+        'region' => ['required'],
+        'city' => ['required'],
+        'street' => ['required'],
+        'house_number' => ['required'],
+        'postal_code' => ['required'],
+    ];
+
+    /**
+     * @var array
+     */
+    private static array $create = [
+        'number' => ['required', 'integer'],
+        'name' => ['required', 'unique:company_profile,name'],
+    ];
+
     /**
      * @param object $data
      * @param Company $company
@@ -46,6 +69,15 @@ class CompanyController extends Controller
         }
 
         return false;
+    }
+
+    /**
+     * @param Company $company
+     * @return Company
+     */
+    public static function user(Company $company): Company
+    {
+        return $company;
     }
 
     /**

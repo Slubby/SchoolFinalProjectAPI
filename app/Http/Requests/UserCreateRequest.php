@@ -2,62 +2,12 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\Profile;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserCreateRequest extends FormRequest
 {
-    /**
-     * @var array
-     */
-    private array $company = [
-        'number' => ['required', 'integer'],
-        'name' => ['required', 'unique:company_profile,name'],
-        'country' => ['required'],
-        'region' => ['required'],
-        'city' => ['required'],
-        'street' => ['required'],
-        'house_number' => ['required'],
-        'postal_code' => ['required'],
-    ];
-
-    /**
-     * @var array
-     */
-    private array $teacher = [
-        'school' => ['required', 'integer', 'exists:schools,id'],
-        'first_name' => ['required'],
-        'last_name' => ['required'],
-        'short_name' => ['required'],
-    ];
-
-    /**
-     * @var array
-     */
-    private array $student = [
-        'first_name' => ['required'],
-        'last_name' => ['required'],
-        'gender' => ['required', 'in:male,female,other'],
-        'birthday' => ['required', 'date'],
-        'country' => ['required'],
-        'region' => ['required'],
-        'city' => ['required'],
-        'street' => ['required'],
-        'house_number' => ['required'],
-        'postal_code' => ['required'],
-        'school' => ['required', 'integer', 'exists:schools,id'],
-        'education' => ['required', 'integer', 'exists:educations,id'],
-        'mentor' => ['required', 'integer', 'exists:users,id'],
-        'started' => ['required', 'date'],
-        'grade' => ['required', 'integer'],
-    ];
-
-    /**
-     * @var array
-     */
-    private array $admin = [
-        'first_name' => ['required'],
-        'last_name' => ['required'],
-    ];
+    use Profile;
 
     /**
      * Get the validation rules that apply to the request.
@@ -66,7 +16,7 @@ class UserCreateRequest extends FormRequest
      */
     public function rules(): array
     {
-        $profile = $this->{$this->type};
+        $profile = self::profile($this->type, 'validations', true) ?: [];
         $user = [
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'min:' . env('PASSWORD_MIN_LENGTH'), 'max:' . env('PASSWORD_MAX_LENGTH'), 'case_diff', 'numbers', 'symbols'],

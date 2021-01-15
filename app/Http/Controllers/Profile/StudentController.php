@@ -4,12 +4,42 @@ namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
 use App\Models\Student;
+use App\Traits\ProfileValidation;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class StudentController extends Controller
 {
+    use ProfileValidation;
+
+    /**
+     * @var array
+     */
+    private static array $default = [
+        'first_name' => ['required'],
+        'last_name' => ['required'],
+        'gender' => ['required', 'in:male,female,other'],
+        'birthday' => ['required', 'date'],
+        'country' => ['required'],
+        'region' => ['required'],
+        'city' => ['required'],
+        'street' => ['required'],
+        'house_number' => ['required'],
+        'postal_code' => ['required'],
+    ];
+
+    /**
+     * @var array
+     */
+    private static array $create = [
+        'school' => ['required', 'integer', 'exists:schools,id'],
+        'education' => ['required', 'integer', 'exists:educations,id'],
+        'mentor' => ['required', 'integer', 'exists:users,id'],
+        'started' => ['required', 'date'],
+        'grade' => ['required', 'integer'],
+    ];
+
     /**
      * @param object $data
      * @param Student $student
@@ -46,6 +76,18 @@ class StudentController extends Controller
         }
 
         return false;
+    }
+
+    /**
+     * @param Student $student
+     * @return Student
+     */
+    public static function user(Student $student): Student
+    {
+        $student->mentor;
+        $student->school;
+
+        return $student;
     }
 
     /**

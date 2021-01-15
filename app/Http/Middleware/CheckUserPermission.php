@@ -6,6 +6,7 @@ use App\Models\Admin;
 use App\Models\Company;
 use App\Models\Student;
 use App\Models\Teacher;
+use App\Traits\Profile;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckUserPermission
 {
+    use Profile;
+
     /**
      * Handle an incoming request.
      *
@@ -23,7 +26,7 @@ class CheckUserPermission
      */
     public function handle(Request $request, Closure $next, string $type)
     {
-        $instance = self::types($type);
+        $instance = self::getType($type);
 
         if ($instance) {
             if (Auth::user()->profile instanceof $instance) {
@@ -32,25 +35,5 @@ class CheckUserPermission
         }
 
         return response()->json(['message' => 'You have no permissions for this action'], Response::HTTP_FORBIDDEN);
-    }
-
-    /**
-     * @param string $type
-     * @return false|string
-     */
-    private static function types(string $type)
-    {
-        switch ($type) {
-            case 'company':
-                return Company::class;
-            case 'teacher':
-                return Teacher::class;
-            case 'student':
-                return Student::class;
-            case 'admin':
-                return Admin::class;
-        }
-
-        return false;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -36,11 +37,19 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->renderable(function (NotFoundHttpException $e) {
-            return response()->json(['message' => 'The given id was not found'], Response::HTTP_BAD_REQUEST);
+            if ($e->getPrevious() instanceof ModelNotFoundException) {
+                return response()->json(['message' => 'The given id was not found'], Response::HTTP_BAD_REQUEST);
+            }
+
+            return response()->json(['message' => "This is url doesn't exist"], Response::HTTP_NOT_FOUND);
         });
 
         $this->renderable(function (AccessDeniedHttpException $e) {
             return response()->json(['message' => 'Your not authorized for this action'], Response::HTTP_FORBIDDEN);
+        });
+
+        $this->renderable(function (TypeNotFoundException $e) {
+            return response()->json(['message' => $e->getMessage()], Response::HTTP_BAD_REQUEST);
         });
     }
 }

@@ -2,7 +2,11 @@
 
 namespace  App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\PasswordReset
@@ -11,18 +15,18 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $user_id
  * @property string $verification_code
  * @property int $used
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|PasswordReset newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|PasswordReset newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|PasswordReset query()
- * @method static \Illuminate\Database\Eloquent\Builder|PasswordReset whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PasswordReset whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PasswordReset whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PasswordReset whereUsed($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PasswordReset whereUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PasswordReset whereVerificationCode($value)
- * @mixin \Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|PasswordReset newModelQuery()
+ * @method static Builder|PasswordReset newQuery()
+ * @method static Builder|PasswordReset query()
+ * @method static Builder|PasswordReset whereCreatedAt($value)
+ * @method static Builder|PasswordReset whereId($value)
+ * @method static Builder|PasswordReset whereUpdatedAt($value)
+ * @method static Builder|PasswordReset whereUsed($value)
+ * @method static Builder|PasswordReset whereUserId($value)
+ * @method static Builder|PasswordReset whereVerificationCode($value)
+ * @mixin Eloquent
  */
 class PasswordReset extends Model
 {
@@ -33,4 +37,12 @@ class PasswordReset extends Model
         'verification_code',
         'used'
     ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

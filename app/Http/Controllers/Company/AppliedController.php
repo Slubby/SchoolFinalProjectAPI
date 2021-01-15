@@ -35,10 +35,6 @@ class AppliedController extends Controller
      */
     public function edit(Company $company, Vacancy $vacancy, JobApplication $jobApplication, string $type): JsonResponse
     {
-        if (!in_array($type, ['denied', 'approved'])) {
-            return response()->json(['message' => "This status code doesn't exist"], Response::HTTP_BAD_REQUEST);
-        }
-
         try {
             if (!in_array($jobApplication->status, ['cancelled', 'completed'])) {
                 return response()->json(['message' => "You can't change the status of this job application"], Response::HTTP_BAD_REQUEST);

@@ -35,7 +35,7 @@ class ResetPasswordMail extends Mailable implements ShouldQueue
     public function build(): ResetPasswordMail
     {
         return $this->subject($this->data->subject)->markdown('mail.password.reset', [
-                'url' => route('user.password.reset.token', ['verification_code' => $this->data->code]),
+                'url' => route('account.password.reset.token', ['verification_code' => $this->data->code]),
             ]);
     }
 }

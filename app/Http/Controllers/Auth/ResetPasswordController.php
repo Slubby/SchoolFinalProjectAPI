@@ -9,6 +9,7 @@ use App\Models\PasswordReset;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use stdClass;
 
@@ -20,15 +21,13 @@ use stdClass;
 class ResetPasswordController extends Controller
 {
     /**
-     * @param int $UserId
-     * @param string $Password
+     * @param User $user
+     * @param string $password
      * @return string
      */
-    public static function changePassword(int $UserId, string $Password) {
+    public static function changePassword(User $user, string $password) {
         try {
-
-            $user = User::find($UserId);
-            $user->password = bcrypt($Password);
+            $user->password = Hash::make($password);
             $user->save();
 
             $data = new stdClass();
@@ -54,13 +53,13 @@ class ResetPasswordController extends Controller
      * @bodyParam password_confirm string required
      *
      * @param ResetPasswordRequest $request
-     * @param string $Code
+     * @param string $code
      * @return JsonResponse
      */
-    public function check(ResetPasswordRequest $request, string $Code): JsonResponse
+    public function check(ResetPasswordRequest $request, string $code): JsonResponse
     {
         try {
-            $reset = PasswordReset::whereVerificationCode($Code)->firstOrFail();
+            $reset = PasswordReset::whereVerificationCode($code)->firstOrFail();
 
             if (!$reset->used) {
                 $time = Carbon::now();
@@ -68,7 +67,7 @@ class ResetPasswordController extends Controller
                 if ($reset->updated_at->addMinutes(env('CODE_EXPIRED')) >= $time) {
                     $validation = (object) $request->validated();
 
-                    if (self::changePassword($reset->user_id, $validation->password)) {
+                    if (self::changePassword($reset->user, $validation->password)) {
                         $reset->used = 1;
                         $reset->save();
 
