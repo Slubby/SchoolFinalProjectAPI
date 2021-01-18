@@ -18,7 +18,7 @@ class AdminUserSeeder extends Seeder
     public function run()
     {
         $user = User::findOrNew(1);
-        $user->email = 'pmhuberts@gmail.com';
+        $user->email = 'admin@example.org';
         $user->email_verified_at = Carbon::now();
         $user->password = Hash::make('W@chtw00rd');
         $user->save();

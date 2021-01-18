@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\CompanyUserFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -91,5 +92,13 @@ class Company extends Model
     public function vacancies(): HasMany
     {
         return $this->hasMany(Vacancy::class);
+    }
+
+    /**
+     * @return CompanyUserFactory
+     */
+    protected static function newFactory(): CompanyUserFactory
+    {
+        return CompanyUserFactory::new();
     }
 }

@@ -18,7 +18,7 @@ class CompanyUserSeeder extends Seeder
     public function run()
     {
         $user = User::findOrNew(4);
-        $user->email = 'company@test.com';
+        $user->email = 'company@example.org';
         $user->email_verified_at = Carbon::now();
         $user->password = Hash::make('W@chtw00rd');
         $user->save();
@@ -36,5 +36,8 @@ class CompanyUserSeeder extends Seeder
         $company->save();
 
         $company->user()->save($user);
+
+        Company::factory()->has(User::factory(), 'user')->count(5)->create();
+
     }
 }
