@@ -65,7 +65,7 @@ let headers = {
 };
 
 let body = {
-    "name": "neque"
+    "name": "et"
 }
 
 fetch(url, {
@@ -113,7 +113,7 @@ let headers = {
 };
 
 let body = {
-    "name": "amet"
+    "name": "sunt"
 }
 
 fetch(url, {
@@ -286,8 +286,8 @@ let headers = {
 };
 
 let body = {
-    "email": "earum",
-    "password": "et"
+    "email": "nemo",
+    "password": "porro"
 }
 
 fetch(url, {
@@ -338,19 +338,19 @@ let headers = {
 };
 
 let body = {
-    "number": 10,
-    "name": "officiis",
+    "number": 5,
+    "name": "quas",
     "country": "NL",
     "region": "GR",
-    "city": "ex",
-    "street": "voluptatem",
+    "city": "voluptatum",
+    "street": "et",
     "house_number": "81",
     "postal_code": "9603HL",
-    "school": 19,
-    "first_name": "consectetur",
-    "middle_name": "ipsa",
-    "last_name": "et",
-    "short_name": "quia"
+    "school": 6,
+    "first_name": "at",
+    "middle_name": "quam",
+    "last_name": "numquam",
+    "short_name": "ea"
 }
 
 fetch(url, {
@@ -549,7 +549,7 @@ let headers = {
 };
 
 let body = {
-    "email": "iste"
+    "email": "omnis"
 }
 
 fetch(url, {
@@ -595,8 +595,8 @@ let headers = {
 };
 
 let body = {
-    "password": "eveniet",
-    "password_confirm": "laboriosam"
+    "password": "porro",
+    "password_confirm": "laborum"
 }
 
 fetch(url, {
@@ -715,17 +715,17 @@ let headers = {
 };
 
 let body = {
-    "first_name": "aut",
-    "middle_name": "consequuntur",
-    "last_name": "sapiente",
+    "first_name": "libero",
+    "middle_name": "libero",
+    "last_name": "cumque",
     "country": "NL",
     "region": "GR",
-    "city": "porro",
-    "street": "quo",
+    "city": "consequuntur",
+    "street": "ex",
     "house_number": "81",
     "postal_code": "9603HL",
-    "short_name": "nihil",
-    "gender": "et",
+    "short_name": "natus",
+    "gender": "non",
     "birthday": "2001-09-29"
 }
 
@@ -841,9 +841,9 @@ let headers = {
 };
 
 let body = {
-    "previous_password": "minus",
-    "new_password": "quis",
-    "password_confirm": "asperiores"
+    "previous_password": "numquam",
+    "new_password": "officiis",
+    "password_confirm": "voluptas"
 }
 
 fetch(url, {
@@ -927,9 +927,9 @@ let headers = {
 };
 
 let body = {
-    "first_name": "qui",
-    "middle_name": "nihil",
-    "last_name": "minus"
+    "first_name": "molestiae",
+    "middle_name": "voluptatum",
+    "last_name": "delectus"
 }
 
 fetch(url, {
@@ -987,9 +987,9 @@ let headers = {
 };
 
 let body = {
-    "first_name": "dolorem",
-    "middle_name": "aspernatur",
-    "last_name": "et"
+    "first_name": "corrupti",
+    "middle_name": "consectetur",
+    "last_name": "quidem"
 }
 
 fetch(url, {
@@ -1131,12 +1131,12 @@ let headers = {
 };
 
 let body = {
-    "type": 14,
+    "type": 2,
     "title": "et",
-    "description": "esse",
-    "about_us": "dolor",
+    "description": "ut",
+    "about_us": "fuga",
     "requirements": [],
-    "total": 3
+    "total": 17
 }
 
 fetch(url, {
@@ -1293,12 +1293,12 @@ let headers = {
 };
 
 let body = {
-    "type": 12,
-    "title": "quia",
-    "description": "repudiandae",
-    "about_us": "tempora",
+    "type": 14,
+    "title": "mollitia",
+    "description": "rerum",
+    "about_us": "tempore",
     "requirements": [],
-    "total": 18
+    "total": 12
 }
 
 fetch(url, {
@@ -1668,6 +1668,31 @@ fetch(url, {
 <h3>HTTP Request</h3>
 <p><code>GET api/t/students</code></p>
 <!-- END_559eeb36e1af51001727f1a56062848d -->
+<!-- START_68d0c3cba4c6fe1df0607510cb740263 -->
+<h2>Teacher class students</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "https://school.wedevelop4you.nl/api/t/mentor/class"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {token}",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/t/mentor/class</code></p>
+<!-- END_68d0c3cba4c6fe1df0607510cb740263 -->
 <!-- START_0722e37e780f1be2628fc8f075cdf5a0 -->
 <h2>Teacher verify</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
