@@ -26,8 +26,6 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read \App\Models\School $school
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Student[] $students
- * @property-read int|null $students_count
  * @property-read \App\Models\User|null $user
  * @method static Builder|Teacher newModelQuery()
  * @method static Builder|Teacher newQuery()
@@ -79,13 +77,5 @@ class Teacher extends Model
     public function school(): BelongsTo
     {
         return $this->belongsTo(School::class);
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function students(): HasMany
-    {
-        return $this->hasMany(Student::class);
     }
 }

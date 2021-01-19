@@ -37,7 +37,7 @@ class StudentUserSeeder extends Seeder
         $student->postal_code = '9603HL';
         $student->school_id = 1;
         $student->education_id = 1;
-        $student->mentor_id = 1;
+        $student->mentor_id = 2;
         $student->started_at = Carbon::now();
         $student->grade = 3;
         $student->save();

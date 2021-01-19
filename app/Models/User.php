@@ -39,6 +39,8 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property-read int|null $notifications_count
  * @property-read \App\Models\PasswordReset|null $passwordReset
  * @property-read Model|\Eloquent $profile
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Student[] $students
+ * @property-read int|null $students_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Supervisor[] $supervisors
  * @property-read int|null $supervisors_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Vacancy[] $vacancies
@@ -114,6 +116,24 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * @return array
+     */
+    public function getJWTCustomClaims(): array
+    {
+        return [];
+    }
+
+    // Company
+
+    /**
      * @return HasMany
      */
     public function supervisors(): HasMany
@@ -129,27 +149,23 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Vacancy::class, 'company_id');
     }
 
+    // Teacher
+
+    /**
+     * @return HasMany
+     */
+    public function students(): HasMany
+    {
+        return $this->hasMany(Student::class, 'mentor_id');
+    }
+
+    // Student
+
     /**
      * @return BelongsToMany
      */
     public function jobApplications(): BelongsToMany
     {
         return $this->belongsToMany(Vacancy::class, 'job_applications', 'student_id')->withTimestamps()->withPivot(['id', 'status']);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    /**
-     * @return array
-     */
-    public function getJWTCustomClaims(): array
-    {
-        return [];
     }
 }

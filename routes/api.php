@@ -45,6 +45,7 @@ Route::middleware('auth:api')->name('user.')->group(function () {
         Route::patch('change/password', [AuthController::class, 'changePassword'])->name('change.password');
     });
 
+    // Admin
     Route::middleware('permission:admin')->name('admin.')->group(function () {
         Route::prefix('school')->name('school.')->group(function () {
             Route::post('create', [SchoolController::class, 'store'])->name('create');
@@ -62,6 +63,7 @@ Route::middleware('auth:api')->name('user.')->group(function () {
         });
     });
 
+    // Company
     Route::prefix('c')->middleware('permission:company')->name('company.')->group(function () {
 
         Route::prefix('supervisor')->name('supervisor.')->group(function () {
@@ -91,6 +93,7 @@ Route::middleware('auth:api')->name('user.')->group(function () {
         });
     });
 
+    // Teacher
     Route::prefix('t')->middleware('permission:teacher')->name('teacher.')->group(function () {
         Route::get('students', [TeacherController::class, 'students'])->name('students');
 
@@ -107,6 +110,7 @@ Route::middleware('auth:api')->name('user.')->group(function () {
         });
     });
 
+    // Student
     Route::prefix('s')->middleware('permission:student')->name('student.')->group(function () {
 
         Route::prefix('job/application')->name('job.application.')->group(function () {
