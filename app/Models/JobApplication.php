@@ -18,7 +18,7 @@ use Illuminate\Support\Carbon;
  * @property string $status
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read \App\Models\Student|null $student
+ * @property-read \App\Models\User|null $student
  * @property-read \App\Models\Vacancy|null $vacancy
  * @method static Builder|JobApplication newModelQuery()
  * @method static Builder|JobApplication newQuery()

@@ -20,7 +20,7 @@ use Illuminate\Support\Carbon;
  * @property string $last_name
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read \App\Models\Company $company
+ * @property-read \App\Models\User $company
  * @method static Builder|Supervisor newModelQuery()
  * @method static Builder|Supervisor newQuery()
  * @method static Builder|Supervisor query()

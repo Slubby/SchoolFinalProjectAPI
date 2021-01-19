@@ -49,13 +49,19 @@ class SupervisorController extends Controller
     /**
      * Supervisors
      *
-     * @return SupervisorCollection
+     * @return SupervisorCollection|JsonResponse
      */
-    public function index(): SupervisorCollection
+    public function index()
     {
-        $supervisors = Auth::user()->profile->supervisors;
+        $user = Auth::user();
 
-        return new SupervisorCollection($supervisors);
+        if ($user->profile instanceof Company) {
+            $supervisors = $user->supervisors;
+
+            return new SupervisorCollection($supervisors);
+        }
+
+        return response()->json(['message' => 'Something went wrong while getting the supervisors']);
     }
 
     /**

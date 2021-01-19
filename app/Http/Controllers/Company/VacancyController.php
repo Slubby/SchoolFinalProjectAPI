@@ -53,13 +53,19 @@ class VacancyController extends Controller
     /**
      * Vacancies
      *
-     * @return VacancyCollection
+     * @return VacancyCollection|JsonResponse
      */
-    public function index(): VacancyCollection
+    public function index()
     {
-        $vacancies = Auth::user()->profile->vacancies;
+        $user = Auth::user();
 
-        return new VacancyCollection($vacancies);
+        if ($user->profile instanceof Company) {
+            $vacancies = $user->vacancies;
+
+            return new VacancyCollection($vacancies);
+        }
+
+        return response()->json(['message' => 'Something went wrong while getting the vacancies']);
     }
 
     /**

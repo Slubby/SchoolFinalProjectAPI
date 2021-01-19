@@ -39,9 +39,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read \App\Models\Education|null $education
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Vacancy[] $jobApplications
- * @property-read int|null $job_applications_count
- * @property-read \App\Models\Teacher|null $mentor
+ * @property-read \App\Models\User|null $mentor
  * @property-read \App\Models\School $school
  * @property-read \App\Models\User|null $user
  * @method static Builder|Student newModelQuery()

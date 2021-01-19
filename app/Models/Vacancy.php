@@ -30,9 +30,9 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
- * @property-read Collection|\App\Models\Student[] $applied
+ * @property-read Collection|\App\Models\User[] $applied
  * @property-read int|null $applied_count
- * @property-read \App\Models\Company $company
+ * @property-read \App\Models\User $company
  * @property-read \App\Models\Education|null $type
  * @method static Builder|Vacancy newModelQuery()
  * @method static Builder|Vacancy newQuery()

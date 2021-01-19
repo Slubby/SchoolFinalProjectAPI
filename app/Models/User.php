@@ -33,10 +33,16 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Vacancy[] $jobApplications
+ * @property-read int|null $job_applications_count
  * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \App\Models\PasswordReset|null $passwordReset
  * @property-read Model|\Eloquent $profile
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Supervisor[] $supervisors
+ * @property-read int|null $supervisors_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Vacancy[] $vacancies
+ * @property-read int|null $vacancies_count
  * @property-read \App\Models\Verification|null $verification
  * @method static Builder|User newModelQuery()
  * @method static Builder|User newQuery()
@@ -112,7 +118,7 @@ class User extends Authenticatable implements JWTSubject
      */
     public function supervisors(): HasMany
     {
-        return $this->hasMany(Supervisor::class);
+        return $this->hasMany(Supervisor::class, 'company_id');
     }
 
     /**
@@ -120,7 +126,7 @@ class User extends Authenticatable implements JWTSubject
      */
     public function vacancies(): HasMany
     {
-        return $this->hasMany(Vacancy::class);
+        return $this->hasMany(Vacancy::class, 'company_id');
     }
 
     /**

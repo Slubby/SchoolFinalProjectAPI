@@ -26,11 +26,7 @@ use Illuminate\Support\Carbon;
  * @property bool $verified
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Supervisor[] $supervisors
- * @property-read int|null $supervisors_count
  * @property-read \App\Models\User|null $user
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Vacancy[] $vacancies
- * @property-read int|null $vacancies_count
  * @method static Builder|Company newModelQuery()
  * @method static Builder|Company newQuery()
  * @method static Builder|Company query()
