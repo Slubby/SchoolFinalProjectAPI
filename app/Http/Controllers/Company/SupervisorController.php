@@ -11,6 +11,7 @@ use App\Models\Supervisor;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @group Company
@@ -23,14 +24,13 @@ class SupervisorController extends Controller
     /**
      * @param object $data
      * @param Supervisor $supervisor
-     * @param Company|null $company
      * @return Supervisor|false
      */
-    public function createOrUpdate(object $data, Supervisor $supervisor, Company $company = null)
+    public function createOrUpdate(object $data, Supervisor $supervisor)
     {
         try {
             if (!$supervisor->exists) {
-                $supervisor->company_id = $company->id;
+                $supervisor->company_id = Auth::id();
             }
 
             $supervisor->first_name = $data->first_name;
@@ -49,14 +49,11 @@ class SupervisorController extends Controller
     /**
      * Supervisors
      *
-     * @urlParam  company required The id of the company. Example: 1
-     *
-     * @param Company $company
      * @return SupervisorCollection
      */
-    public function index(Company $company): SupervisorCollection
+    public function index(): SupervisorCollection
     {
-        $supervisors = $company->supervisors()->get();
+        $supervisors = Auth::user()->profile->supervisors;
 
         return new SupervisorCollection($supervisors);
     }
@@ -64,21 +61,18 @@ class SupervisorController extends Controller
     /**
      * Supervisor create
      *
-     * @urlParam company required The id of the company. Example: 1
-     *
      * @bodyParam  first_name string required
      * @bodyParam  middle_name string
      * @bodyParam  last_name string required
      *
      * @param SupervisorRequest $request
-     * @param Company $company
      * @return SupervisorResource|JsonResponse
      */
-    public function store(SupervisorRequest $request, Company $company)
+    public function store(SupervisorRequest $request)
     {
         $validation = (object) $request->validated();
 
-        if ($supervisor = self::createOrUpdate($validation, new Supervisor(), $company)) {
+        if ($supervisor = self::createOrUpdate($validation, new Supervisor())) {
             return (new SupervisorResource($supervisor))->additional(['message' => "Supervisor \"{$supervisor->fullName()}\" is successfully created"]);
         }
 
@@ -88,7 +82,6 @@ class SupervisorController extends Controller
     /**
      * Supervisor update
      *
-     * @urlParam  company required The id of the company. Example: 1
      * @urlParam  supervisor required The id of the supervisor. Example: 1
      *
      * @bodyParam  first_name string required
@@ -96,11 +89,10 @@ class SupervisorController extends Controller
      * @bodyParam  last_name string required
      *
      * @param SupervisorRequest $request
-     * @param Company $company
      * @param Supervisor $supervisor
      * @return SupervisorResource|JsonResponse
      */
-    public function update(SupervisorRequest $request, Company $company, Supervisor $supervisor)
+    public function update(SupervisorRequest $request, Supervisor $supervisor)
     {
         $validation = (object) $request->validated();
 
@@ -114,14 +106,12 @@ class SupervisorController extends Controller
     /**
      * Supervisor delete
      *
-     * @urlParam  company required The id of the company. Example: 1
      * @urlParam  supervisor required The id of the supervisor. Example: 1
      *
-     * @param Company $company
      * @param Supervisor $supervisor
      * @return JsonResponse
      */
-    public function destroy(Company $company, Supervisor $supervisor): JsonResponse
+    public function destroy(Supervisor $supervisor): JsonResponse
     {
         try {
             $fullName = $supervisor->fullName();

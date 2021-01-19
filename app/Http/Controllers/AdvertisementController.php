@@ -29,13 +29,14 @@ class AdvertisementController extends Controller
         $advertisements = Vacancy::whereIsClosed(false)->get(['id', 'type_id', 'company_id', 'title', 'description']);
 
         if (Auth::check()) {
-            $profile = Auth::user()->profile;
+            $user = Auth::user();
+            $profile = $user->profile;
 
             if ($profile instanceof Student) {
                 $advertisements = $advertisements->where('type_id', $profile->education_id);
 
                 foreach ($advertisements as $advertisement) {
-                    $applied = $advertisement->studentApplied($profile);
+                    $applied = $advertisement->studentApplied($user);
 
                     if (!is_null($applied)) {
                         $advertisement->setRelation('applied', $applied);
@@ -63,10 +64,10 @@ class AdvertisementController extends Controller
     {
         try {
             if (Auth::check()) {
-                $profile = Auth::user()->profile;
+                $user = Auth::user();
 
-                if ($profile instanceof Student) {
-                    $applied = $vacancy->studentApplied($profile);
+                if ($user->profile instanceof Student) {
+                    $applied = $vacancy->studentApplied($user);
 
                     if (!is_null($applied)) {
                         $vacancy->setRelation('applied', $applied);
@@ -79,6 +80,6 @@ class AdvertisementController extends Controller
             report($e);
         }
 
-        return response()->json(['message' => ''], Response::HTTP_BAD_REQUEST);
+        return response()->json(['message' => 'Something went wrong while getting the vacancy'], Response::HTTP_BAD_REQUEST);
     }
 }

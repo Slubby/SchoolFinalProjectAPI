@@ -29,11 +29,14 @@ use Illuminate\Support\Carbon;
  * @property bool $is_closed
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property string|null $deleted_at
- * @property-read Company $company
- * @property-read Education|null $type
+ * @property Carbon|null $deleted_at
+ * @property-read Collection|\App\Models\Student[] $applied
+ * @property-read int|null $applied_count
+ * @property-read \App\Models\Company $company
+ * @property-read \App\Models\Education|null $type
  * @method static Builder|Vacancy newModelQuery()
  * @method static Builder|Vacancy newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Vacancy onlyTrashed()
  * @method static Builder|Vacancy query()
  * @method static Builder|Vacancy whereAboutUs($value)
  * @method static Builder|Vacancy whereCompanyId($value)
@@ -47,12 +50,9 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Vacancy whereTotal($value)
  * @method static Builder|Vacancy whereTypeId($value)
  * @method static Builder|Vacancy whereUpdatedAt($value)
- * @mixin Eloquent
- * @property-read Collection|JobApplication[] $applied
- * @property-read int|null $applied_count
- * @method static \Illuminate\Database\Query\Builder|Vacancy onlyTrashed()
  * @method static \Illuminate\Database\Query\Builder|Vacancy withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Vacancy withoutTrashed()
+ * @mixin Eloquent
  */
 class Vacancy extends Model
 {
@@ -81,7 +81,7 @@ class Vacancy extends Model
      */
     public function company(): BelongsTo
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -97,17 +97,17 @@ class Vacancy extends Model
      */
     public function applied(): BelongsToMany
     {
-        return $this->belongsToMany(Student::class, 'job_applications')->withTimestamps()->withPivot(['id', 'status']);
+        return $this->belongsToMany(User::class, 'job_applications', null, 'student_id')->withTimestamps()->withPivot(['id', 'status']);
     }
 
     /**
-     * @param Student $student
+     * @param User $user
      * @return mixed|null
      */
-    public function studentApplied(Student $student)
+    public function studentApplied(User $user)
     {
         return $this->applied()
-                    ->wherePivot('student_id', $student->id)
+                    ->wherePivot('student_id', $user->id)
                     ->wherePivotNotIn('status', ['completed'])
                     ->wherePivot('created_at', '>=', Carbon::now()->subMonths(6))
                     ->orderByPivot('created_at', 'desc')

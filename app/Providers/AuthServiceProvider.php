@@ -24,7 +24,6 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        Component::class => CompanyPolicy::class,
         Supervisor::class => SupervisorPolicy::class,
         Vacancy::class => VacancyPolicy::class,
         Teacher::class => TeacherPolicy::class,
@@ -41,7 +40,6 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('type-register', [TypePolicy::class, 'register']);
-
         Gate::define('type-status-company', [TypePolicy::class, 'statusCompany']);
     }
 }

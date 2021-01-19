@@ -15,7 +15,7 @@ class CreateJobApplicationsTable extends Migration
     {
         Schema::create('job_applications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained('student_profile')->cascadeOnDelete();
+            $table->foreignId('student_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('vacancy_id')->constrained()->cascadeOnDelete();
             $table->enum('status', ['denied', 'approved', 'completed', 'pending', 'cancelled'])->default('pending');
             $table->timestamps();

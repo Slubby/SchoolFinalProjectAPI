@@ -26,7 +26,7 @@ class UserResource extends JsonResource
             'mobile' => $this->mobile,
             'email' => $this->email,
             'email_verified_at' => $this->email_verified_at,
-            'profile' => $this->whenLoaded('profile', function () {
+            'profile' => $this->when(true, function () {
                 $profile = $this->profile;
 
                 if ($profile instanceof Student) {

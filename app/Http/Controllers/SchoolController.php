@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SchoolRequest;
 use App\Http\Resources\SchoolCollection;
 use App\Http\Resources\SchoolResource;
+use App\Http\Resources\UserCollection;
 use App\Models\School;
 use Exception;
 use Illuminate\Http\JsonResponse;

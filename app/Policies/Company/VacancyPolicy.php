@@ -19,7 +19,7 @@ class VacancyPolicy
      */
     public function view(User $user, Vacancy $vacancy): bool
     {
-        return $user->profile->id === $vacancy->company_id;
+        return $user->id === $vacancy->company_id;
     }
 
     /**
@@ -31,7 +31,7 @@ class VacancyPolicy
      */
     public function update(User $user, Vacancy $vacancy): bool
     {
-        return $user->profile->id === $vacancy->company_id;
+        return $user->id === $vacancy->company_id;
     }
 
     /**
@@ -43,6 +43,6 @@ class VacancyPolicy
      */
     public function delete(User $user, Vacancy $vacancy): bool
     {
-        return $user->profile->id === $vacancy->company_id;
+        return $user->id === $vacancy->company_id;
     }
 }

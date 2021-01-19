@@ -3,6 +3,8 @@
 namespace App\Http\Resources\Company;
 
 use App\Http\Resources\EducationResource;
+use App\Http\Resources\UserResource;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class VacancyResource extends JsonResource
@@ -10,10 +12,10 @@ class VacancyResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'id' => $this->id,
@@ -25,7 +27,7 @@ class VacancyResource extends JsonResource
             'closed' => $this->is_closed,
             'type' => new EducationResource($this->type),
             'applied_students' => $this->whenLoaded('applied', function () {
-                return AppliedResource::collection($this->applied);
+                return UserResource::collection($this->applied);
             })
         ];
     }

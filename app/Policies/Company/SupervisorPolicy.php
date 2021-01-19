@@ -19,7 +19,7 @@ class SupervisorPolicy
      */
     public function update(User $user, Supervisor $supervisor): bool
     {
-        return $user->profile->id === $supervisor->company_id;
+        return $user->id === $supervisor->company_id;
     }
 
     /**
@@ -31,6 +31,6 @@ class SupervisorPolicy
      */
     public function delete(User $user, Supervisor $supervisor): bool
     {
-        return $user->profile->id === $supervisor->company_id;
+        return $user->id === $supervisor->company_id;
     }
 }

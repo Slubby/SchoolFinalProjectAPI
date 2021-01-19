@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resources\Profile\CompanyResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -14,7 +13,7 @@ class JobApplicationResource extends JsonResource
      * @param  Request  $request
      * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'id' => $this->id,
@@ -37,7 +36,7 @@ class JobApplicationResource extends JsonResource
                 }),
             ),
             'type' => new EducationResource($this->type),
-            'company' => new CompanyResource($this->company),
+            'company' => new UserResource($this->company),
         ];
     }
 }

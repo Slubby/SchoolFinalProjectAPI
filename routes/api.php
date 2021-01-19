@@ -14,6 +14,7 @@ use App\Http\Controllers\Profile\CompanyController;
 use App\Http\Controllers\Profile\TeacherController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\Student\JobApplicationController;
+use App\Http\Controllers\Teacher\MentorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,37 +64,43 @@ Route::middleware('auth:api')->name('user.')->group(function () {
 
     Route::prefix('c')->middleware('permission:company')->name('company.')->group(function () {
 
-        Route::prefix('{company}')->group(function () {
+        Route::prefix('supervisor')->name('supervisor.')->group(function () {
+            Route::get('/', [SupervisorController::class, 'index'])->name('all');
+            Route::post('create', [SupervisorController::class, 'store'])->name('create');
 
-            Route::prefix('supervisor')->name('supervisor.')->middleware('can:supervisor,company')->group(function () {
-                Route::get('/', [SupervisorController::class, 'index'])->name('all');
-                Route::post('create', [SupervisorController::class, 'store'])->name('create');
-
-                Route::prefix('{supervisor}')->group(function () {
-                    Route::patch('update', [SupervisorController::class, 'update'])->name('update')->middleware('can:update,supervisor');
-                    Route::delete('delete', [SupervisorController::class, 'destroy'])->name('delete')->middleware('can:delete,supervisor');
-                });
+            Route::prefix('{supervisor}')->group(function () {
+                Route::patch('update', [SupervisorController::class, 'update'])->name('update')->middleware('can:update,supervisor');
+                Route::delete('delete', [SupervisorController::class, 'destroy'])->name('delete')->middleware('can:delete,supervisor');
             });
+        });
 
-            Route::prefix('vacancy')->name('vacancy.')->middleware('can:vacancy,company')->group(function () {
-                Route::get('/', [VacancyController::class, 'index'])->name('all');
-                Route::post('create', [VacancyController::class, 'store'])->name('create');
+        Route::prefix('vacancy')->name('vacancy.')->group(function () {
+            Route::get('/', [VacancyController::class, 'index'])->name('all');
+            Route::post('create', [VacancyController::class, 'store'])->name('create');
 
-                Route::prefix('{vacancy}')->group(function () {
-                    Route::get('show', [VacancyController::class, 'show'])->name('show')->middleware('can:view,vacancy');
-                    Route::put('edit', [VacancyController::class, 'edit'])->name('edit')->middleware('can:update,vacancy');
-                    Route::patch('update', [VacancyController::class, 'update'])->name('update')->middleware('can:update,vacancy');
-                    Route::delete('delete', [VacancyController::class, 'destroy'])->name('delete')->middleware('can:delete,vacancy');
+            Route::prefix('{vacancy}')->group(function () {
+                Route::get('show', [VacancyController::class, 'show'])->name('show')->middleware('can:view,vacancy');
+                Route::put('edit', [VacancyController::class, 'edit'])->name('edit')->middleware('can:update,vacancy');
+                Route::patch('update', [VacancyController::class, 'update'])->name('update')->middleware('can:update,vacancy');
+                Route::delete('delete', [VacancyController::class, 'destroy'])->name('delete')->middleware('can:delete,vacancy');
 
-                    Route::prefix('applied/{jobApplication}')->name('applied')->middleware('can:view,vacancy')->group(function () {
-                         route::put('status/{type}', [AppliedController::class, 'edit'])->name('change.status')->middleware(['can:status,jobApplication', 'can:type-status-company,type']);
-                    });
+                Route::prefix('applied/{jobApplication}')->name('applied')->middleware('can:view,vacancy')->group(function () {
+                    route::put('status/{type}', [AppliedController::class, 'edit'])->name('change.status')->middleware(['can:status,jobApplication', 'can:type-status-company,type']);
                 });
             });
         });
     });
 
     Route::prefix('t')->middleware('permission:teacher')->name('teacher.')->group(function () {
+        Route::get('students', [TeacherController::class, 'students'])->name('students');
+
+        Route::prefix('mentor/class')->name('mentor.class.')->group(function () {
+            Route::get('/', [MentorController::class, 'index'])->name('all');
+
+            Route::prefix('{user}')->group(function () {
+
+            });
+        });
 
         Route::prefix('{teacher}')->group(function () {
             Route::put('verify', [TeacherController::class, 'verify'])->name('verify')->middleware('can:verify,teacher');

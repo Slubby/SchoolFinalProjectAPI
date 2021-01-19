@@ -17,6 +17,7 @@ use Illuminate\Support\Carbon;
  * @property int $used
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property-read \App\Models\User $user
  * @method static Builder|PasswordReset newModelQuery()
  * @method static Builder|PasswordReset newQuery()
  * @method static Builder|PasswordReset query()

@@ -29,7 +29,7 @@ class CreateStudentProfileTable extends Migration
             $table->string('postal_code');
             $table->foreignId('school_id')->constrained()->cascadeOnDelete();
             $table->foreignId('education_id')->nullable()->constrained('educations')->nullOnDelete();
-            $table->foreignId('mentor_id')->nullable()->constrained('teacher_profile')->nullOnDelete();
+            $table->foreignId('mentor_id')->nullable()->constrained('users')->nullOnDelete();
             $table->date('started_at');
             $table->integer('grade')->default(1);
             $table->foreignId('curriculum_vitae_id')->nullable()->constrained('files')->nullOnDelete();

@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Student[] $students
+ * @property-read int|null $students_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Teacher[] $teachers
  * @property-read int|null $teachers_count
  * @method static \Illuminate\Database\Eloquent\Builder|School newModelQuery()
@@ -40,5 +42,10 @@ class School extends Model
     public function teachers(): HasMany
     {
         return $this->hasMany(Teacher::class);
+    }
+
+    public function students(): HasMany
+    {
+        return $this->hasMany(Student::class);
     }
 }

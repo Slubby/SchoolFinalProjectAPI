@@ -35,7 +35,7 @@ class StudentController extends Controller
     private static array $create = [
         'school' => ['required', 'integer', 'exists:schools,id'],
         'education' => ['required', 'integer', 'exists:educations,id'],
-        'mentor' => ['required', 'integer', 'exists:users,id'],
+        'mentor' => ['required', 'integer', 'existsProfile:App\Models\Teacher'],
         'started' => ['required', 'date'],
         'grade' => ['required', 'integer'],
     ];

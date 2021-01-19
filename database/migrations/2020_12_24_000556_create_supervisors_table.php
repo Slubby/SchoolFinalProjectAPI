@@ -15,7 +15,7 @@ class CreateSupervisorsTable extends Migration
     {
         Schema::create('supervisors', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained('company_profile')->cascadeOnDelete();
+            $table->foreignId('company_id')->constrained('users')->cascadeOnDelete();
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');

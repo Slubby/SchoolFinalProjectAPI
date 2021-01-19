@@ -17,7 +17,7 @@ class JobApplicationPolicy
      */
     public function cancel(User $user, JobApplication $jobApplication): bool
     {
-        return $user->profile->school_id === $jobApplication->student_id;
+        return $user->id === $jobApplication->student_id;
     }
 
     /**
@@ -27,6 +27,6 @@ class JobApplicationPolicy
      */
     public function status(User $user, JobApplication $jobApplication): bool
     {
-        return $user->profile->vacancies->contains($jobApplication->vacancy_id);
+        return $user->vacancies->contains($jobApplication->vacancy_id);
     }
 }

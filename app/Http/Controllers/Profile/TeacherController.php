@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserCollection;
 use App\Models\Teacher;
 use App\Traits\ProfileValidation;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @group Teacher
@@ -81,6 +83,32 @@ class TeacherController extends Controller
     public function index()
     {
         //
+    }
+
+    /**
+     * School students
+     *
+     * @return UserCollection|JsonResponse
+     * @throws Exception
+     */
+    public function students()
+    {
+        try {
+            $user = Auth::user();
+            $profile = $user->profile;
+
+            if ($profile instanceOf Teacher) {
+                $students = $profile->school->students->map(function ($student) {
+                    return $student->user;
+                });
+
+                return new UserCollection($students);
+            }
+        } catch (Exception $e) {
+            report($e);
+        }
+
+        return response()->json(['message' => "Something went wrong getting the students"], Response::HTTP_BAD_REQUEST);
     }
 
     /**

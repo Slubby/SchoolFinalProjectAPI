@@ -29,10 +29,10 @@ class JobApplicationController extends Controller
     public function index()
     {
         try {
-            $profile = Auth::user()->profile;
+            $user = Auth::user();
 
-            if ($profile instanceof Student) {
-                $applications = $profile->jobApplications()->get(['job_applications.id', 'company_id', 'type_id', 'title', 'description']);
+            if ($user->profile instanceof Student) {
+                $applications = $user->jobApplications()->get(['job_applications.id', 'company_id', 'type_id', 'title', 'description']);
 
                 return new JobApplicationCollection($applications);
             }
@@ -58,16 +58,16 @@ class JobApplicationController extends Controller
                 return response()->json(['message' => "This vacancy is closed. you can't apply to this job application"], Response::HTTP_BAD_REQUEST);
             }
 
-            $profile = Auth::user()->profile;
+            $user = Auth::user();
 
-            if ($profile instanceof Student) {
-                $applied = $vacancy->studentApplied($profile);
+            if ($user->profile instanceof Student) {
+                $applied = $vacancy->studentApplied($user);
 
                 if (!is_null($applied)) {
                     return response()->json(['message' => 'You are already applied to this job application'], Response::HTTP_BAD_REQUEST);
                 }
 
-                $vacancy->applied()->attach($profile->id);
+                $vacancy->applied()->attach($user->id);
 
                 return response()->json(['message' => 'You successfully applied to this job application']);
             }
@@ -89,10 +89,10 @@ class JobApplicationController extends Controller
     public function show(JobApplication $jobApplication)
     {
         try {
-            $profile = Auth::user()->profile;
+            $user = Auth::user();
 
-            if ($profile instanceof Student) {
-                $application = $profile->jobApplications()->wherePivot('id', $jobApplication->id)->firstOrFail();
+            if ($user->profile instanceof Student) {
+                $application = $user->jobApplications()->wherePivot('id', $jobApplication->id)->firstOrFail();
 
                 return new JobApplicationResource($application);
             }

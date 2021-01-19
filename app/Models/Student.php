@@ -29,7 +29,7 @@ use Illuminate\Support\Carbon;
  * @property string $street
  * @property string $house_number
  * @property string $postal_code
- * @property int|null $school_id
+ * @property int $school_id
  * @property int|null $education_id
  * @property int|null $mentor_id
  * @property string $started_at
@@ -38,10 +38,12 @@ use Illuminate\Support\Carbon;
  * @property int|null $motivation_letter_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read Education|null $education
- * @property-read Teacher|null $mentor
- * @property-read School|null $school
- * @property-read User|null $user
+ * @property-read \App\Models\Education|null $education
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Vacancy[] $jobApplications
+ * @property-read int|null $job_applications_count
+ * @property-read \App\Models\Teacher|null $mentor
+ * @property-read \App\Models\School $school
+ * @property-read \App\Models\User|null $user
  * @method static Builder|Student newModelQuery()
  * @method static Builder|Student newQuery()
  * @method static Builder|Student query()
@@ -68,8 +70,6 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Student whereStreet($value)
  * @method static Builder|Student whereUpdatedAt($value)
  * @mixin Eloquent
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\JobApplication[] $jobApplications
- * @property-read int|null $job_applications_count
  */
 class Student extends Model
 {
@@ -117,7 +117,7 @@ class Student extends Model
      */
     public function mentor(): BelongsTo
     {
-        return $this->belongsTo(Teacher::class);
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -126,13 +126,5 @@ class Student extends Model
     public function school(): BelongsTo
     {
         return $this->belongsTo(School::class);
-    }
-
-    /**
-     * @return BelongsToMany
-     */
-    public function jobApplications(): BelongsToMany
-    {
-        return $this->belongsToMany(Vacancy::class, 'job_applications')->withTimestamps()->withPivot(['id', 'status']);
     }
 }

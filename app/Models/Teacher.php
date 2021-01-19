@@ -16,7 +16,7 @@ use Illuminate\Support\Carbon;
  * App\Models\Teacher
  *
  * @property int $id
- * @property int|null $school_id
+ * @property int $school_id
  * @property string $first_name
  * @property string|null $middle_name
  * @property string $last_name
@@ -25,7 +25,7 @@ use Illuminate\Support\Carbon;
  * @property bool $verified
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read \App\Models\School|null $school
+ * @property-read \App\Models\School $school
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Student[] $students
  * @property-read int|null $students_count
  * @property-read \App\Models\User|null $user

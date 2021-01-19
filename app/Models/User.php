@@ -7,6 +7,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -103,6 +105,30 @@ class User extends Authenticatable implements JWTSubject
     public function passwordReset(): HasOne
     {
         return $this->hasOne(PasswordReset::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function supervisors(): HasMany
+    {
+        return $this->hasMany(Supervisor::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function vacancies(): HasMany
+    {
+        return $this->hasMany(Vacancy::class);
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function jobApplications(): BelongsToMany
+    {
+        return $this->belongsToMany(Vacancy::class, 'job_applications', 'student_id')->withTimestamps()->withPivot(['id', 'status']);
     }
 
     /**

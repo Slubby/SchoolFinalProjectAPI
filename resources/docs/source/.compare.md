@@ -40,7 +40,7 @@ let headers = {
 };
 
 let body = {
-    "name": "culpa"
+    "name": "neque"
 }
 
 fetch(url, {
@@ -82,7 +82,7 @@ let headers = {
 };
 
 let body = {
-    "name": "et"
+    "name": "amet"
 }
 
 fetch(url, {
@@ -241,8 +241,8 @@ let headers = {
 };
 
 let body = {
-    "email": "nesciunt",
-    "password": "ut"
+    "email": "earum",
+    "password": "et"
 }
 
 fetch(url, {
@@ -284,18 +284,18 @@ let headers = {
 
 let body = {
     "number": 10,
-    "name": "et",
+    "name": "officiis",
     "country": "NL",
     "region": "GR",
-    "city": "dolore",
-    "street": "et",
+    "city": "ex",
+    "street": "voluptatem",
     "house_number": "81",
     "postal_code": "9603HL",
-    "school": 4,
-    "first_name": "quia",
-    "middle_name": "quae",
+    "school": 19,
+    "first_name": "consectetur",
+    "middle_name": "ipsa",
     "last_name": "et",
-    "short_name": "minima"
+    "short_name": "quia"
 }
 
 fetch(url, {
@@ -419,7 +419,7 @@ let headers = {
 };
 
 let body = {
-    "email": "voluptate"
+    "email": "iste"
 }
 
 fetch(url, {
@@ -459,8 +459,8 @@ let headers = {
 };
 
 let body = {
-    "password": "voluptas",
-    "password_confirm": "aut"
+    "password": "eveniet",
+    "password_confirm": "laboriosam"
 }
 
 fetch(url, {
@@ -573,17 +573,17 @@ let headers = {
 };
 
 let body = {
-    "first_name": "est",
-    "middle_name": "architecto",
-    "last_name": "est",
+    "first_name": "aut",
+    "middle_name": "consequuntur",
+    "last_name": "sapiente",
     "country": "NL",
     "region": "GR",
-    "city": "repellendus",
-    "street": "qui",
+    "city": "porro",
+    "street": "quo",
     "house_number": "81",
     "postal_code": "9603HL",
-    "short_name": "aliquam",
-    "gender": "delectus",
+    "short_name": "nihil",
+    "gender": "et",
     "birthday": "2001-09-29"
 }
 
@@ -637,9 +637,9 @@ let headers = {
 };
 
 let body = {
-    "previous_password": "repudiandae",
-    "new_password": "consequatur",
-    "password_confirm": "doloremque"
+    "previous_password": "minus",
+    "new_password": "quis",
+    "password_confirm": "asperiores"
 }
 
 fetch(url, {
@@ -668,7 +668,7 @@ Parameter | Type | Status | Description
 #Company
 
 
-<!-- START_7401be7be8155c6986377a13f3994979 -->
+<!-- START_31594210f2eec9cea0d985f073f9b8c2 -->
 ## Supervisors
 
 <br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
@@ -676,7 +676,7 @@ Parameter | Type | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/c/1/supervisor"
+    "https://school.wedevelop4you.nl/api/c/supervisor"
 );
 
 let headers = {
@@ -696,17 +696,12 @@ fetch(url, {
 
 
 ### HTTP Request
-`GET api/c/{company}/supervisor`
+`GET api/c/supervisor`
 
-#### URL Parameters
 
-Parameter | Status | Description
---------- | ------- | ------- | -------
-    `company` |  required  | The id of the company.
+<!-- END_31594210f2eec9cea0d985f073f9b8c2 -->
 
-<!-- END_7401be7be8155c6986377a13f3994979 -->
-
-<!-- START_3feaedccfb9b487da2991d96f67a1c0a -->
+<!-- START_12d328eb5f8f1455a1142a554592cddf -->
 ## Supervisor create
 
 <br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
@@ -714,7 +709,7 @@ Parameter | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/c/1/supervisor/create"
+    "https://school.wedevelop4you.nl/api/c/supervisor/create"
 );
 
 let headers = {
@@ -724,9 +719,9 @@ let headers = {
 };
 
 let body = {
-    "first_name": "aut",
-    "middle_name": "asperiores",
-    "last_name": "sequi"
+    "first_name": "qui",
+    "middle_name": "nihil",
+    "last_name": "minus"
 }
 
 fetch(url, {
@@ -741,13 +736,8 @@ fetch(url, {
 
 
 ### HTTP Request
-`POST api/c/{company}/supervisor/create`
+`POST api/c/supervisor/create`
 
-#### URL Parameters
-
-Parameter | Status | Description
---------- | ------- | ------- | -------
-    `company` |  required  | The id of the company.
 #### Body Parameters
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
@@ -755,9 +745,9 @@ Parameter | Type | Status | Description
         `middle_name` | string |  optional  | 
         `last_name` | string |  required  | 
     
-<!-- END_3feaedccfb9b487da2991d96f67a1c0a -->
+<!-- END_12d328eb5f8f1455a1142a554592cddf -->
 
-<!-- START_81ce8348ad6e5add7d556d8ead81ffbd -->
+<!-- START_396a94c4303ccb9594ac386e2db10921 -->
 ## Supervisor update
 
 <br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
@@ -765,7 +755,7 @@ Parameter | Type | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/c/1/supervisor/1/update"
+    "https://school.wedevelop4you.nl/api/c/supervisor/1/update"
 );
 
 let headers = {
@@ -775,9 +765,9 @@ let headers = {
 };
 
 let body = {
-    "first_name": "perferendis",
-    "middle_name": "minima",
-    "last_name": "odio"
+    "first_name": "dolorem",
+    "middle_name": "aspernatur",
+    "last_name": "et"
 }
 
 fetch(url, {
@@ -792,13 +782,12 @@ fetch(url, {
 
 
 ### HTTP Request
-`PATCH api/c/{company}/supervisor/{supervisor}/update`
+`PATCH api/c/supervisor/{supervisor}/update`
 
 #### URL Parameters
 
 Parameter | Status | Description
 --------- | ------- | ------- | -------
-    `company` |  required  | The id of the company.
     `supervisor` |  required  | The id of the supervisor.
 #### Body Parameters
 Parameter | Type | Status | Description
@@ -807,9 +796,9 @@ Parameter | Type | Status | Description
         `middle_name` | string |  optional  | 
         `last_name` | string |  required  | 
     
-<!-- END_81ce8348ad6e5add7d556d8ead81ffbd -->
+<!-- END_396a94c4303ccb9594ac386e2db10921 -->
 
-<!-- START_7194fee105731338b6eee6961b60522d -->
+<!-- START_5ae1800ead386128a079c3a859d7cfaa -->
 ## Supervisor delete
 
 <br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
@@ -817,7 +806,7 @@ Parameter | Type | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/c/1/supervisor/1/delete"
+    "https://school.wedevelop4you.nl/api/c/supervisor/1/delete"
 );
 
 let headers = {
@@ -837,18 +826,17 @@ fetch(url, {
 
 
 ### HTTP Request
-`DELETE api/c/{company}/supervisor/{supervisor}/delete`
+`DELETE api/c/supervisor/{supervisor}/delete`
 
 #### URL Parameters
 
 Parameter | Status | Description
 --------- | ------- | ------- | -------
-    `company` |  required  | The id of the company.
     `supervisor` |  required  | The id of the supervisor.
 
-<!-- END_7194fee105731338b6eee6961b60522d -->
+<!-- END_5ae1800ead386128a079c3a859d7cfaa -->
 
-<!-- START_2a11e7f3f2c6d32018f0696a9bd8477b -->
+<!-- START_4fc19656e42183051d2248563eaef1dd -->
 ## Vacancies
 
 <br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
@@ -856,7 +844,7 @@ Parameter | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/c/1/vacancy"
+    "https://school.wedevelop4you.nl/api/c/vacancy"
 );
 
 let headers = {
@@ -876,17 +864,12 @@ fetch(url, {
 
 
 ### HTTP Request
-`GET api/c/{company}/vacancy`
+`GET api/c/vacancy`
 
-#### URL Parameters
 
-Parameter | Status | Description
---------- | ------- | ------- | -------
-    `company` |  required  | The id of the company.
+<!-- END_4fc19656e42183051d2248563eaef1dd -->
 
-<!-- END_2a11e7f3f2c6d32018f0696a9bd8477b -->
-
-<!-- START_2259c035b025eea4377f398d4f8cc528 -->
+<!-- START_e4dd9a1ee20b394761174e12643b9a27 -->
 ## Vacancy create
 
 <br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
@@ -894,7 +877,7 @@ Parameter | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/c/1/vacancy/create"
+    "https://school.wedevelop4you.nl/api/c/vacancy/create"
 );
 
 let headers = {
@@ -904,12 +887,12 @@ let headers = {
 };
 
 let body = {
-    "type": 1,
-    "title": "ea",
-    "description": "est",
-    "about_us": "quia",
+    "type": 14,
+    "title": "et",
+    "description": "esse",
+    "about_us": "dolor",
     "requirements": [],
-    "total": 6
+    "total": 3
 }
 
 fetch(url, {
@@ -924,13 +907,8 @@ fetch(url, {
 
 
 ### HTTP Request
-`POST api/c/{company}/vacancy/create`
+`POST api/c/vacancy/create`
 
-#### URL Parameters
-
-Parameter | Status | Description
---------- | ------- | ------- | -------
-    `company` |  required  | The id of the company.
 #### Body Parameters
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
@@ -941,9 +919,9 @@ Parameter | Type | Status | Description
         `requirements` | array |  optional  | 
         `total` | integer |  optional  | 
     
-<!-- END_2259c035b025eea4377f398d4f8cc528 -->
+<!-- END_e4dd9a1ee20b394761174e12643b9a27 -->
 
-<!-- START_e4b1308ce29a2ea4e9b2e81a67867c81 -->
+<!-- START_2d7e8e23dedee23f37ab1b164061c639 -->
 ## Vacancy show
 
 <br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
@@ -951,7 +929,7 @@ Parameter | Type | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/c/1/vacancy/1/show"
+    "https://school.wedevelop4you.nl/api/c/vacancy/1/show"
 );
 
 let headers = {
@@ -971,18 +949,17 @@ fetch(url, {
 
 
 ### HTTP Request
-`GET api/c/{company}/vacancy/{vacancy}/show`
+`GET api/c/vacancy/{vacancy}/show`
 
 #### URL Parameters
 
 Parameter | Status | Description
 --------- | ------- | ------- | -------
-    `company` |  required  | The id of the company.
     `vacancy` |  required  | The id of the vacancy.
 
-<!-- END_e4b1308ce29a2ea4e9b2e81a67867c81 -->
+<!-- END_2d7e8e23dedee23f37ab1b164061c639 -->
 
-<!-- START_225547dbd788d2d38c387e6abd7e3b44 -->
+<!-- START_8ee9f45b7485afeaa3cb3617a310fc02 -->
 ## Vacancy edit status
 
 <br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
@@ -990,7 +967,7 @@ Parameter | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/c/1/vacancy/1/edit"
+    "https://school.wedevelop4you.nl/api/c/vacancy/1/edit"
 );
 
 let headers = {
@@ -1010,18 +987,17 @@ fetch(url, {
 
 
 ### HTTP Request
-`PUT api/c/{company}/vacancy/{vacancy}/edit`
+`PUT api/c/vacancy/{vacancy}/edit`
 
 #### URL Parameters
 
 Parameter | Status | Description
 --------- | ------- | ------- | -------
-    `company` |  required  | The id of the company.
     `vacancy` |  required  | The id of the vacancy.
 
-<!-- END_225547dbd788d2d38c387e6abd7e3b44 -->
+<!-- END_8ee9f45b7485afeaa3cb3617a310fc02 -->
 
-<!-- START_cd225c9848cc9d84101b369a6f769756 -->
+<!-- START_17d3e760c1e9341b4ee35551c5889c01 -->
 ## Vacancy update
 
 <br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
@@ -1029,7 +1005,7 @@ Parameter | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/c/1/vacancy/1/update"
+    "https://school.wedevelop4you.nl/api/c/vacancy/1/update"
 );
 
 let headers = {
@@ -1039,12 +1015,12 @@ let headers = {
 };
 
 let body = {
-    "type": 17,
-    "title": "rem",
-    "description": "atque",
-    "about_us": "quia",
+    "type": 12,
+    "title": "quia",
+    "description": "repudiandae",
+    "about_us": "tempora",
     "requirements": [],
-    "total": 10
+    "total": 18
 }
 
 fetch(url, {
@@ -1059,13 +1035,12 @@ fetch(url, {
 
 
 ### HTTP Request
-`PATCH api/c/{company}/vacancy/{vacancy}/update`
+`PATCH api/c/vacancy/{vacancy}/update`
 
 #### URL Parameters
 
 Parameter | Status | Description
 --------- | ------- | ------- | -------
-    `company` |  required  | The id of the company.
     `vacancy` |  required  | The id of the vacancy.
 #### Body Parameters
 Parameter | Type | Status | Description
@@ -1077,9 +1052,9 @@ Parameter | Type | Status | Description
         `requirements` | array |  optional  | 
         `total` | integer |  optional  | 
     
-<!-- END_cd225c9848cc9d84101b369a6f769756 -->
+<!-- END_17d3e760c1e9341b4ee35551c5889c01 -->
 
-<!-- START_ecc31f7517441b1fdd98be2d28e14a0a -->
+<!-- START_f73b85f04f82168217dc83816e6afb31 -->
 ## Vacancy delete
 
 <br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
@@ -1087,7 +1062,7 @@ Parameter | Type | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/c/1/vacancy/1/delete"
+    "https://school.wedevelop4you.nl/api/c/vacancy/1/delete"
 );
 
 let headers = {
@@ -1107,18 +1082,17 @@ fetch(url, {
 
 
 ### HTTP Request
-`DELETE api/c/{company}/vacancy/{vacancy}/delete`
+`DELETE api/c/vacancy/{vacancy}/delete`
 
 #### URL Parameters
 
 Parameter | Status | Description
 --------- | ------- | ------- | -------
-    `company` |  required  | The id of the company.
     `vacancy` |  required  | The id of the vacancy.
 
-<!-- END_ecc31f7517441b1fdd98be2d28e14a0a -->
+<!-- END_f73b85f04f82168217dc83816e6afb31 -->
 
-<!-- START_88216032f09f4b5e70d47b9cacc64baf -->
+<!-- START_b0537d9673aaa0078a6477d624f89486 -->
 ## Applied change status
 
 <br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
@@ -1126,7 +1100,7 @@ Parameter | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/c/1/vacancy/1/applied/1/status/approved"
+    "https://school.wedevelop4you.nl/api/c/vacancy/1/applied/1/status/approved"
 );
 
 let headers = {
@@ -1146,18 +1120,17 @@ fetch(url, {
 
 
 ### HTTP Request
-`PUT api/c/{company}/vacancy/{vacancy}/applied/{jobApplication}/status/{type}`
+`PUT api/c/vacancy/{vacancy}/applied/{jobApplication}/status/{type}`
 
 #### URL Parameters
 
 Parameter | Status | Description
 --------- | ------- | ------- | -------
-    `company` |  required  | The id of the company.
     `vacancy` |  required  | The id of the vacancy.
     `job` |  optional  | application required the id of the job application.
     `type` |  required  | The type of the status.
 
-<!-- END_88216032f09f4b5e70d47b9cacc64baf -->
+<!-- END_b0537d9673aaa0078a6477d624f89486 -->
 
 #Job Application
 
@@ -1346,6 +1319,39 @@ fetch(url, {
 
 #Teacher
 
+
+<!-- START_559eeb36e1af51001727f1a56062848d -->
+## School students
+
+<br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
+> Example request:
+
+```javascript
+const url = new URL(
+    "https://school.wedevelop4you.nl/api/t/students"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {token}",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`GET api/t/students`
+
+
+<!-- END_559eeb36e1af51001727f1a56062848d -->
 
 <!-- START_0722e37e780f1be2628fc8f075cdf5a0 -->
 ## Teacher verify

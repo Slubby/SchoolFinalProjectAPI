@@ -24,7 +24,7 @@ class VacancyFactory extends Factory
     public function definition()
     {
         return [
-            'company_id' => Company::all()->random()->id,
+            'company_id' => Company::all()->random()->user->id,
             'type_id' => Education::all()->random()->id,
             'title' => $this->faker->words(5, true),
             'description' => $this->faker->text($this->faker->numberBetween(10, 100)),

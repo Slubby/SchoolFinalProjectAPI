@@ -18,7 +18,7 @@ class StudentUserSeeder extends Seeder
     public function run()
     {
         $user = User::findOrNew(3);
-        $user->email = 'student@@example.org';
+        $user->email = 'student@example.org';
         $user->email_verified_at = Carbon::now();
         $user->password = Hash::make('W@chtw00rd');
         $user->save();

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Validator::extend('existsProfile', function($attribute, $value, $parameters, $validator) {
+            return User::whereProfileType($parameters[0])->whereId($value)->exists();
+        }, 'The selected :attribute is invalid.');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\FullName;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
@@ -29,7 +30,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  */
 class Admin extends Model
 {
-    use HasFactory;
+    use HasFactory, FullName;
 
     protected $table = 'admin_profile';
 
@@ -38,14 +39,6 @@ class Admin extends Model
         'middle_name',
         'last_name',
     ];
-
-    /**
-     * @return string
-     */
-    public function fullName(): string
-    {
-        return $this->first_name . ($this->middle_name ? ' ' . $this->middle_name . ' ' : ' ') . $this->last_name;
-    }
 
     /**
      * @return MorphOne

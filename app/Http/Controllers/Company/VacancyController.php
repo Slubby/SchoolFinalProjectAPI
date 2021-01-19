@@ -12,6 +12,7 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @group Company
@@ -24,14 +25,13 @@ class VacancyController extends Controller
     /**
      * @param object $data
      * @param Vacancy $vacancy
-     * @param Company|null $company
      * @return Vacancy|false
      */
-    public static function createOrUpdate(object $data, Vacancy $vacancy, Company $company = null)
+    public static function createOrUpdate(object $data, Vacancy $vacancy)
     {
         try {
             if (!$vacancy->exists) {
-                $vacancy->company_id = $company->id;
+                $vacancy->company_id = Auth::id();
             }
 
             $vacancy->type_id = $data->type;
@@ -53,22 +53,17 @@ class VacancyController extends Controller
     /**
      * Vacancies
      *
-     * @urlParam  company required The id of the company. Example: 1
-     *
-     * @param Company $company
      * @return VacancyCollection
      */
-    public function index(Company $company): VacancyCollection
+    public function index(): VacancyCollection
     {
-        $vacancies = $company->vacancies()->get();
+        $vacancies = Auth::user()->profile->vacancies;
 
         return new VacancyCollection($vacancies);
     }
 
     /**
      * Vacancy create
-     *
-     * @urlParam  company required The id of the company. Example: 1
      *
      * @bodyParam  type integer required
      * @bodyParam  title string required
@@ -78,14 +73,13 @@ class VacancyController extends Controller
      * @bodyParam  total integer
      *
      * @param VacancyRequest $request
-     * @param Company $company
      * @return VacancyResource|JsonResponse
      */
-    public function store(VacancyRequest $request, Company $company)
+    public function store(VacancyRequest $request)
     {
         $validation = (object) $request->validated();
 
-        if ($vacancy = self::createOrUpdate($validation, new Vacancy(), $company)) {
+        if ($vacancy = self::createOrUpdate($validation, new Vacancy())) {
             return (new VacancyResource($vacancy))->additional(['message' => "The \"{$vacancy->title}\" vacancy is successfully created"]);
         }
 
@@ -95,21 +89,15 @@ class VacancyController extends Controller
     /**
      * Vacancy show
      *
-     * @urlParam  company required The id of the company. Example: 1
      * @urlParam  vacancy required The id of the vacancy. Example: 1
      *
-     * @param Company $company
      * @param Vacancy $vacancy
      * @return VacancyResource|JsonResponse
      */
-    public function show(Company $company, Vacancy $vacancy)
+    public function show(Vacancy $vacancy)
     {
         try {
-            $applied = $vacancy->applied;
-
-            foreach ($applied as $item) {
-                $item->user;
-            }
+            $vacancy->applied;
 
             return new VacancyResource($vacancy);
         } catch (Exception $e) {
@@ -122,14 +110,12 @@ class VacancyController extends Controller
     /**
      * Vacancy edit status
      *
-     * @urlParam  company required The id of the company. Example: 1
      * @urlParam  vacancy required The id of the vacancy. Example: 1
      *
-     * @param Company $company
      * @param Vacancy $vacancy
      * @return VacancyResource|JsonResponse
      */
-    public function edit(Company $company, Vacancy $vacancy)
+    public function edit(Vacancy $vacancy)
     {
         $status = $vacancy->is_closed ? 'opening' : 'closing';
 
@@ -148,7 +134,6 @@ class VacancyController extends Controller
     /**
      * Vacancy update
      *
-     * @urlParam  company required The id of the company. Example: 1
      * @urlParam  vacancy required The id of the vacancy. Example: 1
      *
      * @bodyParam  type integer required
@@ -159,11 +144,10 @@ class VacancyController extends Controller
      * @bodyParam  total integer
      *
      * @param VacancyRequest $request
-     * @param Company $company
      * @param Vacancy $vacancy
      * @return VacancyResource|JsonResponse
      */
-    public function update(VacancyRequest $request, Company $company, Vacancy $vacancy)
+    public function update(VacancyRequest $request, Vacancy $vacancy)
     {
         $validation = (object) $request->validated();
 
@@ -177,14 +161,12 @@ class VacancyController extends Controller
     /**
      * Vacancy delete
      *
-     * @urlParam  company required The id of the company. Example: 1
      * @urlParam  vacancy required The id of the vacancy. Example: 1
      *
-     * @param Company $company
      * @param Vacancy $vacancy
      * @return JsonResponse
      */
-    public function destroy(Company $company, Vacancy $vacancy): JsonResponse
+    public function destroy(Vacancy $vacancy): JsonResponse
     {
         try {
             $title = $vacancy->title;

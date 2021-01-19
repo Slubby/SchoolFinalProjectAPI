@@ -18,7 +18,7 @@ class TeacherUserSeeder extends Seeder
     public function run()
     {
         $user = User::findOrNew(2);
-        $user->email = 'teacher@@example.org';
+        $user->email = 'teacher@example.org';
         $user->email_verified_at = Carbon::now();
         $user->password = Hash::make('W@chtw00rd');
         $user->save();

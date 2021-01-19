@@ -22,18 +22,16 @@ class AppliedController extends Controller
     /**
      * Applied change status
      *
-     * @urlParam  company required The id of the company. Example: 1
      * @urlParam  vacancy required The id of the vacancy. Example: 1
      * @urlParam  job application required the id of the job application. Example: 1
      * @urlParam  type required The type of the status. Example: approved
      *
-     * @param Company $company
      * @param Vacancy $vacancy
      * @param JobApplication $jobApplication
      * @param string $type
      * @return JsonResponse
      */
-    public function edit(Company $company, Vacancy $vacancy, JobApplication $jobApplication, string $type): JsonResponse
+    public function edit(Vacancy $vacancy, JobApplication $jobApplication, string $type): JsonResponse
     {
         try {
             if (!in_array($jobApplication->status, ['cancelled', 'completed'])) {

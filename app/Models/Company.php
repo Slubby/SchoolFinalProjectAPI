@@ -79,22 +79,6 @@ class Company extends Model
     }
 
     /**
-     * @return HasMany
-     */
-    public function supervisors(): HasMany
-    {
-        return $this->hasMany(Supervisor::class);
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function vacancies(): HasMany
-    {
-        return $this->hasMany(Vacancy::class);
-    }
-
-    /**
      * @return CompanyUserFactory
      */
     protected static function newFactory(): CompanyUserFactory
