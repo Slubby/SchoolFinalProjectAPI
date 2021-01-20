@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\FullName;
+use Database\Factories\TeacherUserFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -77,5 +78,13 @@ class Teacher extends Model
     public function school(): BelongsTo
     {
         return $this->belongsTo(School::class);
+    }
+
+    /**
+     * @return TeacherUserFactory
+     */
+    protected static function newFactory(): TeacherUserFactory
+    {
+        return TeacherUserFactory::new();
     }
 }

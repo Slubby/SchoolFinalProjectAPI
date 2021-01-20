@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\FullName;
+use Database\Factories\AdminUserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
@@ -46,5 +47,13 @@ class Admin extends Model
     public function user(): MorphOne
     {
         return $this->morphOne(User::class, 'profile');
+    }
+
+    /**
+     * @return AdminUserFactory
+     */
+    protected static function newFactory(): AdminUserFactory
+    {
+        return AdminUserFactory::new();
     }
 }

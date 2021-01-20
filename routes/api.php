@@ -46,12 +46,13 @@ Route::middleware('auth:api')->name('user.')->group(function () {
     });
 
     // Admin
-    Route::middleware('permission:admin')->name('admin.')->group(function () {
+    Route::prefix('a')->middleware('permission:admin')->name('admin.')->group(function () {
         Route::prefix('school')->name('school.')->group(function () {
             Route::post('create', [SchoolController::class, 'store'])->name('create');
 
             Route::prefix('{school}')->group(function () {
                 Route::patch('update', [SchoolController::class, 'update'])->name('update');
+                Route::delete('delete', [SchoolController::class, 'destroy'])->name('delete');
             });
         });
 

@@ -66,7 +66,7 @@ class SchoolController extends Controller
         $validation = (object) $request->validated();
 
         if ($school = self::school($validation, new School())) {
-            return (new SchoolResource($school))->additional(['message' => "\"{$school->name}\" is successfully created"]);
+                return (new SchoolResource($school))->additional(['message' => "\"{$school->name}\" is successfully created"]);
         }
 
         return response()->json(['message' => 'Something went wrong while creating a school name'], Response::HTTP_BAD_REQUEST);
