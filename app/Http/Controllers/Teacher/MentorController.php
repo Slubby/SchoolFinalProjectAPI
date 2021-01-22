@@ -2,13 +2,22 @@
 
 namespace App\Http\Controllers\Teacher;
 
+use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Profile\StudentController;
+use App\Http\Requests\Teacher\StudentChangeRequest;
+use App\Http\Requests\User\UserCreateRequest;
 use App\Http\Resources\UserCollection;
+use App\Http\Resources\UserResource;
+use App\Models\JobApplication;
+use App\Models\Student;
 use App\Models\Teacher;
+use App\Models\User;
+use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 
 /**
@@ -40,67 +49,110 @@ class MentorController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Teacher create student
      *
-     * @return Response
+     * @param UserCreateRequest $request
+     * @return UserResource|JsonResponse
      */
-    public function create()
+    public function store(UserCreateRequest $request)
     {
-        //
+        $validation = (object) $request->validated();
+
+        try {
+            $user = new User();
+
+            $user->email = $validation->email;
+            $user->mobile = $validation->mobile;
+            $user->password = Hash::make($validation->password);
+
+            $user->save();
+
+            $profile = StudentController::createOrUpdate($validation, new Student());
+
+            $profile->user()->save($user);
+
+            if (VerificationController::emailVerifyCode($user)) {
+                return (new UserResource($user))->additional(['message' => "The student account is successfully created"]);
+            }
+
+            return response()->json(['message' => 'Something went wrong while sending the email'], Response::HTTP_BAD_REQUEST);
+        } catch (Exception $e) {
+            report($e);
+        }
+
+        return response()->json(['message' => 'Something went wrong while creating a student account'], Response::HTTP_BAD_REQUEST);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Teacher get student
      *
-     * @param Request $request
-     * @return Response
+     * @urlParam user required The id of the student. Example: 1
+     *
+     * @param User $user
+     * @return UserResource|JsonResponse
      */
-    public function store(Request $request)
+    public function show(User $user)
     {
-        //
+        $profile = Auth::user()->profile;
+
+        if ($profile instanceof Teacher) {
+            return new UserResource($user);
+        }
+
+        return response()->json(['message' => 'Something went wrong while getting the students']);
     }
 
     /**
-     * Display the specified resource.
+     * Teacher completed job application
      *
-     * @param  int  $id
-     * @return Response
+     * @urlParam user required The id of the student. Example: 1
+     * @urlParam jobApplication required The id of the job application. Example: 1
+     *
+     * @param User $user
+     * @param JobApplication $jobApplication
+     * @return JsonResponse
      */
-    public function show($id)
+    public function completed(User $user, JobApplication $jobApplication): JsonResponse
     {
-        //
+        try {
+            if ($jobApplication->status === 'accepted') {
+                $jobApplication->status = 'completed';
+                $jobApplication->save();
+
+                return response()->json(['message' => 'The job application is successfully completed']);
+            }
+
+            return response()->json(['message' => "The Student wasn't accepted for this job application"], Response::HTTP_BAD_REQUEST);
+        } catch (Exception $e) {
+            report($e);
+        }
+
+        return response()->json(['message' => 'Something went wrong while completing the student job application'], Response::HTTP_BAD_REQUEST);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Teacher update student
      *
-     * @param  int  $id
+     * @urlParam user required The id of the student. Example: 1
+     *
+     * @param StudentChangeRequest $request
+     * @param User $user
      * @return Response
      */
-    public function edit($id)
+    public function update(StudentChangeRequest $request, User $user)
     {
-        //
+        $validation = (object) $request->validated();
+
+
     }
 
     /**
-     * Update the specified resource in storage.
+     * Teacher delete Student
      *
-     * @param Request $request
-     * @param  int  $id
+     * @param User $user
      * @return Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
+    public function destroy(User $user)
     {
         //
     }

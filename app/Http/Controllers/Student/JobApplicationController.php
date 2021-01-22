@@ -126,6 +126,6 @@ class JobApplicationController extends Controller
             report($e);
         }
 
-        return response()->json(['message' => 'Something went wrong while cancelling your job application']);
+        return response()->json(['message' => 'Something went wrong while cancelling your job application'], Response::HTTP_BAD_REQUEST);
     }
 }

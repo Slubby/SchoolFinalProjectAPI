@@ -3,18 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Profile\AdminController;
-use App\Http\Controllers\Profile\CompanyController;
-use App\Http\Controllers\Profile\StudentController;
-use App\Http\Controllers\Profile\TeacherController;
-use App\Http\Requests\UserChangeRequest;
-use App\Http\Requests\UserPasswordChangeRequest;
+use App\Http\Requests\User\UserChangeRequest;
+use App\Http\Requests\User\UserPasswordChangeRequest;
 use App\Http\Resources\UserResource;
-use App\Models\Admin;
-use App\Models\Company;
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\User;
 use App\Traits\Profile;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -112,8 +103,10 @@ class AuthController extends Controller
         $validation = (object) $request->validated();
 
         try {
-            if (Hash::check($validation->previous_password, User::find(Auth::id())->password)) {
-                if (ResetPasswordController::changePassword(Auth::id(), $validation->new_password)) {
+            $user = Auth::user();
+
+            if (Hash::check($validation->previous_password, $user->password)) {
+                if (ResetPasswordController::changePassword($user, $validation->new_password)) {
                     return response()->json(['message' => trans('message.success.account.password.update')]);
                 }
             } else {

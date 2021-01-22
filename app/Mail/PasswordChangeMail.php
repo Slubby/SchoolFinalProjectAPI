@@ -2,12 +2,12 @@
 
 namespace App\Mail;
 
-use App\Traits\Mailer;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use WeDevelop4You\LaravelMultipleMailers\Mailer;
 
 class PasswordChangeMail extends Mailable implements ShouldQueue
 {
@@ -18,13 +18,13 @@ class PasswordChangeMail extends Mailable implements ShouldQueue
     /**
      * Create a new message instance.
      *
-     * @param object $Data
+     * @param object $data
      * @throws Exception
      */
-    public function __construct(object $Data)
+    public function __construct(object $data)
     {
-        $this->data = $Data;
-        $this->setMail();
+        $this->data = $data;
+        $this->setMailerWithQueue($data->mailer);
     }
 
     /**

@@ -6,7 +6,7 @@ use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 
 /**
@@ -44,18 +44,18 @@ class JobApplication extends Model
     ];
 
     /**
-     * @return HasOne
+     * @return BelongsTo
      */
-    public function student(): HasOne
+    public function student(): BelongsTo
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
     /**
-     * @return HasOne
+     * @return BelongsTo
      */
-    public function vacancy(): hasOne
+    public function vacancy(): BelongsTo
     {
-        return $this->hasOne(Vacancy::class);
+        return $this->belongsTo(Vacancy::class);
     }
 }

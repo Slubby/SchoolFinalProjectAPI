@@ -100,9 +100,15 @@ Route::middleware('auth:api')->name('user.')->group(function () {
 
         Route::prefix('mentor/class')->name('mentor.class.')->group(function () {
             Route::get('/', [MentorController::class, 'index'])->name('all');
+            Route::post('create', [MentorController::class, 'store'])->defaults('type', 'student')->name('create');
 
-            Route::prefix('{user}')->group(function () {
+            Route::prefix('{user}')->middleware('can:viewStudent,user')->group(function () {
+                Route::get('show', [MentorController::class, 'show'])->name('show');
+                Route::patch('update', [MentorController::class, 'update'])->name('update');
 
+                Route::prefix('{jobApplication}')->group(function () {
+                    Route::put('completed', [MentorController::class, 'completed'])->name('completed')->middleware('can:completed,jobApplication');
+                });
             });
         });
 

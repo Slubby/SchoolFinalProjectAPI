@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Profile\CompanyController;
 use App\Http\Controllers\Profile\TeacherController;
-use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\User\UserCreateRequest;
 use App\Models\Company;
 use App\Models\Teacher;
 use App\Models\User;

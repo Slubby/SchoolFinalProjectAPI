@@ -38,7 +38,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \App\Models\PasswordReset|null $passwordReset
- * @property-read Model|\Eloquent $profile
+ * @property Model|\Eloquent $profile
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Student[] $students
  * @property-read int|null $students_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Supervisor[] $supervisors

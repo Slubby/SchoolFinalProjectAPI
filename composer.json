@@ -15,8 +15,10 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.1",
+        "maatwebsite/excel": "^3.1",
         "schuppo/password-strength": "^2.2",
-        "tymon/jwt-auth": "^1.0"
+        "tymon/jwt-auth": "^1.0",
+        "wedevelop4you/laravel-multiple-mailers": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.8",
