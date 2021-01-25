@@ -43,12 +43,13 @@ class StudentController extends Controller
     /**
      * @param object $data
      * @param Student $student
+     * @param bool $mentor
      * @return Student|false
      */
-    public static function createOrUpdate(object $data, Student $student)
+    public static function createOrUpdate(object $data, Student $student, bool $mentor = false)
     {
         try {
-            if (!$student->exists) {
+            if (!$student->exists || $mentor) {
                 $student->school_id = $data->school;
                 $student->number = $data->number;
                 $student->education_id = $data->education;

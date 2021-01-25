@@ -137,23 +137,39 @@ class MentorController extends Controller
      *
      * @param StudentChangeRequest $request
      * @param User $user
-     * @return Response
+     * @return UserResource|JsonResponse
      */
     public function update(StudentChangeRequest $request, User $user)
     {
         $validation = (object) $request->validated();
 
+        $profile = $user->profile;
 
+        if ($profile instanceof Student) {
+            StudentController::createOrUpdate($validation, $profile, true);
+
+            return (new UserResource($user))->additional(['message' => 'The student is successfully updated']);
+        }
+
+        return response()->json(['message' => 'Something went wrong while updating a student'], Response::HTTP_BAD_REQUEST);
     }
 
     /**
      * Teacher delete Student
      *
      * @param User $user
-     * @return Response
+     * @return JsonResponse
      */
-    public function destroy(User $user)
+    public function destroy(User $user): JsonResponse
     {
-        //
+        try {
+            $user->delete();
+
+            return response()->json(['message' => 'The student is successfully deleted']);
+        } catch (Exception $e) {
+            report($e);
+        }
+
+        return response()->json(['message' => 'Something went wrong while deleting the student'], Response::HTTP_BAD_REQUEST);
     }
 }
