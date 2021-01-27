@@ -10,7 +10,8 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Company\AppliedController;
 use App\Http\Controllers\Company\SupervisorController;
 use App\Http\Controllers\Company\VacancyController;
-use App\Http\Controllers\Profile\CompanyController;
+    use App\Http\Controllers\ImportController;
+    use App\Http\Controllers\Profile\CompanyController;
 use App\Http\Controllers\Profile\TeacherController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\Student\JobApplicationController;
@@ -101,6 +102,7 @@ Route::middleware('auth:api')->name('user.')->group(function () {
         Route::prefix('mentor/class')->name('mentor.class.')->group(function () {
             Route::get('/', [MentorController::class, 'index'])->name('all');
             Route::post('create', [MentorController::class, 'store'])->defaults('type', 'student')->name('create');
+            Route::post('import/students', [ImportController::class, 'students'])->name('import.student');
 
             Route::prefix('{user}')->middleware('can:viewStudent,user')->group(function () {
                 Route::get('show', [MentorController::class, 'show'])->name('show');

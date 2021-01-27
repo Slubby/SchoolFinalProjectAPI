@@ -40,6 +40,20 @@ class StudentController extends Controller
         'grade' => ['required', 'integer'],
     ];
 
+    public static array $import = [
+        'email' => ['required', 'email', 'unique:users,email'],
+        'mobiele_telefoon' => ['required'],
+        'roepnaam' => ['required'],
+        'achternaam' => ['required'],
+        'geslacht' => ['required', 'in:man,vrouw,anders'],
+        'geboortedatum' => ['required', 'date'],
+        'adres' => ['required'],
+        'pc_wpl' => ['required'],
+        'opleiding' => ['required'],
+        'begindatum' => ['required', 'date'],
+        'leerjaar' => ['required', 'integer'],
+    ];
+
     /**
      * @param object $data
      * @param Student $student
