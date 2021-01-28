@@ -53,7 +53,7 @@ class VerificationController extends Controller
     /**
      * Account verify
      *
-     * @urlParam code required The code in the email. Example: WrCegVUunSCJPFETrBsp6nCmR398X9
+     * @urlParam verification_code required The code in the email. Example: WrCegVUunSCJPFETrBsp6nCmR398X9
      *
      * @param string $code
      * @return JsonResponse

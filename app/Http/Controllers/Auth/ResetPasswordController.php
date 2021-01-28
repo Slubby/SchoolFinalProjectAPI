@@ -47,7 +47,7 @@ class ResetPasswordController extends Controller
     /**
      * Account reset password
      *
-     * @urlParam code required The reset code in the email. Example: WrCegVUunSCJPFETrBsp6nCmR398X9
+     * @urlParam verification_code required The reset code in the email. Example: WrCegVUunSCJPFETrBsp6nCmR398X9
      *
      * @bodyParam password string required
      * @bodyParam password_confirm string required

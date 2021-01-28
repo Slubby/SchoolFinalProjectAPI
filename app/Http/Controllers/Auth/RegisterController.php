@@ -26,6 +26,11 @@ class RegisterController extends Controller
      *
      * @urlParam type required The type of user Example teacher or company. Example: teacher
      *
+     * @bodyParam email string required
+     * @bodyParam mobile integer Example: 0612345678
+     * @bodyParam password string required
+     * @bodyParam password_confirm string required
+     *
      * @bodyParam number integer required Company
      * @bodyParam name string required Company
      * @bodyParam country string required Company Example: NL

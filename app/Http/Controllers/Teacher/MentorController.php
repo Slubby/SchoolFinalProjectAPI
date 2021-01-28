@@ -51,6 +51,27 @@ class MentorController extends Controller
     /**
      * Teacher create student
      *
+     * @bodyParam email string required
+     * @bodyParam mobile integer Example: 0612345678
+     * @bodyParam password string required
+     * @bodyParam password_confirm string required
+     *
+     * @bodyParam first_name string required
+     * @bodyParam middle_name string
+     * @bodyParam last_name string required
+     * @bodyParam gender string required
+     * @bodyParam birthday date required Example: 2001-09-29
+     * @bodyParam country string required Example: NL
+     * @bodyParam region string required Example: GR
+     * @bodyParam city string required
+     * @bodyParam street string required
+     * @bodyParam house_number string required Example: 81
+     * @bodyParam postal_code string required Example: 9603HL
+     * @bodyParam mentor integer required Example: 1
+     * @bodyParam education integer required Example: 1
+     * @bodyParam started_at date required Example: 2001-09-29
+     * @bodyParam grade integer required Example: 1
+     *
      * @param UserCreateRequest $request
      * @return UserResource|JsonResponse
      */
@@ -135,6 +156,22 @@ class MentorController extends Controller
      *
      * @urlParam user required The id of the student. Example: 1
      *
+     * @bodyParam first_name string required
+     * @bodyParam middle_name string
+     * @bodyParam last_name string required
+     * @bodyParam gender string required
+     * @bodyParam birthday date required Example: 2001-09-29
+     * @bodyParam country string required Example: NL
+     * @bodyParam region string required Example: GR
+     * @bodyParam city string required
+     * @bodyParam street string required
+     * @bodyParam house_number string required Example: 81
+     * @bodyParam postal_code string required Example: 9603HL
+     * @bodyParam mentor integer required Example: 1
+     * @bodyParam education integer required Example: 1
+     * @bodyParam started_at date required Example: 2001-09-29
+     * @bodyParam grade integer required Example: 1
+     *
      * @param StudentChangeRequest $request
      * @param User $user
      * @return UserResource|JsonResponse
@@ -156,6 +193,8 @@ class MentorController extends Controller
 
     /**
      * Teacher delete Student
+     *
+     * @urlParam user required The id of the student. Example: 1
      *
      * @param User $user
      * @return JsonResponse

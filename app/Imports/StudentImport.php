@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Http\Controllers\Profile\StudentController;
+use App\Models\Education;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
@@ -19,6 +20,8 @@ class StudentImport implements OnEachRow, WithHeadingRow, WithValidation
 {
     use Importable, Import;
 
+    public string $password = '';
+
     /**
      * @param string $name
      * @return Teacher|null
@@ -32,7 +35,17 @@ class StudentImport implements OnEachRow, WithHeadingRow, WithValidation
             $teacher->setAttribute('full_name', strtolower($teacher->fullName()));
         }
 
-        return $teachers->where('full_name', $mentorName)->first();
+        return $teachers->where('full_name', 'like', "%{$mentorName}%")->first();
+    }
+
+    /**
+     * @param string $name
+     * @return Education|null
+     */
+    private static function getEducation(string $name): ?Education
+    {
+        $educationName = strtolower($name);
+        return Education::where('name', 'like', "%{$educationName}%")->first();
     }
 
     /**
@@ -46,12 +59,13 @@ class StudentImport implements OnEachRow, WithHeadingRow, WithValidation
         $birthday = self::setDateFormat($collection->geboortedatum);
         $location = self::getLocation($collection->pc_wpl);
         $address = self::getAddress($collection->adres);
+        $education = self::getEducation($collection->mentoren);
         $mentor = self::getMentor($collection->mentoren);
         $startedAt = self::setDateFormat($collection->begindatum);
 
         $user = new User();
         $user->email = $collection->email;
-        $user->password = Hash::make('test');
+        $user->password = Hash::make($this->password);
         $user->save();
 
         $profile = new Student();
@@ -68,7 +82,7 @@ class StudentImport implements OnEachRow, WithHeadingRow, WithValidation
         $profile->house_number = $address->number;
         $profile->postal_code = $location->postalCode;
         $profile->school_id = Auth::user()->profile->school_id;
-        $profile->education_id = 1;
+        $profile->education_id = $education;
         $profile->mentor_id = $mentor->user->id;
         $profile->started_at = $startedAt;
         $profile->grade = $collection->leerjaar;
@@ -81,7 +95,12 @@ class StudentImport implements OnEachRow, WithHeadingRow, WithValidation
         $custom = [
             'mentoren' => ['required', function($attribute, $value, $onFailure) {
                 if (is_null(self::getMentor($value))) {
-                    $onFailure('The Mentoren doesn\'t exist');
+                    $onFailure("The {$attribute} doesn't exist");
+                }
+            }],
+            'opleiding' => ['required', function($attribute, $value, $onFailure) {
+                if (is_null(self::getEducation($value))) {
+                    $onFailure("The {$attribute} doesn't exist)");
                 }
             }]
         ];

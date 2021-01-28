@@ -44,18 +44,17 @@
       <div class="content">
           <!-- START_INFO -->
 <h1>Info</h1>
-<p>Welcome to the generated API reference.
-<a href="{{ route("apidoc.json") }}">Get Postman Collection</a></p>
+<p>Welcome to the generated API reference.</p>
 <!-- END_INFO -->
 <h1>Admin</h1>
-<!-- START_dade44276640c00634e9d20ae7b5e6fb -->
+<!-- START_417ec5a8ef7d5a955ea245a155508260 -->
 <h2>School create</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/school/create"
+    "https://school.wedevelop4you.nl/api/a/school/create"
 );
 
 let headers = {
@@ -65,7 +64,7 @@ let headers = {
 };
 
 let body = {
-    "name": "et"
+    "name": "earum"
 }
 
 fetch(url, {
@@ -76,7 +75,7 @@ fetch(url, {
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <h3>HTTP Request</h3>
-<p><code>POST api/school/create</code></p>
+<p><code>POST api/a/school/create</code></p>
 <h4>Body Parameters</h4>
 <table>
 <thead>
@@ -95,15 +94,15 @@ fetch(url, {
 </tr>
 </tbody>
 </table>
-<!-- END_dade44276640c00634e9d20ae7b5e6fb -->
-<!-- START_e9ab6f496611bba074db47a7f856b764 -->
+<!-- END_417ec5a8ef7d5a955ea245a155508260 -->
+<!-- START_d4cc6a6b93f360c3c413e2d302e43485 -->
 <h2>School update</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/school/1/update"
+    "https://school.wedevelop4you.nl/api/a/school/1/update"
 );
 
 let headers = {
@@ -113,7 +112,7 @@ let headers = {
 };
 
 let body = {
-    "name": "sunt"
+    "name": "sed"
 }
 
 fetch(url, {
@@ -124,7 +123,7 @@ fetch(url, {
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <h3>HTTP Request</h3>
-<p><code>PATCH api/school/{school}/update</code></p>
+<p><code>PATCH api/a/school/{school}/update</code></p>
 <h4>URL Parameters</h4>
 <table>
 <thead>
@@ -160,15 +159,57 @@ fetch(url, {
 </tr>
 </tbody>
 </table>
-<!-- END_e9ab6f496611bba074db47a7f856b764 -->
-<!-- START_6e6ddc6ddb95f1bc82644901a12e340a -->
+<!-- END_d4cc6a6b93f360c3c413e2d302e43485 -->
+<!-- START_af0e8bd557a4af8234ef5e5af9e4f2d2 -->
+<h2>School delete</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "https://school.wedevelop4you.nl/api/a/school/1/delete"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {token}",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE api/a/school/{school}/delete</code></p>
+<h4>URL Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>school</code></td>
+<td>required</td>
+<td>The id of the school.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_af0e8bd557a4af8234ef5e5af9e4f2d2 -->
+<!-- START_a9de2f023baf2fa0b71c00f1606c523f -->
 <h2>Company verify</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/1/verify"
+    "https://school.wedevelop4you.nl/api/a/company/1/verify"
 );
 
 let headers = {
@@ -184,7 +225,7 @@ fetch(url, {
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <h3>HTTP Request</h3>
-<p><code>PUT api/company/{company}/verify</code></p>
+<p><code>PUT api/a/company/{company}/verify</code></p>
 <h4>URL Parameters</h4>
 <table>
 <thead>
@@ -202,7 +243,7 @@ fetch(url, {
 </tr>
 </tbody>
 </table>
-<!-- END_6e6ddc6ddb95f1bc82644901a12e340a -->
+<!-- END_a9de2f023baf2fa0b71c00f1606c523f -->
 <h1>Advertisement</h1>
 <!-- START_f8f4c48a1cc0f75cb15d9ff0cb6f84f1 -->
 <h2>Advertisements</h2>
@@ -286,8 +327,8 @@ let headers = {
 };
 
 let body = {
-    "email": "nemo",
-    "password": "porro"
+    "email": "ut",
+    "password": "commodi"
 }
 
 fetch(url, {
@@ -338,19 +379,23 @@ let headers = {
 };
 
 let body = {
-    "number": 5,
-    "name": "quas",
+    "email": "similique",
+    "mobile": 612345678,
+    "password": "eum",
+    "password_confirm": "neque",
+    "number": 10,
+    "name": "error",
     "country": "NL",
     "region": "GR",
-    "city": "voluptatum",
-    "street": "et",
+    "city": "enim",
+    "street": "ea",
     "house_number": "81",
     "postal_code": "9603HL",
-    "school": 6,
-    "first_name": "at",
-    "middle_name": "quam",
-    "last_name": "numquam",
-    "short_name": "ea"
+    "school": 18,
+    "first_name": "molestiae",
+    "middle_name": "aut",
+    "last_name": "officia",
+    "short_name": "repellendus"
 }
 
 fetch(url, {
@@ -390,6 +435,26 @@ fetch(url, {
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code>email</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>mobile</code></td>
+<td>integer</td>
+<td>optional</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>password_confirm</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
 <tr>
 <td><code>number</code></td>
 <td>integer</td>
@@ -500,7 +565,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/auth/verify/account/1"
+    "https://school.wedevelop4you.nl/api/auth/verify/account/WrCegVUunSCJPFETrBsp6nCmR398X9"
 );
 
 let headers = {
@@ -527,7 +592,7 @@ fetch(url, {
 </thead>
 <tbody>
 <tr>
-<td><code>code</code></td>
+<td><code>verification_code</code></td>
 <td>required</td>
 <td>The code in the email.</td>
 </tr>
@@ -549,7 +614,7 @@ let headers = {
 };
 
 let body = {
-    "email": "omnis"
+    "email": "suscipit"
 }
 
 fetch(url, {
@@ -586,7 +651,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "https://school.wedevelop4you.nl/api/auth/password/reset/account/1"
+    "https://school.wedevelop4you.nl/api/auth/password/reset/account/WrCegVUunSCJPFETrBsp6nCmR398X9"
 );
 
 let headers = {
@@ -595,8 +660,8 @@ let headers = {
 };
 
 let body = {
-    "password": "porro",
-    "password_confirm": "laborum"
+    "password": "corporis",
+    "password_confirm": "mollitia"
 }
 
 fetch(url, {
@@ -619,7 +684,7 @@ fetch(url, {
 </thead>
 <tbody>
 <tr>
-<td><code>code</code></td>
+<td><code>verification_code</code></td>
 <td>required</td>
 <td>The reset code in the email.</td>
 </tr>
@@ -715,17 +780,17 @@ let headers = {
 };
 
 let body = {
-    "first_name": "libero",
-    "middle_name": "libero",
-    "last_name": "cumque",
+    "first_name": "doloremque",
+    "middle_name": "non",
+    "last_name": "necessitatibus",
     "country": "NL",
     "region": "GR",
-    "city": "consequuntur",
-    "street": "ex",
+    "city": "exercitationem",
+    "street": "illo",
     "house_number": "81",
     "postal_code": "9603HL",
-    "short_name": "natus",
-    "gender": "non",
+    "short_name": "rerum",
+    "gender": "minima",
     "birthday": "2001-09-29"
 }
 
@@ -841,9 +906,9 @@ let headers = {
 };
 
 let body = {
-    "previous_password": "numquam",
-    "new_password": "officiis",
-    "password_confirm": "voluptas"
+    "previous_password": "culpa",
+    "new_password": "saepe",
+    "password_confirm": "architecto"
 }
 
 fetch(url, {
@@ -927,9 +992,9 @@ let headers = {
 };
 
 let body = {
-    "first_name": "molestiae",
-    "middle_name": "voluptatum",
-    "last_name": "delectus"
+    "first_name": "corrupti",
+    "middle_name": "animi",
+    "last_name": "quia"
 }
 
 fetch(url, {
@@ -987,9 +1052,9 @@ let headers = {
 };
 
 let body = {
-    "first_name": "corrupti",
-    "middle_name": "consectetur",
-    "last_name": "quidem"
+    "first_name": "esse",
+    "middle_name": "et",
+    "last_name": "iste"
 }
 
 fetch(url, {
@@ -1131,12 +1196,12 @@ let headers = {
 };
 
 let body = {
-    "type": 2,
-    "title": "et",
-    "description": "ut",
-    "about_us": "fuga",
+    "type": 20,
+    "title": "inventore",
+    "description": "accusantium",
+    "about_us": "omnis",
     "requirements": [],
-    "total": 17
+    "total": 5
 }
 
 fetch(url, {
@@ -1293,10 +1358,10 @@ let headers = {
 };
 
 let body = {
-    "type": 14,
-    "title": "mollitia",
-    "description": "rerum",
-    "about_us": "tempore",
+    "type": 9,
+    "title": "alias",
+    "description": "reprehenderit",
+    "about_us": "adipisci",
     "requirements": [],
     "total": 12
 }
@@ -1693,6 +1758,455 @@ fetch(url, {
 <h3>HTTP Request</h3>
 <p><code>GET api/t/mentor/class</code></p>
 <!-- END_68d0c3cba4c6fe1df0607510cb740263 -->
+<!-- START_3553be81ad449af5b0d1dcc44ae5c75e -->
+<h2>Teacher create student</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "https://school.wedevelop4you.nl/api/t/mentor/class/create"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {token}",
+};
+
+let body = {
+    "email": "error",
+    "mobile": 612345678,
+    "password": "eos",
+    "password_confirm": "temporibus",
+    "first_name": "eos",
+    "middle_name": "repellat",
+    "last_name": "error",
+    "gender": "mollitia",
+    "birthday": "2001-09-29",
+    "country": "NL",
+    "region": "GR",
+    "city": "consequatur",
+    "street": "quia",
+    "house_number": "81",
+    "postal_code": "9603HL",
+    "mentor": 1,
+    "education": 1,
+    "started_at": "2001-09-29",
+    "grade": 1
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/t/mentor/class/create</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>email</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>mobile</code></td>
+<td>integer</td>
+<td>optional</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>password_confirm</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>first_name</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>middle_name</code></td>
+<td>string</td>
+<td>optional</td>
+</tr>
+<tr>
+<td><code>last_name</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>gender</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>birthday</code></td>
+<td>date</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>country</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>region</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>city</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>street</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>house_number</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>postal_code</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>mentor</code></td>
+<td>integer</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>education</code></td>
+<td>integer</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>started_at</code></td>
+<td>date</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>grade</code></td>
+<td>integer</td>
+<td>required</td>
+</tr>
+</tbody>
+</table>
+<!-- END_3553be81ad449af5b0d1dcc44ae5c75e -->
+<!-- START_a83773d1a688fa37be0a6144b3712a57 -->
+<h2>Import students</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "https://school.wedevelop4you.nl/api/t/mentor/class/import/students"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {token}",
+};
+
+let body = {
+    "students": "illo",
+    "password": "magnam"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/t/mentor/class/import/students</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>students</code></td>
+<td>file</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>string</td>
+<td>required</td>
+<td>default password for students</td>
+</tr>
+</tbody>
+</table>
+<!-- END_a83773d1a688fa37be0a6144b3712a57 -->
+<!-- START_88c87506ca7cfb26d887ba337531258e -->
+<h2>Teacher get student</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "https://school.wedevelop4you.nl/api/t/mentor/class/1/show"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {token}",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/t/mentor/class/{user}/show</code></p>
+<h4>URL Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>user</code></td>
+<td>required</td>
+<td>The id of the student.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_88c87506ca7cfb26d887ba337531258e -->
+<!-- START_d0a34420aef8eb68957240402344e2b5 -->
+<h2>Teacher update student</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "https://school.wedevelop4you.nl/api/t/mentor/class/1/update"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {token}",
+};
+
+let body = {
+    "first_name": "ea",
+    "middle_name": "quia",
+    "last_name": "omnis",
+    "gender": "voluptatem",
+    "birthday": "2001-09-29",
+    "country": "NL",
+    "region": "GR",
+    "city": "blanditiis",
+    "street": "aut",
+    "house_number": "81",
+    "postal_code": "9603HL",
+    "mentor": 1,
+    "education": 1,
+    "started_at": "2001-09-29",
+    "grade": 1
+}
+
+fetch(url, {
+    method: "PATCH",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PATCH api/t/mentor/class/{user}/update</code></p>
+<h4>URL Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>user</code></td>
+<td>required</td>
+<td>The id of the student.</td>
+</tr>
+</tbody>
+</table>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>first_name</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>middle_name</code></td>
+<td>string</td>
+<td>optional</td>
+</tr>
+<tr>
+<td><code>last_name</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>gender</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>birthday</code></td>
+<td>date</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>country</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>region</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>city</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>street</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>house_number</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>postal_code</code></td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>mentor</code></td>
+<td>integer</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>education</code></td>
+<td>integer</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>started_at</code></td>
+<td>date</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>grade</code></td>
+<td>integer</td>
+<td>required</td>
+</tr>
+</tbody>
+</table>
+<!-- END_d0a34420aef8eb68957240402344e2b5 -->
+<!-- START_d91f6a7f173010989ecbae74f335b0d0 -->
+<h2>Teacher completed job application</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "https://school.wedevelop4you.nl/api/t/mentor/class/1/1/completed"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {token}",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT api/t/mentor/class/{user}/{jobApplication}/completed</code></p>
+<h4>URL Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>user</code></td>
+<td>required</td>
+<td>The id of the student.</td>
+</tr>
+<tr>
+<td><code>jobApplication</code></td>
+<td>required</td>
+<td>The id of the job application.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_d91f6a7f173010989ecbae74f335b0d0 -->
 <!-- START_0722e37e780f1be2628fc8f075cdf5a0 -->
 <h2>Teacher verify</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>

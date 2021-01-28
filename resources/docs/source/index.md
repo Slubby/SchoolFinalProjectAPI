@@ -15,14 +15,13 @@ toc_footers:
 # Info
 
 Welcome to the generated API reference.
-[Get Postman Collection](https://school.wedevelop4you.nl/docs/collection.json)
 
 <!-- END_INFO -->
 
 #Admin
 
 
-<!-- START_dade44276640c00634e9d20ae7b5e6fb -->
+<!-- START_417ec5a8ef7d5a955ea245a155508260 -->
 ## School create
 
 <br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
@@ -30,7 +29,7 @@ Welcome to the generated API reference.
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/school/create"
+    "https://school.wedevelop4you.nl/api/a/school/create"
 );
 
 let headers = {
@@ -40,7 +39,7 @@ let headers = {
 };
 
 let body = {
-    "name": "et"
+    "name": "earum"
 }
 
 fetch(url, {
@@ -55,16 +54,16 @@ fetch(url, {
 
 
 ### HTTP Request
-`POST api/school/create`
+`POST api/a/school/create`
 
 #### Body Parameters
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
     `name` | string |  required  | 
     
-<!-- END_dade44276640c00634e9d20ae7b5e6fb -->
+<!-- END_417ec5a8ef7d5a955ea245a155508260 -->
 
-<!-- START_e9ab6f496611bba074db47a7f856b764 -->
+<!-- START_d4cc6a6b93f360c3c413e2d302e43485 -->
 ## School update
 
 <br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
@@ -72,7 +71,7 @@ Parameter | Type | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/school/1/update"
+    "https://school.wedevelop4you.nl/api/a/school/1/update"
 );
 
 let headers = {
@@ -82,7 +81,7 @@ let headers = {
 };
 
 let body = {
-    "name": "sunt"
+    "name": "sed"
 }
 
 fetch(url, {
@@ -97,7 +96,7 @@ fetch(url, {
 
 
 ### HTTP Request
-`PATCH api/school/{school}/update`
+`PATCH api/a/school/{school}/update`
 
 #### URL Parameters
 
@@ -109,9 +108,47 @@ Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
     `name` | string |  required  | 
     
-<!-- END_e9ab6f496611bba074db47a7f856b764 -->
+<!-- END_d4cc6a6b93f360c3c413e2d302e43485 -->
 
-<!-- START_6e6ddc6ddb95f1bc82644901a12e340a -->
+<!-- START_af0e8bd557a4af8234ef5e5af9e4f2d2 -->
+## School delete
+
+<br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
+> Example request:
+
+```javascript
+const url = new URL(
+    "https://school.wedevelop4you.nl/api/a/school/1/delete"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {token}",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`DELETE api/a/school/{school}/delete`
+
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `school` |  required  | The id of the school.
+
+<!-- END_af0e8bd557a4af8234ef5e5af9e4f2d2 -->
+
+<!-- START_a9de2f023baf2fa0b71c00f1606c523f -->
 ## Company verify
 
 <br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
@@ -119,7 +156,7 @@ Parameter | Type | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/company/1/verify"
+    "https://school.wedevelop4you.nl/api/a/company/1/verify"
 );
 
 let headers = {
@@ -139,7 +176,7 @@ fetch(url, {
 
 
 ### HTTP Request
-`PUT api/company/{company}/verify`
+`PUT api/a/company/{company}/verify`
 
 #### URL Parameters
 
@@ -147,7 +184,7 @@ Parameter | Status | Description
 --------- | ------- | ------- | -------
     `company` |  required  | The id of the company.
 
-<!-- END_6e6ddc6ddb95f1bc82644901a12e340a -->
+<!-- END_a9de2f023baf2fa0b71c00f1606c523f -->
 
 #Advertisement
 
@@ -241,8 +278,8 @@ let headers = {
 };
 
 let body = {
-    "email": "nemo",
-    "password": "porro"
+    "email": "ut",
+    "password": "commodi"
 }
 
 fetch(url, {
@@ -283,19 +320,23 @@ let headers = {
 };
 
 let body = {
-    "number": 5,
-    "name": "quas",
+    "email": "similique",
+    "mobile": 612345678,
+    "password": "eum",
+    "password_confirm": "neque",
+    "number": 10,
+    "name": "error",
     "country": "NL",
     "region": "GR",
-    "city": "voluptatum",
-    "street": "et",
+    "city": "enim",
+    "street": "ea",
     "house_number": "81",
     "postal_code": "9603HL",
-    "school": 6,
-    "first_name": "at",
-    "middle_name": "quam",
-    "last_name": "numquam",
-    "short_name": "ea"
+    "school": 18,
+    "first_name": "molestiae",
+    "middle_name": "aut",
+    "last_name": "officia",
+    "short_name": "repellendus"
 }
 
 fetch(url, {
@@ -320,7 +361,11 @@ Parameter | Status | Description
 #### Body Parameters
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
-    `number` | integer |  required  | Company
+    `email` | string |  required  | 
+        `mobile` | integer |  optional  | 
+        `password` | string |  required  | 
+        `password_confirm` | string |  required  | 
+        `number` | integer |  required  | Company
         `name` | string |  required  | Company
         `country` | string |  required  | Company
         `region` | string |  required  | Company
@@ -374,7 +419,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/auth/verify/account/1"
+    "https://school.wedevelop4you.nl/api/auth/verify/account/WrCegVUunSCJPFETrBsp6nCmR398X9"
 );
 
 let headers = {
@@ -399,7 +444,7 @@ fetch(url, {
 
 Parameter | Status | Description
 --------- | ------- | ------- | -------
-    `code` |  required  | The code in the email.
+    `verification_code` |  required  | The code in the email.
 
 <!-- END_a0c7b9b57fc85028cb0bf6e1b98b9e51 -->
 
@@ -419,7 +464,7 @@ let headers = {
 };
 
 let body = {
-    "email": "omnis"
+    "email": "suscipit"
 }
 
 fetch(url, {
@@ -450,7 +495,7 @@ Parameter | Type | Status | Description
 
 ```javascript
 const url = new URL(
-    "https://school.wedevelop4you.nl/api/auth/password/reset/account/1"
+    "https://school.wedevelop4you.nl/api/auth/password/reset/account/WrCegVUunSCJPFETrBsp6nCmR398X9"
 );
 
 let headers = {
@@ -459,8 +504,8 @@ let headers = {
 };
 
 let body = {
-    "password": "porro",
-    "password_confirm": "laborum"
+    "password": "corporis",
+    "password_confirm": "mollitia"
 }
 
 fetch(url, {
@@ -481,7 +526,7 @@ fetch(url, {
 
 Parameter | Status | Description
 --------- | ------- | ------- | -------
-    `code` |  required  | The reset code in the email.
+    `verification_code` |  required  | The reset code in the email.
 #### Body Parameters
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
@@ -573,17 +618,17 @@ let headers = {
 };
 
 let body = {
-    "first_name": "libero",
-    "middle_name": "libero",
-    "last_name": "cumque",
+    "first_name": "doloremque",
+    "middle_name": "non",
+    "last_name": "necessitatibus",
     "country": "NL",
     "region": "GR",
-    "city": "consequuntur",
-    "street": "ex",
+    "city": "exercitationem",
+    "street": "illo",
     "house_number": "81",
     "postal_code": "9603HL",
-    "short_name": "natus",
-    "gender": "non",
+    "short_name": "rerum",
+    "gender": "minima",
     "birthday": "2001-09-29"
 }
 
@@ -637,9 +682,9 @@ let headers = {
 };
 
 let body = {
-    "previous_password": "numquam",
-    "new_password": "officiis",
-    "password_confirm": "voluptas"
+    "previous_password": "culpa",
+    "new_password": "saepe",
+    "password_confirm": "architecto"
 }
 
 fetch(url, {
@@ -719,9 +764,9 @@ let headers = {
 };
 
 let body = {
-    "first_name": "molestiae",
-    "middle_name": "voluptatum",
-    "last_name": "delectus"
+    "first_name": "corrupti",
+    "middle_name": "animi",
+    "last_name": "quia"
 }
 
 fetch(url, {
@@ -765,9 +810,9 @@ let headers = {
 };
 
 let body = {
-    "first_name": "corrupti",
-    "middle_name": "consectetur",
-    "last_name": "quidem"
+    "first_name": "esse",
+    "middle_name": "et",
+    "last_name": "iste"
 }
 
 fetch(url, {
@@ -887,12 +932,12 @@ let headers = {
 };
 
 let body = {
-    "type": 2,
-    "title": "et",
-    "description": "ut",
-    "about_us": "fuga",
+    "type": 20,
+    "title": "inventore",
+    "description": "accusantium",
+    "about_us": "omnis",
     "requirements": [],
-    "total": 17
+    "total": 5
 }
 
 fetch(url, {
@@ -1015,10 +1060,10 @@ let headers = {
 };
 
 let body = {
-    "type": 14,
-    "title": "mollitia",
-    "description": "rerum",
-    "about_us": "tempore",
+    "type": 9,
+    "title": "alias",
+    "description": "reprehenderit",
+    "about_us": "adipisci",
     "requirements": [],
     "total": 12
 }
@@ -1385,6 +1430,280 @@ fetch(url, {
 
 
 <!-- END_68d0c3cba4c6fe1df0607510cb740263 -->
+
+<!-- START_3553be81ad449af5b0d1dcc44ae5c75e -->
+## Teacher create student
+
+<br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
+> Example request:
+
+```javascript
+const url = new URL(
+    "https://school.wedevelop4you.nl/api/t/mentor/class/create"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {token}",
+};
+
+let body = {
+    "email": "error",
+    "mobile": 612345678,
+    "password": "eos",
+    "password_confirm": "temporibus",
+    "first_name": "eos",
+    "middle_name": "repellat",
+    "last_name": "error",
+    "gender": "mollitia",
+    "birthday": "2001-09-29",
+    "country": "NL",
+    "region": "GR",
+    "city": "consequatur",
+    "street": "quia",
+    "house_number": "81",
+    "postal_code": "9603HL",
+    "mentor": 1,
+    "education": 1,
+    "started_at": "2001-09-29",
+    "grade": 1
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST api/t/mentor/class/create`
+
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `email` | string |  required  | 
+        `mobile` | integer |  optional  | 
+        `password` | string |  required  | 
+        `password_confirm` | string |  required  | 
+        `first_name` | string |  required  | 
+        `middle_name` | string |  optional  | 
+        `last_name` | string |  required  | 
+        `gender` | string |  required  | 
+        `birthday` | date |  required  | 
+        `country` | string |  required  | 
+        `region` | string |  required  | 
+        `city` | string |  required  | 
+        `street` | string |  required  | 
+        `house_number` | string |  required  | 
+        `postal_code` | string |  required  | 
+        `mentor` | integer |  required  | 
+        `education` | integer |  required  | 
+        `started_at` | date |  required  | 
+        `grade` | integer |  required  | 
+    
+<!-- END_3553be81ad449af5b0d1dcc44ae5c75e -->
+
+<!-- START_a83773d1a688fa37be0a6144b3712a57 -->
+## Import students
+
+<br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
+> Example request:
+
+```javascript
+const url = new URL(
+    "https://school.wedevelop4you.nl/api/t/mentor/class/import/students"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {token}",
+};
+
+let body = {
+    "students": "illo",
+    "password": "magnam"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST api/t/mentor/class/import/students`
+
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `students` | file |  required  | 
+        `password` | string |  required  | default password for students
+    
+<!-- END_a83773d1a688fa37be0a6144b3712a57 -->
+
+<!-- START_88c87506ca7cfb26d887ba337531258e -->
+## Teacher get student
+
+<br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
+> Example request:
+
+```javascript
+const url = new URL(
+    "https://school.wedevelop4you.nl/api/t/mentor/class/1/show"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {token}",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`GET api/t/mentor/class/{user}/show`
+
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `user` |  required  | The id of the student.
+
+<!-- END_88c87506ca7cfb26d887ba337531258e -->
+
+<!-- START_d0a34420aef8eb68957240402344e2b5 -->
+## Teacher update student
+
+<br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
+> Example request:
+
+```javascript
+const url = new URL(
+    "https://school.wedevelop4you.nl/api/t/mentor/class/1/update"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {token}",
+};
+
+let body = {
+    "first_name": "ea",
+    "middle_name": "quia",
+    "last_name": "omnis",
+    "gender": "voluptatem",
+    "birthday": "2001-09-29",
+    "country": "NL",
+    "region": "GR",
+    "city": "blanditiis",
+    "street": "aut",
+    "house_number": "81",
+    "postal_code": "9603HL",
+    "mentor": 1,
+    "education": 1,
+    "started_at": "2001-09-29",
+    "grade": 1
+}
+
+fetch(url, {
+    method: "PATCH",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`PATCH api/t/mentor/class/{user}/update`
+
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `user` |  required  | The id of the student.
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `first_name` | string |  required  | 
+        `middle_name` | string |  optional  | 
+        `last_name` | string |  required  | 
+        `gender` | string |  required  | 
+        `birthday` | date |  required  | 
+        `country` | string |  required  | 
+        `region` | string |  required  | 
+        `city` | string |  required  | 
+        `street` | string |  required  | 
+        `house_number` | string |  required  | 
+        `postal_code` | string |  required  | 
+        `mentor` | integer |  required  | 
+        `education` | integer |  required  | 
+        `started_at` | date |  required  | 
+        `grade` | integer |  required  | 
+    
+<!-- END_d0a34420aef8eb68957240402344e2b5 -->
+
+<!-- START_d91f6a7f173010989ecbae74f335b0d0 -->
+## Teacher completed job application
+
+<br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
+> Example request:
+
+```javascript
+const url = new URL(
+    "https://school.wedevelop4you.nl/api/t/mentor/class/1/1/completed"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {token}",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`PUT api/t/mentor/class/{user}/{jobApplication}/completed`
+
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `user` |  required  | The id of the student.
+    `jobApplication` |  required  | The id of the job application.
+
+<!-- END_d91f6a7f173010989ecbae74f335b0d0 -->
 
 <!-- START_0722e37e780f1be2628fc8f075cdf5a0 -->
 ## Teacher verify
