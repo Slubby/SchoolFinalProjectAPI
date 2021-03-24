@@ -16,7 +16,7 @@ Vul je gegevens in voor de database in je .env
 
 Voor de API documentatie klink [hier](https://school.wedevelop4you.nl/doc)
 
-### Default inlog gegevens
+### Default inlog gegevens (niet voor de online versie)
 | Email | Password |
 | ----- | -------- |
 | admin@example.org | W@chtwW00rd |
